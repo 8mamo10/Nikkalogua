@@ -11,20 +11,45 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Startup Name Generator',
-      //home: RandomWords(),
-      home: Scaffold(
-        body: Center(
-          child: Container(
-              color: Colors.blue,
-              width: 300,
-              height: 300,
-              child: Text('word'),
-              padding: const EdgeInsets.only(top: 50.0),
-              margin: const EdgeInsets.only(left: 100.0),
-              alignment: Alignment.center,
-              transform: Matrix4.rotationZ(0.1)),
-        ),
+        title: 'Startup Name Generator',
+        //home: RandomWords(),
+        //home: newMethod(),
+        home: Container(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: <Widget>[
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(color: Colors.blue, width: 100, height: 100),
+                  Container(color: Colors.red, width: 100, height: 100),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(color: Colors.green, width: 100, height: 100),
+                  Container(color: Colors.orange, width: 100, height: 100),
+                ],
+              ),
+            ],
+          ),
+        ));
+  }
+
+  // for container test
+  Scaffold newMethod() {
+    return Scaffold(
+      body: Center(
+        child: Container(
+            color: Colors.blue,
+            width: 300,
+            height: 300,
+            child: Text('word'),
+            padding: const EdgeInsets.only(top: 50.0),
+            margin: const EdgeInsets.only(left: 100.0),
+            alignment: Alignment.center,
+            transform: Matrix4.rotationZ(0.1)),
       ),
     );
   }
