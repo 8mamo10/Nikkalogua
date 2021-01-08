@@ -16,10 +16,14 @@ class MyApp extends StatelessWidget {
       home: Scaffold(
         body: Center(
           child: Container(
-            color: Colors.blue,
-            width: 300,
-            height: 300,
-          ),
+              color: Colors.blue,
+              width: 300,
+              height: 300,
+              child: Text('word'),
+              padding: const EdgeInsets.only(top: 50.0),
+              margin: const EdgeInsets.only(left: 100.0),
+              alignment: Alignment.center,
+              transform: Matrix4.rotationZ(0.1)),
         ),
       ),
     );
