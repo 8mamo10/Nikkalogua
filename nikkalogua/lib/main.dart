@@ -15,22 +15,54 @@ class MyApp extends StatelessWidget {
         //home: RandomWords(),
         //home: newMethod(),
         home: Container(
-          child: Row(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Column(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(color: Colors.blue, width: 100, height: 100),
                   Container(color: Colors.red, width: 100, height: 100),
                 ],
               ),
-              Column(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   Container(color: Colors.green, width: 100, height: 100),
                   Container(color: Colors.orange, width: 100, height: 100),
                 ],
+              ),
+              Container(
+                color: Colors.white,
+                child: Row(
+                  //mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  //mainAxisSize: MainAxisSize.max,
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Container(
+                      color: Colors.blue,
+                      width: 50,
+                      height: 50,
+                    ),
+                    Container(
+                      color: Colors.red,
+                      width: 50,
+                      height: 50,
+                    ),
+                    Container(
+                      color: Colors.green,
+                      width: 50,
+                      height: 50,
+                    ),
+                    Container(
+                      color: Colors.orange,
+                      width: 50,
+                      height: 50,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
