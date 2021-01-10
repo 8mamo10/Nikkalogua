@@ -13,77 +13,15 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Startup Name Generator',
         //home: RandomWords(),
-        //home: newMethod(),
         home: Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(color: Colors.blue, width: 100, height: 100),
-                  Container(color: Colors.red, width: 100, height: 100),
-                ],
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(color: Colors.green, width: 100, height: 100),
-                  Container(color: Colors.orange, width: 100, height: 100),
-                ],
-              ),
-              Container(
-                color: Colors.white,
-                child: Row(
-                  //mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  //mainAxisSize: MainAxisSize.max,
-                  mainAxisSize: MainAxisSize.min,
-                  children: <Widget>[
-                    Container(
-                      color: Colors.blue,
-                      width: 50,
-                      height: 50,
-                    ),
-                    Container(
-                      color: Colors.red,
-                      width: 50,
-                      height: 50,
-                    ),
-                    Container(
-                      color: Colors.green,
-                      width: 50,
-                      height: 50,
-                    ),
-                    Container(
-                      color: Colors.orange,
-                      width: 50,
-                      height: 50,
-                    ),
-                  ],
-                ),
-              ),
-            ],
-          ),
-        ));
-  }
-
-  // for container test
-  Scaffold newMethod() {
-    return Scaffold(
-      body: Center(
-        child: Container(
-            color: Colors.blue,
-            width: 300,
-            height: 300,
-            child: Text('word'),
-            padding: const EdgeInsets.only(top: 50.0),
-            margin: const EdgeInsets.only(left: 100.0),
-            alignment: Alignment.center,
-            transform: Matrix4.rotationZ(0.1)),
-      ),
-    );
+            child: Row(
+          children: <Widget>[
+            Expanded(child: Container(color: Colors.blue)),
+            Expanded(child: Container(color: Colors.red), flex: 5),
+            Expanded(child: Container(color: Colors.green)),
+            Expanded(child: Container(color: Colors.orange)),
+          ],
+        )));
   }
 }
 
