@@ -13,12 +13,14 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         title: 'Startup Name Generator',
         //home: RandomWords(),
-        home: Container(
+        home: Center(
             child: Row(
-                crossAxisAlignment: CrossAxisAlignment.stretch,
+                crossAxisAlignment: CrossAxisAlignment.baseline,
                 children: <Widget>[
-              Container(color: Colors.blue, width: 100, height: 100),
-              Container(color: Colors.red, width: 100, height: 100),
+              Text('Baseline',
+                  style: TextStyle(color: Colors.blue, fontSize: 50)),
+              Text('Baseline',
+                  style: TextStyle(color: Colors.red, fontSize: 25)),
             ])));
   }
 }
