@@ -15,13 +15,11 @@ class MyApp extends StatelessWidget {
         //home: RandomWords(),
         home: Container(
             child: Row(
-          children: <Widget>[
-            Expanded(child: Container(color: Colors.blue)),
-            Expanded(child: Container(color: Colors.red), flex: 5),
-            Expanded(child: Container(color: Colors.green)),
-            Expanded(child: Container(color: Colors.orange)),
-          ],
-        )));
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: <Widget>[
+              Container(color: Colors.blue, width: 100, height: 100),
+              Container(color: Colors.red, width: 100, height: 100),
+            ])));
   }
 }
 
