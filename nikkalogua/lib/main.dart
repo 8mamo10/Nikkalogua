@@ -10,18 +10,20 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    const data = [
+      Text("item0"),
+      Text("item1"),
+      Text("item2"),
+      Text("item3"),
+    ];
     return MaterialApp(
         title: 'Startup Name Generator',
         //home: RandomWords(),
-        home: Center(
-            child: Row(
-                crossAxisAlignment: CrossAxisAlignment.baseline,
-                children: <Widget>[
-              Text('Baseline',
-                  style: TextStyle(color: Colors.blue, fontSize: 50)),
-              Text('Baseline',
-                  style: TextStyle(color: Colors.red, fontSize: 25)),
-            ])));
+        home: Scaffold(
+          body: ListView(
+            children: data,
+          ),
+        ));
   }
 }
 
