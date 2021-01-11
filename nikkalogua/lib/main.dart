@@ -8,6 +8,7 @@ void main() {
 }
 
 class MyApp extends StatelessWidget {
+  var list = ["メッセージ1", "メッセージ2", "メッセージ3", "メッセージ4"];
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -15,16 +16,30 @@ class MyApp extends StatelessWidget {
         //home: RandomWords(),
         home: Scaffold(
             appBar: AppBar(title: Text('ListView')),
-            body: ListView(
-              children: [
-                _menuitem("menu1", Icon(Icons.settings)),
-                _menuitem("menu2", Icon(Icons.map)),
-                _menuitem("menu3", Icon(Icons.room)),
-                _menuitem("menu4", Icon(Icons.local_shipping)),
-                _menuitem("menu4", Icon(Icons.airplanemode_active)),
-              ],
-            )));
+            body: ListView.builder(
+                itemBuilder: (BuildContext context, int index) {
+              if (index >= list.length) {
+                list.addAll(['111', '222']);
+              }
+              return _messageItem(list[index]);
+            })));
   }
+}
+
+Widget _messageItem(String title) {
+  return Container(
+    decoration: new BoxDecoration(
+        border: new Border(bottom: BorderSide(width: 1.0, color: Colors.grey))),
+    child: ListTile(
+      title: Text(
+        title,
+        style: TextStyle(
+          color: Colors.black,
+          fontSize: 18.0,
+        ),
+      ),
+    ),
+  );
 }
 
 Widget _menuitem(String title, Icon icon) {
