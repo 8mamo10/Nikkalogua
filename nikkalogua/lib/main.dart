@@ -20,8 +20,11 @@ class MyApp extends StatelessWidget {
         //home: RandomWords(),
         home: Scaffold(
       appBar: AppBar(title: Text('GridView')),
-      body: GridView.count(
-        crossAxisCount: 2,
+      body: GridView.extent(
+        maxCrossAxisExtent: 150,
+        padding: const EdgeInsets.all(4),
+        mainAxisSpacing: 4,
+        crossAxisSpacing: 4,
         children: list,
       ),
     ));
