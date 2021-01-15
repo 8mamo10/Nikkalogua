@@ -10,22 +10,26 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var list = [
-      _photoItem("pic0.jpg"),
-      _photoItem("pic1.jpg"),
-      _photoItem("pic2.jpg"),
-      _photoItem("pic3.jpg"),
+    var grid = [
+      "pic0.jpg",
+      "pic1.jpg",
+      "pic2.jpg",
+      "pic3.jpg",
     ];
     return MaterialApp(
         //home: RandomWords(),
         home: Scaffold(
       appBar: AppBar(title: Text('GridView')),
-      body: GridView.extent(
-        maxCrossAxisExtent: 150,
-        padding: const EdgeInsets.all(4),
-        mainAxisSpacing: 4,
-        crossAxisSpacing: 4,
-        children: list,
+      body: GridView.builder(
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+        ),
+        itemBuilder: (BuildContext context, int index) {
+          if (index >= grid.length) {
+            grid.addAll(["pic0.jpg", "pic1.jpg", "pic2.jpg", "pic3.jpg"]);
+          }
+          return _photoItem(grid[index]);
+        },
       ),
     ));
   }
@@ -33,11 +37,7 @@ class MyApp extends StatelessWidget {
 
 Widget _photoItem(String image) {
   var assetImage = "assets/img/" + image;
-  return Container(
-      child: Image.asset(
-    assetImage,
-    fit: BoxFit.cover,
-  ));
+  return Container(child: Image.asset(assetImage, fit: BoxFit.cover));
 }
 
 Widget _messageItem(String title) {
