@@ -21,6 +21,7 @@ class MyApp extends StatelessWidget {
         home: Scaffold(
       appBar: AppBar(title: Text('GridView')),
       body: GridView.builder(
+        scrollDirection: Axis.horizontal,
         gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2,
         ),
