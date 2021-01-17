@@ -19,23 +19,37 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         //home: RandomWords(),
         home: Scaffold(
-      appBar: AppBar(title: Text('GridView')),
-      body: GridView.builder(
-        //scrollDirection: Axis.horizontal,
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          mainAxisSpacing: 4,
-          crossAxisSpacing: 4,
-          childAspectRatio: 0.7,
-        ),
-        itemBuilder: (BuildContext context, int index) {
-          if (index >= grid.length) {
-            grid.addAll(["pic0.jpg", "pic1.jpg", "pic2.jpg", "pic3.jpg"]);
-          }
-          return _photoItem(grid[index]);
-        },
-      ),
-    ));
+            appBar: AppBar(title: Text('GridView')),
+            body: Stack(
+              children: <Widget>[
+                GridView.builder(
+                  //scrollDirection: Axis.horizontal,
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                    mainAxisSpacing: 4,
+                    crossAxisSpacing: 4,
+                    childAspectRatio: 0.7,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index >= grid.length) {
+                      grid.addAll(
+                          ["pic0.jpg", "pic1.jpg", "pic2.jpg", "pic3.jpg"]);
+                    }
+                    return _photoItem(grid[index]);
+                  },
+                ),
+                Container(
+                  width: 100,
+                  height: 100,
+                  color: Colors.green,
+                ),
+                Container(
+                  width: 50,
+                  height: 80,
+                  color: Colors.orange,
+                )
+              ],
+            )));
   }
 }
 
