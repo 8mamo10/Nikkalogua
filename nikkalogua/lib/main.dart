@@ -47,7 +47,13 @@ class MyApp extends StatelessWidget {
                   width: 50,
                   height: 80,
                   color: Colors.orange,
-                )
+                ),
+                Positioned(
+                    left: 120,
+                    top: 120,
+                    width: 100,
+                    height: 100,
+                    child: Container(color: Colors.blue))
               ],
             )));
   }
