@@ -53,7 +53,19 @@ class MyApp extends StatelessWidget {
                     top: 120,
                     width: 100,
                     height: 100,
-                    child: Container(color: Colors.blue))
+                    child: Container(color: Colors.blue)),
+                Card(
+                  margin: const EdgeInsets.all(50.0),
+                  child: Container(
+                    margin: const EdgeInsets.all(10.0),
+                    width: 300,
+                    height: 100,
+                    child: Text(
+                      'Card',
+                      style: TextStyle(fontSize: 30),
+                    ),
+                  ),
+                )
               ],
             )));
   }
