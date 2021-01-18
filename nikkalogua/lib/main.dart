@@ -65,7 +65,9 @@ class MyApp extends StatelessWidget {
                       style: TextStyle(fontSize: 30),
                     ),
                   ),
-                )
+                ),
+                ClickGood(),
+                ChangeForm(),
               ],
             )));
   }
@@ -145,4 +147,74 @@ class RandomWordsState extends State<RandomWords> {
 class RandomWords extends StatefulWidget {
   @override
   RandomWordsState createState() => new RandomWordsState();
+}
+
+class ClickGood extends StatefulWidget {
+  @override
+  _ClickGoodState createState() => _ClickGoodState();
+}
+
+class _ClickGoodState extends State<ClickGood> {
+  bool _active = false;
+
+  void _handleTap() {
+    setState(() {
+      _active = !_active;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return GestureDetector(
+        onTap: _handleTap,
+        child: Container(
+          child: Center(
+              child: new Icon(
+            Icons.thumb_up,
+            color: _active ? Colors.orange[700] : Colors.grey[500],
+            size: 100.0,
+          )),
+        ));
+  }
+}
+
+class ChangeForm extends StatefulWidget {
+  @override
+  _ChangeFormState createState() => _ChangeFormState();
+}
+
+class _ChangeFormState extends State<ChangeForm> {
+  int _count = 0;
+  void _handlePressed() {
+    setState(() {
+      _count++;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.all(50.0),
+        child: Column(
+          children: <Widget>[
+            Text(
+              "$_count",
+              style: TextStyle(
+                color: Colors.blueAccent,
+                fontSize: 30.0,
+                fontWeight: FontWeight.w500,
+              ),
+            ),
+            FlatButton(
+              onPressed: _handlePressed,
+              color: Colors.blue,
+              child: Text(
+                'update',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                ),
+              ),
+            )
+          ],
+        ));
+  }
 }
