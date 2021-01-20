@@ -203,17 +203,11 @@ class _ChangeFormState extends State<ChangeForm> {
                 fontWeight: FontWeight.w500,
               ),
             ),
-            FlatButton(
+            FloatingActionButton(
               onPressed: _handlePressed,
-              color: Colors.blue,
-              child: Text(
-                'update',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20.0,
-                ),
-              ),
-            )
+              backgroundColor: Colors.blue,
+              child: Icon(Icons.add),
+            ),
           ],
         ));
   }
