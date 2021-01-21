@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 import 'package:flutter/rendering.dart';
+import 'package:flutter/services.dart';
 
 void main() {
   debugPaintSizeEnabled = false;
@@ -80,7 +81,8 @@ class MyApp extends StatelessWidget {
                       child: Text('select2'),
                     ),
                   ],
-                )
+                ),
+                ChangeForm2(),
               ],
             )));
   }
@@ -223,5 +225,46 @@ class _ChangeFormState extends State<ChangeForm> {
             ),
           ],
         ));
+  }
+}
+
+class ChangeForm2 extends StatefulWidget {
+  @override
+  _ChangeForm2State createState() => _ChangeForm2State();
+}
+
+class _ChangeForm2State extends State<ChangeForm2> {
+  String _text = "";
+  void _handleText(String e) {
+    setState(() {
+      _text = e;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: <Widget>[
+          Text(
+            "$_text",
+            style: TextStyle(
+              color: Colors.blueAccent,
+              fontSize: 30.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          new TextField(
+            enabled: true,
+            maxLength: 10,
+            maxLengthEnforced: false,
+            style: TextStyle(color: Colors.red),
+            obscureText: false,
+            maxLines: 1,
+            onChanged: _handleText,
+          ),
+        ],
+      ),
+    );
   }
 }
