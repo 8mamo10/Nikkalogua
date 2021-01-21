@@ -68,6 +68,19 @@ class MyApp extends StatelessWidget {
                 ),
                 ClickGood(),
                 ChangeForm(),
+                PopupMenuButton<String>(
+                  itemBuilder: (BuildContext context) =>
+                      <PopupMenuEntry<String>>[
+                    const PopupMenuItem<String>(
+                      value: "1",
+                      child: Text('select1'),
+                    ),
+                    const PopupMenuItem<String>(
+                      value: "2",
+                      child: Text('select2'),
+                    ),
+                  ],
+                )
               ],
             )));
   }
