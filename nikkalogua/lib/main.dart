@@ -38,50 +38,51 @@ class MyApp extends StatelessWidget {
                     return _photoItem(grid[index]);
                   },
                 ),
-                Container(
-                  width: 100,
-                  height: 100,
-                  color: Colors.green,
-                ),
-                Container(
-                  width: 50,
-                  height: 80,
-                  color: Colors.orange,
-                ),
-                Positioned(
-                    left: 120,
-                    top: 120,
-                    width: 100,
-                    height: 100,
-                    child: Container(color: Colors.blue)),
-                Card(
-                  margin: const EdgeInsets.all(50.0),
-                  child: Container(
-                    margin: const EdgeInsets.all(10.0),
-                    width: 300,
-                    height: 100,
-                    child: Text(
-                      'Card',
-                      style: TextStyle(fontSize: 30),
-                    ),
-                  ),
-                ),
-                ClickGood(),
-                ChangeForm(),
-                PopupMenuButton<String>(
-                  itemBuilder: (BuildContext context) =>
-                      <PopupMenuEntry<String>>[
-                    const PopupMenuItem<String>(
-                      value: "1",
-                      child: Text('select1'),
-                    ),
-                    const PopupMenuItem<String>(
-                      value: "2",
-                      child: Text('select2'),
-                    ),
-                  ],
-                ),
-                ChangeForm2(),
+                // Container(
+                //   width: 100,
+                //   height: 100,
+                //   color: Colors.green,
+                // ),
+                // Container(
+                //   width: 50,
+                //   height: 80,
+                //   color: Colors.orange,
+                // ),
+                // Positioned(
+                //     left: 120,
+                //     top: 120,
+                //     width: 100,
+                //     height: 100,
+                //     child: Container(color: Colors.blue)),
+                // Card(
+                //   margin: const EdgeInsets.all(50.0),
+                //   child: Container(
+                //     margin: const EdgeInsets.all(10.0),
+                //     width: 300,
+                //     height: 100,
+                //     child: Text(
+                //       'Card',
+                //       style: TextStyle(fontSize: 30),
+                //     ),
+                //   ),
+                // ),
+                // ClickGood(),
+                // ChangeForm(),
+                // PopupMenuButton<String>(
+                //   itemBuilder: (BuildContext context) =>
+                //       <PopupMenuEntry<String>>[
+                //     const PopupMenuItem<String>(
+                //       value: "1",
+                //       child: Text('select1'),
+                //     ),
+                //     const PopupMenuItem<String>(
+                //       value: "2",
+                //       child: Text('select2'),
+                //     ),
+                //   ],
+                // ),
+                // ChangeForm2(),
+                ChangeForm3(),
               ],
             )));
   }
@@ -261,6 +262,42 @@ class _ChangeForm2State extends State<ChangeForm2> {
             obscureText: false,
             maxLines: 1,
             onChanged: _handleText,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ChangeForm3 extends StatefulWidget {
+  @override
+  _ChangeForm3State createState() => _ChangeForm3State();
+}
+
+class _ChangeForm3State extends State<ChangeForm3> {
+  bool _flag = false;
+  void _handleCheckBox(bool e) {
+    setState(() {
+      _flag = e;
+    });
+  }
+
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: <Widget>[
+          Center(
+            child: new Icon(
+              Icons.thumb_up,
+              color: _flag ? Colors.orange[700] : Colors.grey[500],
+              size: 100.0,
+            ),
+          ),
+          new Checkbox(
+            activeColor: Colors.blue,
+            value: _flag,
+            onChanged: _handleCheckBox,
           ),
         ],
       ),
