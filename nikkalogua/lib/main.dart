@@ -86,6 +86,7 @@ class MyApp extends StatelessWidget {
                 ChangeForm4(),
                 ChangeForm5(),
                 ChangeForm6(),
+                ChangeForm7(),
               ],
             )));
   }
@@ -427,6 +428,43 @@ class _ChangeForm6State extends State<ChangeForm6> {
           ),
           new RaisedButton(
             onPressed: () => _selectDate(context),
+            child: new Text('select'),
+          )
+        ],
+      ),
+    );
+  }
+}
+
+class ChangeForm7 extends StatefulWidget {
+  @override
+  _ChangeForm7State createState() => _ChangeForm7State();
+}
+
+class _ChangeForm7State extends State<ChangeForm7> {
+  TimeOfDay _time = new TimeOfDay.now();
+
+  Future<Null> _selectTime(BuildContext context) async {
+    final TimeOfDay picked = await showTimePicker(
+      context: context,
+      initialTime: _time,
+    );
+    if (picked != null)
+      setState(() {
+        _time = picked;
+      });
+  }
+
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: <Widget>[
+          Center(
+            child: Text("$_time"),
+          ),
+          new RaisedButton(
+            onPressed: () => _selectTime(context),
             child: new Text('select'),
           )
         ],
