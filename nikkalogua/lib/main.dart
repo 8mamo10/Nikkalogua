@@ -81,9 +81,11 @@ class MyApp extends StatelessWidget {
                 //     ),
                 //   ],
                 // ),
-                ChangeForm2(),
-                ChangeForm3(),
+                //ChangeForm2(),
+                //ChangeForm3(),
                 ChangeForm4(),
+                ChangeForm5(),
+                ChangeForm6(),
               ],
             )));
   }
@@ -348,5 +350,87 @@ class _ChangeForm4State extends State<ChangeForm4> {
             ),
           ],
         ));
+  }
+}
+
+class ChangeForm5 extends StatefulWidget {
+  @override
+  _ChangeForm5State createState() => _ChangeForm5State();
+}
+
+class _ChangeForm5State extends State<ChangeForm5> {
+  double _value = 0.0;
+  double _startValue = 0.0;
+  double _endValue = 0.0;
+
+  void _changeSlider(double e) => setState(() {
+        _value = e;
+      });
+  void _startSlider(double e) => setState(() {
+        _startValue = e;
+      });
+  void _endSlider(double e) => setState(() {
+        _endValue = e;
+      });
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: [
+          Center(child: Text("Current:$_value")),
+          Center(child: Text("Start:$_startValue")),
+          Center(child: Text("End:$_endValue")),
+          new Slider(
+            label: '$_value',
+            min: 0,
+            max: 10,
+            value: _value,
+            activeColor: Colors.orange,
+            inactiveColor: Colors.blueAccent,
+            divisions: 10,
+            onChanged: _changeSlider,
+            onChangeStart: _startSlider,
+            onChangeEnd: _endSlider,
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class ChangeForm6 extends StatefulWidget {
+  @override
+  _ChangeForm6State createState() => _ChangeForm6State();
+}
+
+class _ChangeForm6State extends State<ChangeForm6> {
+  DateTime _date = new DateTime.now();
+  Future<Null> _selectDate(BuildContext context) async {
+    final DateTime picked = await showDatePicker(
+        context: context,
+        initialDate: _date,
+        firstDate: new DateTime(2016),
+        lastDate: new DateTime.now().add(new Duration(days: 360)));
+    if (picked != null)
+      setState(() {
+        _date = picked;
+      });
+  }
+
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(50.0),
+      child: Column(
+        children: <Widget>[
+          Center(
+            child: Text("$_date"),
+          ),
+          new RaisedButton(
+            onPressed: () => _selectDate(context),
+            child: new Text('select'),
+          )
+        ],
+      ),
+    );
   }
 }
