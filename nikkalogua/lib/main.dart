@@ -20,24 +20,24 @@ class MyApp extends StatelessWidget {
         //home: RandomWords(),
         home: Scaffold(
             appBar: AppBar(title: Text('GridView')),
-            body: Stack(
+            body: Column(
               children: <Widget>[
-                GridView.builder(
-                  //scrollDirection: Axis.horizontal,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                    mainAxisSpacing: 4,
-                    crossAxisSpacing: 4,
-                    childAspectRatio: 0.7,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index >= grid.length) {
-                      grid.addAll(
-                          ["pic0.jpg", "pic1.jpg", "pic2.jpg", "pic3.jpg"]);
-                    }
-                    return _photoItem(grid[index]);
-                  },
-                ),
+                // GridView.builder(
+                //   //scrollDirection: Axis.horizontal,
+                //   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                //     crossAxisCount: 2,
+                //     mainAxisSpacing: 4,
+                //     crossAxisSpacing: 4,
+                //     childAspectRatio: 0.7,
+                //   ),
+                //   itemBuilder: (BuildContext context, int index) {
+                //     if (index >= grid.length) {
+                //       grid.addAll(
+                //           ["pic0.jpg", "pic1.jpg", "pic2.jpg", "pic3.jpg"]);
+                //     }
+                //     return _photoItem(grid[index]);
+                //   },
+                // ),
                 // Container(
                 //   width: 100,
                 //   height: 100,
@@ -67,7 +67,7 @@ class MyApp extends StatelessWidget {
                 //   ),
                 // ),
                 // ClickGood(),
-                // ChangeForm(),
+                //ChangeForm(),
                 // PopupMenuButton<String>(
                 //   itemBuilder: (BuildContext context) =>
                 //       <PopupMenuEntry<String>>[
@@ -81,8 +81,9 @@ class MyApp extends StatelessWidget {
                 //     ),
                 //   ],
                 // ),
-                // ChangeForm2(),
+                ChangeForm2(),
                 ChangeForm3(),
+                ChangeForm4(),
               ],
             )));
   }
@@ -314,5 +315,38 @@ class _ChangeForm3State extends State<ChangeForm3> {
         ],
       ),
     );
+  }
+}
+
+class ChangeForm4 extends StatefulWidget {
+  @override
+  _ChangeForm4State createState() => _ChangeForm4State();
+}
+
+class _ChangeForm4State extends State<ChangeForm4> {
+  bool _active = false;
+  void _changeSwitch(bool e) => setState(() => _active = e);
+  Widget build(BuildContext context) {
+    return Container(
+        padding: const EdgeInsets.all(50.0),
+        child: Column(
+          children: [
+            Center(
+              child: new Icon(
+                Icons.thumb_up,
+                color: _active ? Colors.orange[700] : Colors.grey[500],
+                size: 100.0,
+              ),
+            ),
+            new Switch(
+              value: _active,
+              activeColor: Colors.orange,
+              activeTrackColor: Colors.red,
+              inactiveThumbColor: Colors.blue,
+              inactiveTrackColor: Colors.green,
+              onChanged: _changeSwitch,
+            ),
+          ],
+        ));
   }
 }
