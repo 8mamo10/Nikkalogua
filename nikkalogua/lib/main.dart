@@ -299,6 +299,18 @@ class _ChangeForm3State extends State<ChangeForm3> {
             value: _flag,
             onChanged: _handleCheckBox,
           ),
+          new CheckboxListTile(
+            activeColor: Colors.blue,
+            title: Text('checkbox'),
+            subtitle: Text('subtitle'),
+            secondary: new Icon(
+              Icons.thumbs_up_down,
+              color: _flag ? Colors.orange[700] : Colors.grey[500],
+            ),
+            controlAffinity: ListTileControlAffinity.leading,
+            value: _flag,
+            onChanged: _handleCheckBox,
+          ),
         ],
       ),
     );
