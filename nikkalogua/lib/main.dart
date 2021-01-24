@@ -19,7 +19,23 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
         //home: RandomWords(),
         home: Scaffold(
-            appBar: AppBar(title: Text('GridView')),
+            appBar: AppBar(
+              leading: Icon(Icons.menu),
+              title: const Text('Nikkalogua'),
+              backgroundColor: Colors.orange,
+              centerTitle: true,
+              actions: <Widget>[
+                IconButton(
+                  icon: Icon(Icons.face, color: Colors.white),
+                ),
+                IconButton(
+                  icon: Icon(Icons.email, color: Colors.white),
+                ),
+                IconButton(
+                  icon: Icon(Icons.favorite, color: Colors.white),
+                ),
+              ],
+            ),
             body: Column(
               children: <Widget>[
                 // GridView.builder(
