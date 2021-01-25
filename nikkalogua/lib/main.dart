@@ -516,15 +516,23 @@ class _MainPageState extends State<MainPage> {
       body: _pageWidgets.elementAt(_currentIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.photo_album), label: 'Photo'),
-          BottomNavigationBarItem(icon: Icon(Icons.chat), label: 'Chat'),
+              icon: Icon(Icons.home),
+              backgroundColor: Colors.red,
+              label: 'Home'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.photo_album),
+              backgroundColor: Colors.red,
+              label: 'Photo'),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.chat),
+              backgroundColor: Colors.red,
+              label: 'Chat'),
         ],
         currentIndex: _currentIndex,
         fixedColor: Colors.blueAccent,
         onTap: _onItemTapped,
-        type: BottomNavigationBarType.fixed,
+        type: BottomNavigationBarType.shifting,
       ),
     );
   }
