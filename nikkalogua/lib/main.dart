@@ -18,7 +18,8 @@ class MyApp extends StatelessWidget {
     ];
     return MaterialApp(
       //home: RandomWords(),
-      home: MainPage(),
+      //home: MainPage(),
+      home: MainPage2(),
       /*
         home: Scaffold(
             appBar: AppBar(
@@ -549,6 +550,62 @@ class PageWidget extends StatelessWidget {
             fontSize: 25,
           ),
         ),
+      ),
+    );
+  }
+}
+
+class MainPage2 extends StatefulWidget {
+  @override
+  _MainPage2State createState() => _MainPage2State();
+}
+
+class _MainPage2State extends State<MainPage2> {
+  final _tab = <Tab>[
+    Tab(text: 'Car', icon: Icon(Icons.directions_car)),
+    Tab(text: 'Bicycle', icon: Icon(Icons.directions_bike)),
+    Tab(text: 'Boat', icon: Icon(Icons.directions_boat)),
+  ];
+
+  Widget build(BuildContext context) {
+    return DefaultTabController(
+      length: _tab.length,
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Text('TabBar'),
+          bottom: TabBar(
+            tabs: _tab,
+          ),
+        ),
+        body: TabBarView(
+          children: <Widget>[
+            TabPage(title: 'Car', icon: Icons.directions_car),
+            TabPage(title: 'Cicycle', icon: Icons.directions_bike),
+            TabPage(title: 'Boat', icon: Icons.directions_boat),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+class TabPage extends StatelessWidget {
+  final IconData icon;
+  final String title;
+
+  const TabPage({Key key, this.icon, this.title}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    final TextStyle textStyle = Theme.of(context).textTheme.bodyText1;
+    return Center(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Icon(icon, size: 64.0, color: textStyle.color),
+          Text(title, style: textStyle),
+        ],
       ),
     );
   }
