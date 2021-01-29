@@ -19,7 +19,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       //home: RandomWords(),
       //home: MainPage(),
-      home: MainPage2(),
+      //home: MainPage2(),
+      home: MainPage3(),
       /*
         home: Scaffold(
             appBar: AppBar(
@@ -606,6 +607,41 @@ class TabPage extends StatelessWidget {
           Icon(icon, size: 64.0, color: textStyle.color),
           Text(title, style: textStyle),
         ],
+      ),
+    );
+  }
+}
+
+class MainPage3 extends StatefulWidget {
+  @override
+  _MainPage3State createState() => _MainPage3State();
+}
+
+class _MainPage3State extends State<MainPage3> {
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Drawer'),
+      ),
+      drawer: Drawer(
+        child: ListView(
+          children: <Widget>[
+            DrawerHeader(
+              child: Text('Drawer Header'),
+              decoration: BoxDecoration(
+                color: Colors.blue,
+              ),
+            ),
+            ListTile(
+              title: Text('Item1'),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+            ListTile(
+              title: Text('Item2'),
+              trailing: Icon(Icons.arrow_forward),
+            ),
+          ],
+        ),
       ),
     );
   }
