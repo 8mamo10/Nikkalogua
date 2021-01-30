@@ -10,18 +10,18 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    var grid = [
-      "pic0.jpg",
-      "pic1.jpg",
-      "pic2.jpg",
-      "pic3.jpg",
-    ];
+    // var grid = [
+    //   "pic0.jpg",
+    //   "pic1.jpg",
+    //   "pic2.jpg",
+    //   "pic3.jpg",
+    // ];
     return MaterialApp(
-      //home: RandomWords(),
-      //home: MainPage(),
-      //home: MainPage2(),
-      home: MainPage3(),
-      /*
+        //home: RandomWords(),
+        //home: MainPage(),
+        //home: MainPage2(),
+        //home: MainPage3(),
+        /*
         home: Scaffold(
             appBar: AppBar(
               leading: Icon(Icons.menu),
@@ -111,6 +111,60 @@ class MyApp extends StatelessWidget {
             )
             )
             */
+        home: TheMainPage(),
+        routes: <String, WidgetBuilder>{
+          '/home': (BuildContext context) => new TheMainPage(),
+          '/subpage': (BuildContext context) => new TheSubPage(),
+        });
+  }
+}
+
+class TheMainPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: new Text('Navigator'),
+      ),
+      body: new Container(
+        padding: new EdgeInsets.all(32.0),
+        child: new Center(
+          child: new Column(
+            children: <Widget>[
+              Text('Main'),
+              RaisedButton(
+                onPressed: () => Navigator.of(context).pushNamed('/subpage'),
+                child: new Text('To subpage'),
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class TheSubPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+        title: Text('Navigator'),
+      ),
+      body: new Container(
+        padding: EdgeInsets.all(32.0),
+        child: new Center(
+          child: new Column(
+            children: <Widget>[
+              Text('Sub'),
+              RaisedButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: new Text('Return'),
+              )
+            ],
+          ),
+        ),
+      ),
     );
   }
 }
