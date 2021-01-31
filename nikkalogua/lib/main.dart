@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
     //   "pic3.jpg",
     // ];
     return MaterialApp(
-        //home: RandomWords(),
-        //home: MainPage(),
-        //home: MainPage2(),
-        //home: MainPage3(),
-        /*
+      //home: RandomWords(),
+      //home: MainPage(),
+      //home: MainPage2(),
+      //home: MainPage3(),
+      /*
         home: Scaffold(
             appBar: AppBar(
               leading: Icon(Icons.menu),
@@ -111,11 +111,12 @@ class MyApp extends StatelessWidget {
             )
             )
             */
-        home: TheMainPage(),
-        routes: <String, WidgetBuilder>{
+      home: TheMainPage(),
+/*         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => new TheMainPage(),
           '/subpage': (BuildContext context) => new TheSubPage(),
-        });
+        } */
+    );
   }
 }
 
@@ -133,7 +134,11 @@ class TheMainPage extends StatelessWidget {
             children: <Widget>[
               Text('Main'),
               RaisedButton(
-                onPressed: () => Navigator.of(context).pushNamed('/subpage'),
+                //onPressed: () => Navigator.of(context).pushNamed('/subpage'),
+                onPressed: () => Navigator.of(context)
+                    .push(MaterialPageRoute(builder: (context) {
+                  return TheSubPage();
+                })),
                 child: new Text('To subpage'),
               )
             ],
