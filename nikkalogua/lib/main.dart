@@ -133,9 +133,7 @@ class TheMainPage extends StatelessWidget {
             children: <Widget>[
               Text('Main'),
               RaisedButton(
-                //onPressed: () => Navigator.of(context).pushNamed('/subpage'),
-                onPressed: () =>
-                    Navigator.of(context).pushReplacementNamed('/subpage'),
+                onPressed: () => Navigator.of(context).pushNamed('/subpage'),
                 child: new Text('To subpage'),
               )
             ],
