@@ -133,61 +133,68 @@ class TheMainPage2 extends StatefulWidget {
 
 class _TheMainPage2State extends State<TheMainPage2> {
   String _value = '';
+
   void _setValue(String value) => setState(() => _value = value);
+
+  Future _showDialog() async {
+    var value = await showDialog(
+        context: context,
+        builder: (BuildContext context) => new AlertDialog(
+              title: new AlertDialog(
+                title: new Text('AlertDialog'),
+                content: new Text('This is alert dialog'),
+                actions: [
+                  SimpleDialogOption(
+                    child: new Text('Yes'),
+                    onPressed: () {
+                      Navigator.pop(context, Answers.YES);
+                    },
+                  ),
+                  SimpleDialogOption(
+                    child: new Text('No'),
+                    onPressed: () {
+                      Navigator.pop(context, Answers.NO);
+                    },
+                  ),
+                ],
+              ),
+            ));
+    switch (value) {
+      case Answers.YES:
+        _setValue('Yes');
+        break;
+      case Answers.NO:
+        _setValue('No');
+        break;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
-    return new Container(
-      padding: new EdgeInsets.all(32.0),
-      child: new Center(
-        child: new Column(
-          children: <Widget>[
-            new Text(_value,
+    return Scaffold(
+      appBar: new AppBar(
+        title: new Text('AlertDialog'),
+      ),
+      body: new Container(
+        padding: new EdgeInsets.all(32.0),
+        child: new Center(
+          child: new Column(
+            children: <Widget>[
+              new Text(
+                _value,
                 style: TextStyle(
                     fontSize: 50,
                     color: Colors.blueAccent,
-                    fontWeight: FontWeight.w600)),
-            new RaisedButton(
-              onPressed: () {
-                openDialog(context);
-              },
-              child: new Text('Open dialog'),
-            )
-          ],
+                    fontWeight: FontWeight.w600),
+              ),
+              new RaisedButton(
+                onPressed: _showDialog,
+                child: new Text('Open dialog'),
+              ),
+            ],
+          ),
         ),
       ),
-    );
-  }
-
-  void openDialog(BuildContext context) {
-    showDialog<Answers>(
-      context: context,
-      builder: (BuildContext context) => new SimpleDialog(
-        title: new Text('SimpleDialog'),
-        children: <Widget>[
-          createDialogOption(context, Answers.YES, 'Yes'),
-          createDialogOption(context, Answers.NO, 'No'),
-        ],
-      ),
-    ).then((value) {
-      switch (value) {
-        case Answers.YES:
-          _setValue('Yes');
-          break;
-        case Answers.NO:
-          _setValue('No');
-          break;
-        default:
-      }
-    });
-  }
-
-  createDialogOption(BuildContext context, Answers answer, String str) {
-    return new SimpleDialogOption(
-      child: new Text(str),
-      onPressed: () {
-        Navigator.pop(context, answer);
-      },
     );
   }
 }
