@@ -111,7 +111,8 @@ class MyApp extends StatelessWidget {
             )
             )
             */
-      home: TheMainPage(),
+      //home: TheMainPage(),
+      home: TheMainPage2(),
 /*         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => new TheMainPage(),
           '/subpage': (BuildContext context) => new TheSubPage(),
@@ -120,7 +121,79 @@ class MyApp extends StatelessWidget {
   }
 }
 
+enum Answers {
+  YES,
+  NO,
+}
+
+class TheMainPage2 extends StatefulWidget {
+  @override
+  _TheMainPage2State createState() => _TheMainPage2State();
+}
+
+class _TheMainPage2State extends State<TheMainPage2> {
+  String _value = '';
+  void _setValue(String value) => setState(() => _value = value);
+
+  @override
+  Widget build(BuildContext context) {
+    return new Container(
+      padding: new EdgeInsets.all(32.0),
+      child: new Center(
+        child: new Column(
+          children: <Widget>[
+            new Text(_value,
+                style: TextStyle(
+                    fontSize: 50,
+                    color: Colors.blueAccent,
+                    fontWeight: FontWeight.w600)),
+            new RaisedButton(
+              onPressed: () {
+                openDialog(context);
+              },
+              child: new Text('Open dialog'),
+            )
+          ],
+        ),
+      ),
+    );
+  }
+
+  void openDialog(BuildContext context) {
+    showDialog<Answers>(
+      context: context,
+      builder: (BuildContext context) => new SimpleDialog(
+        title: new Text('SimpleDialog'),
+        children: <Widget>[
+          createDialogOption(context, Answers.YES, 'Yes'),
+          createDialogOption(context, Answers.NO, 'No'),
+        ],
+      ),
+    ).then((value) {
+      switch (value) {
+        case Answers.YES:
+          _setValue('Yes');
+          break;
+        case Answers.NO:
+          _setValue('No');
+          break;
+        default:
+      }
+    });
+  }
+
+  createDialogOption(BuildContext context, Answers answer, String str) {
+    return new SimpleDialogOption(
+      child: new Text(str),
+      onPressed: () {
+        Navigator.pop(context, answer);
+      },
+    );
+  }
+}
+
 class TheMainPage extends StatelessWidget {
+//class TheMainPage extends StatefulWidget {
   @override
   Widget build(BuildContext context) {
     return new Scaffold(
