@@ -133,8 +133,10 @@ class TheMainPage2 extends StatefulWidget {
 
 class _TheMainPage2State extends State<TheMainPage2> {
   String _value = '';
+  String _value2 = '';
 
   void _setValue(String value) => setState(() => _value = value);
+  void _setValue2(String value) => setState(() => _value2 = value);
 
   Future _showDialog() async {
     var value = await showDialog(
@@ -169,11 +171,47 @@ class _TheMainPage2State extends State<TheMainPage2> {
     }
   }
 
+  void _showButtom() async {
+    var value = await showModalBottomSheet<Answers>(
+        context: context,
+        builder: (BuildContext context) {
+          return new Container(
+            height: 250,
+            padding: EdgeInsets.all(10.0),
+            child: new Column(
+              children: <Widget>[
+                new Text('複数行の内容を'),
+                new Text('記載することができるので'),
+                new Text('ヘルプなど'),
+                new Text('ユーザ補助として'),
+                new Text('使えます。'),
+                new RaisedButton(
+                  onPressed: () => Navigator.pop(context, Answers.YES),
+                  child: new Text('YES'),
+                ),
+                new RaisedButton(
+                  onPressed: () => Navigator.pop(context, Answers.NO),
+                  child: new Text('No'),
+                ),
+              ],
+            ),
+          );
+        });
+    switch (value) {
+      case Answers.YES:
+        _setValue2('YES');
+        break;
+      case Answers.NO:
+        _setValue2('NO');
+        break;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: new AppBar(
-        title: new Text('AlertDialog'),
+        title: new Text('AlertDialog/BottomSheet'),
       ),
       body: new Container(
         padding: new EdgeInsets.all(32.0),
@@ -190,6 +228,17 @@ class _TheMainPage2State extends State<TheMainPage2> {
               new RaisedButton(
                 onPressed: _showDialog,
                 child: new Text('Open dialog'),
+              ),
+              new Text(
+                _value2,
+                style: TextStyle(
+                    fontSize: 50,
+                    color: Colors.redAccent,
+                    fontWeight: FontWeight.w600),
+              ),
+              new RaisedButton(
+                onPressed: _showButtom,
+                child: new Text('Open bottom sheet'),
               ),
             ],
           ),
