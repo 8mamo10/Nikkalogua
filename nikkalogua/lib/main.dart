@@ -17,11 +17,11 @@ class MyApp extends StatelessWidget {
     //   "pic3.jpg",
     // ];
     return MaterialApp(
-      //home: RandomWords(),
-      //home: MainPage(),
-      //home: MainPage2(),
-      //home: MainPage3(),
-      /*
+        //home: RandomWords(),
+        //home: MainPage(),
+        //home: MainPage2(),
+        //home: MainPage3(),
+        /*
         home: Scaffold(
             appBar: AppBar(
               leading: Icon(Icons.menu),
@@ -111,12 +111,42 @@ class MyApp extends StatelessWidget {
             )
             )
             */
-      //home: TheMainPage(),
-      home: TheMainPage2(),
+        //home: TheMainPage(),
+        //home: TheMainPage2(),
+        home: Scaffold(
+      appBar: AppBar(
+        title: Text('SnackBar'),
+      ),
+      body: TheMainPage3(),
+    )
 /*         routes: <String, WidgetBuilder>{
           '/home': (BuildContext context) => new TheMainPage(),
           '/subpage': (BuildContext context) => new TheSubPage(),
         } */
+        );
+  }
+}
+
+class TheMainPage3 extends StatefulWidget {
+  @override
+  _TheMainPage3State createState() => _TheMainPage3State();
+}
+
+class _TheMainPage3State extends State<TheMainPage3> {
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Center(
+        child: RaisedButton(
+          onPressed: () {
+            final snackBar = SnackBar(
+              content: Text('Notification'),
+            );
+            Scaffold.of(context).showSnackBar(snackBar);
+          },
+          child: Text('Open snack bar'),
+        ),
+      ),
     );
   }
 }
