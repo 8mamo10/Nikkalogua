@@ -25,11 +25,13 @@ class _MyPageState extends State<MyPage> {
   bool _tapped2 = false;
   bool _tapped3 = false;
   bool _tapped4 = false;
+  bool _tapped5 = false;
 
   Color _color = Colors.orange[100];
   double _width = 100;
   Alignment _alg = Alignment.topLeft;
   double _padding = 20;
+  double _margin = 20;
 
   void _onTapColor() => setState(() => {
         _color = _tapped1 ? Colors.orange[100] : Colors.orange[900],
@@ -47,6 +49,10 @@ class _MyPageState extends State<MyPage> {
         _padding = _tapped4 ? 20 : 50,
         _tapped4 = !_tapped4,
       });
+  void _onTapMargin() => setState(() => {
+        _margin = _tapped5 ? 20 : 50,
+        _tapped5 = !_tapped5,
+      });
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,12 +60,13 @@ class _MyPageState extends State<MyPage> {
         title: const Text('AnimatedContainer'),
       ),
       body: AnimatedContainer(
-        width: 400,
-        height: 400,
+        width: 300,
+        height: 300,
         duration: Duration(seconds: 1),
         color: Colors.blueAccent,
         alignment: _alg,
         padding: EdgeInsets.all(_padding),
+        margin: EdgeInsets.all(_margin),
         child: AnimatedContainer(
           width: _width,
           height: 100,
@@ -97,6 +104,13 @@ class _MyPageState extends State<MyPage> {
               color: Colors.white,
             ),
             onPressed: _onTapPadding,
+          ),
+          FloatingActionButton(
+            child: Icon(
+              Icons.filter_5,
+              color: Colors.white,
+            ),
+            onPressed: _onTapMargin,
           ),
         ],
       ),
