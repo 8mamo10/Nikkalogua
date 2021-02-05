@@ -37,7 +37,8 @@ class _MyPageState extends State<MyPage> {
       body: AnimatedContainer(
         duration: Duration(seconds: 1),
         alignment: _alg,
-        child: Container(
+        child: AnimatedContainer(
+          duration: Duration(seconds: 1),
           width: _width,
           height: 100,
           color: _color,
