@@ -26,12 +26,14 @@ class _MyPageState extends State<MyPage> {
   bool _tapped3 = false;
   bool _tapped4 = false;
   bool _tapped5 = false;
+  bool _tapped6 = false;
 
   Color _color = Colors.orange[100];
   double _width = 100;
   Alignment _alg = Alignment.topLeft;
   double _padding = 20;
   double _margin = 20;
+  double _radians = 0;
 
   void _onTapColor() => setState(() => {
         _color = _tapped1 ? Colors.orange[100] : Colors.orange[900],
@@ -53,6 +55,10 @@ class _MyPageState extends State<MyPage> {
         _margin = _tapped5 ? 20 : 50,
         _tapped5 = !_tapped5,
       });
+  void _onTapRadians() => setState(() => {
+        _radians = _tapped6 ? 0 : 45,
+        _tapped6 = !_tapped6,
+      });
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,6 +78,7 @@ class _MyPageState extends State<MyPage> {
           height: 100,
           duration: Duration(seconds: 1),
           color: _color,
+          transform: Matrix4.rotationZ(_radians),
         ),
       ),
       floatingActionButton: Column(
@@ -111,6 +118,13 @@ class _MyPageState extends State<MyPage> {
               color: Colors.white,
             ),
             onPressed: _onTapMargin,
+          ),
+          FloatingActionButton(
+            child: Icon(
+              Icons.filter_6,
+              color: Colors.white,
+            ),
+            onPressed: _onTapRadians,
           ),
         ],
       ),
