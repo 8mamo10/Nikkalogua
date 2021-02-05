@@ -30,6 +30,7 @@ class _MyPageState extends State<MyPage> {
 
   Color _color = Colors.orange[100];
   double _width = 100;
+  double _height = 100;
   Alignment _alg = Alignment.topLeft;
   double _padding = 20;
   double _margin = 20;
@@ -41,6 +42,7 @@ class _MyPageState extends State<MyPage> {
       });
   void _onTapSize() => setState(() => {
         _width = _tapped2 ? 100 : 200,
+        _height = _tapped2 ? 100 : 200,
         _tapped2 = !_tapped2,
       });
   void _onTapAlignment() => setState(() => {
@@ -75,7 +77,7 @@ class _MyPageState extends State<MyPage> {
         margin: EdgeInsets.all(_margin),
         child: AnimatedContainer(
           width: _width,
-          height: 100,
+          height: _height,
           duration: Duration(seconds: 1),
           color: _color,
           transform: Matrix4.rotationZ(_radians),
