@@ -21,15 +21,32 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
+  bool _tapped1 = false;
+  bool _tapped2 = false;
+  bool _tapped3 = false;
+  bool _tapped4 = false;
+
   Color _color = Colors.orange[100];
   double _width = 100;
   Alignment _alg = Alignment.topLeft;
   double _padding = 20;
 
-  void _onTapColor() => setState(() => _color = Colors.orange[900]);
-  void _onTapSize() => setState(() => _width = 200);
-  void _onTapAlignment() => setState(() => _alg = Alignment.bottomRight);
-  void _onTapPadding() => setState(() => _padding = 50);
+  void _onTapColor() => setState(() => {
+        _color = _tapped1 ? Colors.orange[100] : Colors.orange[900],
+        _tapped1 = !_tapped1,
+      });
+  void _onTapSize() => setState(() => {
+        _width = _tapped2 ? 100 : 200,
+        _tapped2 = !_tapped2,
+      });
+  void _onTapAlignment() => setState(() => {
+        _alg = _tapped3 ? Alignment.topLeft : Alignment.bottomRight,
+        _tapped3 = !_tapped3,
+      });
+  void _onTapPadding() => setState(() => {
+        _padding = _tapped4 ? 20 : 50,
+        _tapped4 = !_tapped4,
+      });
 
   Widget build(BuildContext context) {
     return Scaffold(
