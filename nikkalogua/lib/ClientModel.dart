@@ -27,13 +27,13 @@ class Client {
         id: json["id"],
         firstName: json["first_name"],
         lastName: json["last_name"],
-        blocked: json["blockedd"] == 1,
+        blocked: json["blocked"] == 1,
       );
 
   Map<String, dynamic> toMap() => {
         "id": id,
         "first_name": firstName,
         "last_name": lastName,
-        "blocked": blocked,
+        "blocked": blocked ? 1 : 0,
       };
 }

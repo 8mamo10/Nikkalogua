@@ -40,16 +40,23 @@ class _MyPageState extends State<MyPage> {
                 itemCount: snapshot.data.length,
                 itemBuilder: (BuildContext context, int index) {
                   Client item = snapshot.data[index];
-                  return ListTile(
-                    title: Text(item.lastName),
-                    leading: Text(item.id.toString()),
-                    trailing: Checkbox(
-                      onChanged: (bool value) {
-                        item.blocked = value;
-                        DBProvider.db.blockOrUnblock(item);
-                        setState(() {});
-                      },
-                      value: item.blocked,
+                  return Dismissible(
+                    key: UniqueKey(),
+                    background: Container(color: Colors.red),
+                    onDismissed: (direction) {
+                      DBProvider.db.deleteClient(item.id);
+                    },
+                    child: ListTile(
+                      title: Text(item.lastName),
+                      leading: Text(item.id.toString()),
+                      trailing: Checkbox(
+                        onChanged: (bool value) {
+                          item.blocked = value;
+                          DBProvider.db.blockOrUnblock(item);
+                          setState(() {});
+                        },
+                        value: item.blocked,
+                      ),
                     ),
                   );
                 },
