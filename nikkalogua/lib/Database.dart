@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:io';
 
 import 'package:path/path.dart';
@@ -43,11 +42,11 @@ class DBProvider {
 
   getClient(int id) async {
     final db = await database;
-    var res = await db.query("Clieng", where: "id = ?", whereArgs: [id]);
+    var res = await db.query("Client", where: "id = ?", whereArgs: [id]);
     return res.isNotEmpty ? Client.fromMap(res.first) : null;
   }
 
-  getAllClients() async {
+  Future<List<Client>> getAllClients() async {
     final db = await database;
     var res = await db.query("Client");
     List<Client> list =
