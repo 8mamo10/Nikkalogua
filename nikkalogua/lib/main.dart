@@ -27,6 +27,7 @@ class _MyPageState extends State<MyPage> {
   bool _tapped4 = false;
   bool _tapped5 = false;
   bool _tapped6 = false;
+  bool _tapped7 = false;
 
   Color _color = Colors.orange[100];
   double _width = 100;
@@ -35,6 +36,7 @@ class _MyPageState extends State<MyPage> {
   double _padding = 20;
   double _margin = 20;
   double _radians = 0;
+  double _p = 0;
 
   void _onTapColor() => setState(() => {
         _color = _tapped1 ? Colors.orange[100] : Colors.orange[900],
@@ -61,6 +63,10 @@ class _MyPageState extends State<MyPage> {
         _radians = _tapped6 ? 0 : 45,
         _tapped6 = !_tapped6,
       });
+  void _onTapPoint() => setState(() => {
+        _p = _tapped7 ? 0 : 200,
+        _tapped7 = !_tapped7,
+      });
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,6 +81,7 @@ class _MyPageState extends State<MyPage> {
         alignment: _alg,
         padding: EdgeInsets.all(_padding),
         margin: EdgeInsets.all(_margin),
+        transform: Matrix4.translationValues(_p, _p, 0),
         child: AnimatedContainer(
           width: _width,
           height: _height,
@@ -127,6 +134,13 @@ class _MyPageState extends State<MyPage> {
               color: Colors.white,
             ),
             onPressed: _onTapRadians,
+          ),
+          FloatingActionButton(
+            child: Icon(
+              Icons.filter_7,
+              color: Colors.white,
+            ),
+            onPressed: _onTapPoint,
           ),
         ],
       ),
