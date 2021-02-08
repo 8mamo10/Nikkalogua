@@ -3,6 +3,7 @@ import 'dart:math';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:nikkalogua/ClientsBloc.dart';
 import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/ClientModel.dart';
 
@@ -26,13 +27,28 @@ class MyPage extends StatefulWidget {
 }
 
 class _MyPageState extends State<MyPage> {
+  List<Client> testClients = [
+    Client(firstName: "AAA", lastName: "BBB", blocked: false),
+    Client(firstName: "CCC", lastName: "DDD", blocked: true),
+    Client(firstName: "EEE", lastName: "FFF", blocked: false),
+    Client(firstName: "GGG", lastName: "HHH", blocked: true),
+  ];
+
+  final bloc = ClientsBloc();
+
+  @override
+  void dispose() {
+    bloc.dispose();
+    super.dispose();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Flutter SQLite'),
       ),
-      body: FutureBuilder<List<Client>>(
-          future: DBProvider.db.getAllClients(),
+      body: StreamBuilder<List<Client>>(
+          stream: bloc.clients,
           builder:
               (BuildContext context, AsyncSnapshot<List<Client>> snapshot) {
             if (snapshot.hasData) {
@@ -44,7 +60,7 @@ class _MyPageState extends State<MyPage> {
                     key: UniqueKey(),
                     background: Container(color: Colors.red),
                     onDismissed: (direction) {
-                      DBProvider.db.deleteClient(item.id);
+                      bloc.delete(item.id);
                     },
                     child: ListTile(
                       title: Text(item.lastName),
@@ -52,7 +68,7 @@ class _MyPageState extends State<MyPage> {
                       trailing: Checkbox(
                         onChanged: (bool value) {
                           item.blocked = value;
-                          DBProvider.db.blockOrUnblock(item);
+                          bloc.blockUnblock(item);
                           setState(() {});
                         },
                         value: item.blocked,
@@ -71,17 +87,10 @@ class _MyPageState extends State<MyPage> {
         child: Icon(Icons.add),
         onPressed: () async {
           Client rnd = testClients[Random().nextInt(testClients.length)];
-          await DBProvider.db.newClient(rnd);
+          bloc.add(rnd);
           setState(() {});
         },
       ),
     );
   }
 }
-
-List<Client> testClients = [
-  Client(firstName: "AAA", lastName: "BBB", blocked: false),
-  Client(firstName: "CCC", lastName: "DDD", blocked: true),
-  Client(firstName: "EEE", lastName: "FFF", blocked: false),
-  Client(firstName: "GGG", lastName: "HHH", blocked: true),
-];
