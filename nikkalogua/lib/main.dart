@@ -83,4 +83,5 @@ List<Client> testClients = [
   Client(firstName: "AAA", lastName: "BBB", blocked: false),
   Client(firstName: "CCC", lastName: "DDD", blocked: true),
   Client(firstName: "EEE", lastName: "FFF", blocked: false),
+  Client(firstName: "GGG", lastName: "HHH", blocked: true),
 ];
