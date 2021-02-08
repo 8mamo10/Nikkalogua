@@ -28,10 +28,10 @@ class MyPage extends StatefulWidget {
 
 class _MyPageState extends State<MyPage> {
   List<Client> testClients = [
-    Client(firstName: "AAA", lastName: "BBB", blocked: false),
-    Client(firstName: "CCC", lastName: "DDD", blocked: true),
-    Client(firstName: "EEE", lastName: "FFF", blocked: false),
-    Client(firstName: "GGG", lastName: "HHH", blocked: true),
+    Client(firstName: "AAA", lastName: "BBB(default unblock)", blocked: false),
+    Client(firstName: "CCC", lastName: "DDD(default block)", blocked: true),
+    Client(firstName: "EEE", lastName: "FFF(default unblock)", blocked: false),
+    Client(firstName: "GGG", lastName: "HHH(default block)", blocked: true),
   ];
 
   final bloc = ClientsBloc();
