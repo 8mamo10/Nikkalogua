@@ -31,4 +31,9 @@ class ClientsBloc {
     DBProvider.db.newClient(client);
     getClients();
   }
+
+  deleteAll() {
+    DBProvider.db.deleteAll();
+    getClients();
+  }
 }

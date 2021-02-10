@@ -44,53 +44,64 @@ class _MyPageState extends State<MyPage> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Flutter SQLite'),
-      ),
-      body: StreamBuilder<List<Client>>(
-          stream: bloc.clients,
-          builder:
-              (BuildContext context, AsyncSnapshot<List<Client>> snapshot) {
-            if (snapshot.hasData) {
-              return ListView.builder(
-                itemCount: snapshot.data.length,
-                itemBuilder: (BuildContext context, int index) {
-                  Client item = snapshot.data[index];
-                  return Dismissible(
-                    key: UniqueKey(),
-                    background: Container(color: Colors.red),
-                    onDismissed: (direction) {
-                      bloc.delete(item.id);
-                    },
-                    child: ListTile(
-                      title: Text(item.lastName),
-                      leading: Text(item.id.toString()),
-                      trailing: Checkbox(
-                        onChanged: (bool value) {
-                          item.blocked = value;
-                          bloc.blockUnblock(item);
-                          setState(() {});
-                        },
-                        value: item.blocked,
+        appBar: AppBar(
+          title: const Text('Flutter SQLite'),
+        ),
+        body: StreamBuilder<List<Client>>(
+            stream: bloc.clients,
+            builder:
+                (BuildContext context, AsyncSnapshot<List<Client>> snapshot) {
+              if (snapshot.hasData) {
+                return ListView.builder(
+                  itemCount: snapshot.data.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    Client item = snapshot.data[index];
+                    return Dismissible(
+                      key: UniqueKey(),
+                      background: Container(color: Colors.red),
+                      onDismissed: (direction) {
+                        bloc.delete(item.id);
+                      },
+                      child: ListTile(
+                        title: Text(item.lastName),
+                        leading: Text(item.id.toString()),
+                        trailing: Checkbox(
+                          onChanged: (bool value) {
+                            item.blocked = value;
+                            bloc.blockUnblock(item);
+                            setState(() {});
+                          },
+                          value: item.blocked,
+                        ),
                       ),
-                    ),
-                  );
-                },
-              );
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          }),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () async {
-          Client rnd = testClients[Random().nextInt(testClients.length)];
-          bloc.add(rnd);
-          setState(() {});
-        },
-      ),
-    );
+                    );
+                  },
+                );
+              } else {
+                return Center(
+                  child: CircularProgressIndicator(),
+                );
+              }
+            }),
+        floatingActionButton: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () async {
+                Client rnd = testClients[Random().nextInt(testClients.length)];
+                bloc.add(rnd);
+                setState(() {});
+              },
+            ),
+            FloatingActionButton(
+              child: Icon(Icons.delete),
+              onPressed: () async {
+                bloc.deleteAll();
+                setState(() {});
+              },
+            ),
+          ],
+        ));
   }
 }

@@ -89,6 +89,6 @@ class DBProvider {
 
   deleteAll() async {
     final db = await database;
-    db.rawDelete("DELETE * FROM Client");
+    db.rawDelete("DELETE FROM Client");
   }
 }
