@@ -4,7 +4,6 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:nikkalogua/ClientsBloc.dart';
-import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/ClientModel.dart';
 
 void main() {
