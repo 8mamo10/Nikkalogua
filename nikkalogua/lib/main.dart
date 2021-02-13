@@ -11,48 +11,67 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   static const String _title = 'Nikkalogua';
 
+  var list = [
+    _cardItem('hoge'),
+    _cardItem('fuga'),
+    _cardItem('foo'),
+    _cardItem('bar'),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: _title,
-      home: Scaffold(
-          appBar: AppBar(title: const Text(_title)), body: MyStatelessWidget()),
-    );
+        title: _title,
+        home: Scaffold(
+          appBar: AppBar(
+            title: const Text(_title),
+          ),
+          //body: MyStatelessWidget()),
+          body: GridView.count(
+            crossAxisCount: 2,
+            children: list,
+          ),
+        ));
   }
+}
+
+Widget _cardItem(String name) {
+  return Card(
+    margin: const EdgeInsets.all(10.0),
+    child: Container(
+      width: 200,
+      height: 200,
+      child: Text(
+        name,
+        style: TextStyle(fontSize: 30),
+      ),
+    ),
+  );
 }
 
 class MyStatelessWidget extends StatelessWidget {
   MyStatelessWidget({Key key}) : super(key: key);
 
+  final List<String> _examples = ["hoge", "fuga", "foo", "bar"];
+
   @override
   Widget build(BuildContext context) {
-    return Center(
-      child: Card(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: <Widget>[
-            const ListTile(
-              leading: Icon(Icons.album),
-              title: Text('hoge'),
-              subtitle: Text('fuga'),
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                TextButton(
-                  child: const Text('button1'),
-                  onPressed: () {},
+    return Row(
+      children: _examples
+          .map(
+            (String example) => Card(
+              margin: const EdgeInsets.all(10.0),
+              child: Container(
+                width: 200,
+                height: 200,
+                child: Text(
+                  example,
+                  style: TextStyle(fontSize: 30),
                 ),
-                const SizedBox(width: 8),
-                TextButton(
-                  child: const Text('button2'),
-                  onPressed: () {},
-                ),
-              ],
+              ),
             ),
-          ],
-        ),
-      ),
+          )
+          .toList(),
     );
   }
 }
