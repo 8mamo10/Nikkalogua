@@ -9,9 +9,51 @@ import 'package:nikkalogua/ClientModel.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
+  static const String _title = 'Nikkalogua';
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: Scaffold(body: MyPage()));
+    return MaterialApp(
+      title: _title,
+      home: Scaffold(
+          appBar: AppBar(title: const Text(_title)), body: MyStatelessWidget()),
+    );
+  }
+}
+
+class MyStatelessWidget extends StatelessWidget {
+  MyStatelessWidget({Key key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Card(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            const ListTile(
+              leading: Icon(Icons.album),
+              title: Text('hoge'),
+              subtitle: Text('fuga'),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                TextButton(
+                  child: const Text('button1'),
+                  onPressed: () {},
+                ),
+                const SizedBox(width: 8),
+                TextButton(
+                  child: const Text('button2'),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
   }
 }
 
