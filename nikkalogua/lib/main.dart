@@ -6,10 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:nikkalogua/ClientsBloc.dart';
 import 'package:nikkalogua/ClientModel.dart';
 
-void main() {
-  debugPaintSizeEnabled = false;
-  runApp(MyApp());
-}
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   @override
