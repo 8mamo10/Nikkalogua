@@ -11,7 +11,7 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   static const String _title = 'Nikkalogua';
 
-  var list = [
+  final list = [
     _cardItem('hoge'),
     _cardItem('fuga'),
     _cardItem('foo'),
