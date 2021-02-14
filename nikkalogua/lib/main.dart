@@ -16,6 +16,7 @@ class MyApp extends StatelessWidget {
     _cardItem('fuga'),
     _cardItem('foo'),
     _cardItem('bar'),
+    _cardPlus(),
   ];
 
   @override
@@ -47,6 +48,19 @@ Widget _cardItem(String name) {
       ),
     ),
   );
+}
+
+Widget _cardPlus() {
+  return IconButton(
+    iconSize: 150,
+    icon: Icon(Icons.add),
+    onPressed: _handlePlus,
+  );
+}
+
+void _handlePlus() {
+  print('111');
+  debugPrint('222');
 }
 
 class MyStatelessWidget extends StatelessWidget {
