@@ -18,28 +18,36 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   static const String _title = 'Nikkalogua';
 
-  final list = [
-    _cardItem('hoge'),
-    _cardItem('fuga'),
-    _cardItem('foo'),
-    _cardItem('bar'),
-    _cardPlus(),
-  ];
+  var _list = <Widget>[];
 
   @override
   Widget build(BuildContext context) {
+    _list.add(_cardItem('hoge'));
+    _list.add(_cardItem('fuga'));
+    _list.add(_cardPlus());
     return MaterialApp(
         title: _title,
         home: Scaffold(
           appBar: AppBar(
             title: const Text(_title),
           ),
-          //body: MyStatelessWidget()),
           body: GridView.count(
             crossAxisCount: 2,
-            children: list,
+            children: _list,
           ),
         ));
+  }
+
+  Widget _cardPlus() {
+    return IconButton(
+      iconSize: 150,
+      icon: Icon(Icons.add),
+      onPressed: _handlePlus,
+    );
+  }
+
+  void _handlePlus() {
+    _list.add(_cardItem('added'));
   }
 }
 
@@ -55,19 +63,6 @@ Widget _cardItem(String name) {
       ),
     ),
   );
-}
-
-Widget _cardPlus() {
-  return IconButton(
-    iconSize: 150,
-    icon: Icon(Icons.add),
-    onPressed: _handlePlus,
-  );
-}
-
-void _handlePlus() {
-  print('111');
-  debugPrint('222');
 }
 
 class MyPage extends StatefulWidget {
