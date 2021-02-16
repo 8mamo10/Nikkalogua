@@ -8,7 +8,14 @@ import 'package:nikkalogua/ClientModel.dart';
 
 void main() => runApp(MyApp());
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
+  @override
+  State<StatefulWidget> createState() {
+    return _MyAppState();
+  }
+}
+
+class _MyAppState extends State<MyApp> {
   static const String _title = 'Nikkalogua';
 
   final list = [
@@ -61,33 +68,6 @@ Widget _cardPlus() {
 void _handlePlus() {
   print('111');
   debugPrint('222');
-}
-
-class MyStatelessWidget extends StatelessWidget {
-  MyStatelessWidget({Key key}) : super(key: key);
-
-  final List<String> _examples = ["hoge", "fuga", "foo", "bar"];
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: _examples
-          .map(
-            (String example) => Card(
-              margin: const EdgeInsets.all(10.0),
-              child: Container(
-                width: 200,
-                height: 200,
-                child: Text(
-                  example,
-                  style: TextStyle(fontSize: 30),
-                ),
-              ),
-            ),
-          )
-          .toList(),
-    );
-  }
 }
 
 class MyPage extends StatefulWidget {
