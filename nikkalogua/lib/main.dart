@@ -24,8 +24,9 @@ class _MyAppState extends State<MyApp> {
     _list.add(_cardItem('fuga'));
     _list.add(_cardPlus());
     return MaterialApp(
-        title: _title,
-        home: Scaffold(
+      title: _title,
+      home: Scaffold(body: MyPage()),
+/*
           appBar: AppBar(
             title: const Text(_title),
           ),
@@ -33,7 +34,9 @@ class _MyAppState extends State<MyApp> {
             crossAxisCount: 2,
             children: _list,
           ),
-        ));
+        )
+*/
+    );
   }
 
   Widget _cardPlus() {
