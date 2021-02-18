@@ -40,6 +40,9 @@ class _MyAppState extends State<MyApp> {
             child: FutureBuilder(
               future: _getFutureValue(),
               builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if (snapshot.connectionState != ConnectionState.done) {
+                  return CircularProgressIndicator();
+                }
                 if (snapshot.hasData) {
                   return Text(snapshot.data);
                 } else {
@@ -79,7 +82,7 @@ Widget _cardItem(String name) {
 }
 
 Future<String> _getFutureValue() async {
-  await Future.delayed(Duration(seconds: 1));
+  await Future.delayed(Duration(seconds: 3));
   return Future.value("Success!");
 }
 
