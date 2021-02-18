@@ -43,6 +43,9 @@ class _MyAppState extends State<MyApp> {
                 if (snapshot.connectionState != ConnectionState.done) {
                   return CircularProgressIndicator();
                 }
+                if (snapshot.hasError) {
+                  return Text(snapshot.error.toString());
+                }
                 if (snapshot.hasData) {
                   return Text(snapshot.data);
                 } else {
@@ -83,6 +86,11 @@ Widget _cardItem(String name) {
 
 Future<String> _getFutureValue() async {
   await Future.delayed(Duration(seconds: 3));
+  try {
+    throw Exception("Sample exeption!");
+  } catch (error) {
+    return Future.error(error);
+  }
   return Future.value("Success!");
 }
 
