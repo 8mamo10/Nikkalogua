@@ -24,19 +24,31 @@ class _MyAppState extends State<MyApp> {
     _list.add(_cardItem('fuga'));
     _list.add(_cardPlus());
     return MaterialApp(
-      title: _title,
-      home: Scaffold(body: MyPage()),
-/*
+        title: _title,
+        home: Scaffold(
+          //body: MyPage()),
           appBar: AppBar(
             title: const Text(_title),
           ),
+          /*
           body: GridView.count(
             crossAxisCount: 2,
             children: _list,
           ),
-        )
-*/
-    );
+          */
+          body: Center(
+            child: FutureBuilder(
+              future: _getFutureValue(),
+              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
+                if (snapshot.hasData) {
+                  return Text(snapshot.data);
+                } else {
+                  return Text("Failed!");
+                }
+              },
+            ),
+          ),
+        ));
   }
 
   Widget _cardPlus() {
@@ -64,6 +76,11 @@ Widget _cardItem(String name) {
       ),
     ),
   );
+}
+
+Future<String> _getFutureValue() async {
+  await Future.delayed(Duration(seconds: 1));
+  return Future.value("Success!");
 }
 
 class MyPage extends StatefulWidget {
