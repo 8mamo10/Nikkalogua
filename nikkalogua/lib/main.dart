@@ -24,37 +24,48 @@ class _MyAppState extends State<MyApp> {
     _list.add(_cardItem('fuga'));
     _list.add(_cardPlus());
     return MaterialApp(
-        title: _title,
-        home: Scaffold(
-          //body: MyPage()),
-          appBar: AppBar(
-            title: const Text(_title),
-          ),
-          /*
-          body: GridView.count(
-            crossAxisCount: 2,
-            children: _list,
-          ),
-          */
-          body: Center(
-            child: FutureBuilder(
-              future: _getFutureValue(),
-              builder: (BuildContext context, AsyncSnapshot<String> snapshot) {
-                if (snapshot.connectionState != ConnectionState.done) {
-                  return CircularProgressIndicator();
-                }
-                if (snapshot.hasError) {
-                  return Text(snapshot.error.toString());
-                }
-                if (snapshot.hasData) {
-                  return Text(snapshot.data);
-                } else {
-                  return Text("Failed!");
-                }
-              },
-            ),
-          ),
-        ));
+      title: _title,
+      home: Scaffold(
+        //body: MyPage()),
+        appBar: AppBar(
+          title: const Text(_title),
+        ),
+        body: FutureBuilder(
+          future: _getGrids(),
+          builder: (BuildContext context, AsyncSnapshot<GridView> snapshot) {
+            if (snapshot.connectionState != ConnectionState.done) {
+              return CircularProgressIndicator();
+            }
+            if (snapshot.hasError) {
+              return Container(
+                child: Text(snapshot.error.toString()),
+              );
+            }
+            if (snapshot.hasData) {
+              return snapshot.data;
+            } else {
+              return Container(
+                child: Text('hoge'),
+              );
+            }
+          },
+        ),
+      ),
+    );
+  }
+
+  Widget _cardItem(String name) {
+    return Card(
+      margin: const EdgeInsets.all(10.0),
+      child: Container(
+        width: 200,
+        height: 200,
+        child: Text(
+          name,
+          style: TextStyle(fontSize: 30),
+        ),
+      ),
+    );
   }
 
   Widget _cardPlus() {
@@ -66,34 +77,16 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _handlePlus() {
-    _list.add(_cardItem('added'));
+    _list.add(_cardItem(Random().nextInt(100).toString()));
+  }
+
+  Future<GridView> _getGrids() async {
+    return Future<GridView>.value(
+        GridView.count(crossAxisCount: 2, children: _list));
   }
 }
 
-Widget _cardItem(String name) {
-  return Card(
-    margin: const EdgeInsets.all(10.0),
-    child: Container(
-      width: 200,
-      height: 200,
-      child: Text(
-        name,
-        style: TextStyle(fontSize: 30),
-      ),
-    ),
-  );
-}
-
-Future<String> _getFutureValue() async {
-  await Future.delayed(Duration(seconds: 3));
-  try {
-    throw Exception("Sample exeption!");
-  } catch (error) {
-    return Future.error(error);
-  }
-  return Future.value("Success!");
-}
-
+///// bloc
 class MyPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
