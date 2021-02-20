@@ -17,12 +17,14 @@ class _MyAppState extends State<MyApp> {
   static const String _title = 'Nikkalogua';
 
   var _list = <Widget>[];
+  var _nameList = <String>['str1', 'str2', 'str3', 'str4'];
 
   @override
   Widget build(BuildContext context) {
-    _list.add(_cardItem('hoge'));
-    _list.add(_cardItem('fuga'));
-    _list.add(_cardPlus());
+    //_list.add(_cardItem('hoge'));
+    //_list.add(_cardItem('fuga'));
+    //_list.add(_cardPlus());
+
     return MaterialApp(
       title: _title,
       home: Scaffold(
@@ -30,6 +32,20 @@ class _MyAppState extends State<MyApp> {
         appBar: AppBar(
           title: const Text(_title),
         ),
+        body: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+          ),
+          itemBuilder: (BuildContext context, int index) {
+            if (index == _nameList.length) {
+              return _cardPlus();
+            } else {
+              return _cardItem(_nameList[index]);
+            }
+          },
+          itemCount: _nameList.length + 1,
+        ),
+        /*
         body: FutureBuilder(
           future: _getGrids(),
           builder: (BuildContext context, AsyncSnapshot<GridView> snapshot) {
@@ -50,6 +66,7 @@ class _MyAppState extends State<MyApp> {
             }
           },
         ),
+        */
       ),
     );
   }
@@ -77,7 +94,14 @@ class _MyAppState extends State<MyApp> {
   }
 
   void _handlePlus() {
-    _list.add(_cardItem(Random().nextInt(100).toString()));
+    //_list.add(_cardItem(Random().nextInt(100).toString()));
+    print("_handlePlus called");
+    print(_nameList.toString());
+    setState(() {
+      _nameList.add(Random().nextInt(100).toString());
+    });
+
+    print(_nameList.toString());
   }
 
   Future<GridView> _getGrids() async {
