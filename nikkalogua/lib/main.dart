@@ -68,17 +68,19 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget _cardItem(String name) {
-    return Card(
-      margin: const EdgeInsets.all(10.0),
-      child: Container(
-        width: 200,
-        height: 200,
-        child: Text(
-          name,
-          style: TextStyle(fontSize: 30),
-        ),
-      ),
-    );
+    return GestureDetector(
+        onTap: () => print(name),
+        child: Card(
+          margin: const EdgeInsets.all(10.0),
+          child: Container(
+            width: 200,
+            height: 200,
+            child: Text(
+              name,
+              style: TextStyle(fontSize: 30),
+            ),
+          ),
+        ));
   }
 
   Widget _cardPlus() {
