@@ -36,7 +36,7 @@ class _MyAppState extends State<MyApp> {
             if (index == _nameList.length) {
               return _cardPlus();
             } else {
-              return _cardItem(_nameList[index]);
+              return _cardItem(context, _nameList[index]);
             }
           },
           itemCount: _nameList.length + 1,
@@ -67,9 +67,12 @@ class _MyAppState extends State<MyApp> {
     );
   }
 
-  Widget _cardItem(String name) {
+  Widget _cardItem(BuildContext context, String name) {
     return GestureDetector(
-        onTap: () => print(name),
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => NextPage()));
+        },
         child: Card(
           margin: const EdgeInsets.all(10.0),
           child: Container(
@@ -102,6 +105,21 @@ class _MyAppState extends State<MyApp> {
         GridView.count(crossAxisCount: 2, children: _list));
   }
   */
+}
+
+class NextPage extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Next page'),
+      ),
+      body: Container(
+        height: double.infinity,
+        color: Colors.red,
+      ),
+    );
+  }
 }
 
 ///// bloc
