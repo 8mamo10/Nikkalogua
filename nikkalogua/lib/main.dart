@@ -41,28 +41,6 @@ class _MyAppState extends State<MyApp> {
           },
           itemCount: _nameList.length + 1,
         ),
-        /*
-        body: FutureBuilder(
-          future: _getGrids(),
-          builder: (BuildContext context, AsyncSnapshot<GridView> snapshot) {
-            if (snapshot.connectionState != ConnectionState.done) {
-              return CircularProgressIndicator();
-            }
-            if (snapshot.hasError) {
-              return Container(
-                child: Text(snapshot.error.toString()),
-              );
-            }
-            if (snapshot.hasData) {
-              return snapshot.data;
-            } else {
-              return Container(
-                child: Text('hoge'),
-              );
-            }
-          },
-        ),
-        */
       ),
     );
   }
@@ -99,12 +77,6 @@ class _MyAppState extends State<MyApp> {
       _nameList.add(Random().nextInt(100).toString());
     });
   }
-/*
-  Future<GridView> _getGrids() async {
-    return Future<GridView>.value(
-        GridView.count(crossAxisCount: 2, children: _list));
-  }
-  */
 }
 
 class NextPage extends StatelessWidget {
