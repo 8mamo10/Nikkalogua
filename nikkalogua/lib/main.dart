@@ -49,7 +49,11 @@ class _MyAppState extends State<MyApp> {
     return GestureDetector(
         onTap: () {
           Navigator.push(
-              context, MaterialPageRoute(builder: (context) => NextPage()));
+              context,
+              MaterialPageRoute(
+                  builder: (context) => NextPage(
+                        paramText: name,
+                      )));
         },
         child: Card(
           margin: const EdgeInsets.all(10.0),
@@ -80,6 +84,10 @@ class _MyAppState extends State<MyApp> {
 }
 
 class NextPage extends StatelessWidget {
+  final String paramText;
+
+  NextPage({Key key, @required this.paramText}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -88,7 +96,9 @@ class NextPage extends StatelessWidget {
       ),
       body: Container(
         height: double.infinity,
+        width: double.infinity,
         color: Colors.red,
+        child: Text(this.paramText),
       ),
     );
   }
