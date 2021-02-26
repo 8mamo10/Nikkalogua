@@ -16,7 +16,6 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   static const String _title = 'Nikkalogua';
 
-  //var _list = <Widget>[];
   var _nameList = <String>['str1', 'str2', 'str3', 'str4'];
 
   @override
@@ -26,7 +25,16 @@ class _MyAppState extends State<MyApp> {
       home: Scaffold(
         //body: MyPage()),
         appBar: AppBar(
+          leading: Icon(Icons.copy),
           title: const Text(_title),
+          actions: <Widget>[
+            IconButton(
+              icon: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+            ),
+          ],
         ),
         body: GridView.builder(
           gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
