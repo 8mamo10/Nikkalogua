@@ -22,8 +22,8 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: _title,
-      home: Scaffold(
-        //body: MyPage()),
+      home: Scaffold(body: ClientPage()),
+/*
         appBar: AppBar(
           leading: Icon(Icons.copy),
           title: const Text(_title),
@@ -51,6 +51,7 @@ class _MyAppState extends State<MyApp> {
           itemCount: _nameList.length + 1,
         ),
       ),
+      */
     );
   }
 
@@ -113,15 +114,14 @@ class NextPage extends StatelessWidget {
   }
 }
 
-///// bloc
-class MyPage extends StatefulWidget {
+class ClientPage extends StatefulWidget {
   @override
   State<StatefulWidget> createState() {
-    return _MyPageState();
+    return _ClientPageState();
   }
 }
 
-class _MyPageState extends State<MyPage> {
+class _ClientPageState extends State<ClientPage> {
   List<Client> testClients = [
     Client(firstName: "AAA", lastName: "BBB(default unblock)", blocked: false),
     Client(firstName: "CCC", lastName: "DDD(default block)", blocked: true),
