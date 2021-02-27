@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
                 Icons.settings,
                 color: Colors.white,
               ),
+              onPressed: () {},
             ),
           ],
         ),
