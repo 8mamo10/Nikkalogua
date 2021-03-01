@@ -3,7 +3,7 @@ import 'dart:math';
 //import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
-import 'package:nikkalogua/ClientsPage.dart';
+//import 'package:nikkalogua/ClientsPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -111,12 +111,11 @@ class NextPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Next page'),
+        title: Text(paramText),
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        color: Colors.red,
         child: Text(this.paramText),
       ),
     );
