@@ -129,12 +129,17 @@ class NextPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(paramText),
+        title: Text(
+          paramText,
+        ),
       ),
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        child: Text(this.paramText),
+        child: Text(
+          this.paramText,
+          style: TextStyle(fontSize: 30),
+        ),
       ),
     );
   }
