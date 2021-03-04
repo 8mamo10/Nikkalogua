@@ -87,6 +87,12 @@ class _CardListPageState extends State<CardListPage> {
             height: 200,
             child: Column(
               children: [
+                Container(
+                  color: Colors.green,
+                  width: 10,
+                  height: 10,
+                  margin: EdgeInsets.all(10),
+                ),
                 Text(
                   obj['count'].toString(),
                   style: TextStyle(fontSize: 50),
