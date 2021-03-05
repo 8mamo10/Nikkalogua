@@ -26,10 +26,10 @@ class CardListPage extends StatefulWidget {
 
 class _CardListPageState extends State<CardListPage> {
   var _nameList = [
-    {'name': 'str1', 'count': 10},
-    {'name': 'str2', 'count': 20},
-    {'name': 'str3', 'count': 30},
-    {'name': 'str4', 'count': 40},
+    {'name': 'str1', 'count': 1},
+    {'name': 'str2', 'count': 5},
+    {'name': 'str3', 'count': 10},
+    {'name': 'str4', 'count': 20},
   ];
   @override
   Widget build(BuildContext context) {
@@ -81,21 +81,32 @@ class _CardListPageState extends State<CardListPage> {
                       )));
         },
         child: Card(
-          margin: const EdgeInsets.all(10.0),
+          margin: const EdgeInsets.all(10),
           child: Container(
             width: 200,
             height: 200,
             child: Column(
               children: [
                 Container(
-                  color: Colors.green,
-                  width: 10,
-                  height: 10,
                   margin: EdgeInsets.all(10),
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 7,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      return Container(
+                        color: Colors.green,
+                        margin: EdgeInsets.all(3),
+                      );
+                    },
+                    itemCount: obj['count'],
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                  ),
                 ),
                 Text(
                   obj['count'].toString(),
-                  style: TextStyle(fontSize: 50),
+                  style: TextStyle(fontSize: 30),
                 ),
                 Text(
                   obj['name'],
