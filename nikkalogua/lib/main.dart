@@ -83,8 +83,6 @@ class _CardListPageState extends State<CardListPage> {
         child: Card(
           margin: const EdgeInsets.all(10),
           child: Container(
-            width: 200,
-            height: 200,
             child: Column(
               children: [
                 Container(
@@ -106,11 +104,11 @@ class _CardListPageState extends State<CardListPage> {
                 ),
                 Text(
                   obj['count'].toString(),
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 15),
                 ),
                 Text(
                   obj['name'],
-                  style: TextStyle(fontSize: 30),
+                  style: TextStyle(fontSize: 20),
                 ),
               ],
             ),
@@ -128,7 +126,7 @@ class _CardListPageState extends State<CardListPage> {
 
   void _handlePlus() {
     setState(() {
-      var num = Random().nextInt(100);
+      var num = Random().nextInt(35);
       _nameList.add({
         'name': num.toString(),
         'count': num,
