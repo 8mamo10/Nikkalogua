@@ -26,10 +26,10 @@ class CardListPage extends StatefulWidget {
 
 class _CardListPageState extends State<CardListPage> {
   var _nameList = [
-    {'name': 'str1', 'count': 1},
-    {'name': 'str2', 'count': 5},
-    {'name': 'str3', 'count': 10},
-    {'name': 'str4', 'count': 20},
+    {'name': 'str1', 'count': 1, 'color': Colors.red},
+    {'name': 'str2', 'count': 5, 'color': Colors.blue},
+    {'name': 'str3', 'count': 10, 'color': Colors.green},
+    {'name': 'str4', 'count': 20, 'color': Colors.yellow},
   ];
   @override
   Widget build(BuildContext context) {
@@ -93,7 +93,7 @@ class _CardListPageState extends State<CardListPage> {
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-                        color: Colors.green,
+                        color: obj['color'],
                         margin: EdgeInsets.all(3),
                       );
                     },
@@ -130,6 +130,7 @@ class _CardListPageState extends State<CardListPage> {
       _nameList.add({
         'name': num.toString(),
         'count': num,
+        'color': Colors.purple,
       });
     });
   }
