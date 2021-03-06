@@ -25,7 +25,7 @@ class CardListPage extends StatefulWidget {
 }
 
 class _CardListPageState extends State<CardListPage> {
-  var _nameList = [
+  var _dataList = [
     {'count': 1, 'color': Colors.red},
     {'count': 5, 'color': Colors.blue},
     {'count': 10, 'color': Colors.green},
@@ -58,13 +58,13 @@ class _CardListPageState extends State<CardListPage> {
           crossAxisCount: 2,
         ),
         itemBuilder: (BuildContext context, int index) {
-          if (index == _nameList.length) {
+          if (index == _dataList.length) {
             return _cardPlus();
           } else {
-            return _cardItem(context, _nameList[index]);
+            return _cardItem(context, _dataList[index]);
           }
         },
-        itemCount: _nameList.length + 1,
+        itemCount: _dataList.length + 1,
       ),
     );
   }
@@ -126,7 +126,7 @@ class _CardListPageState extends State<CardListPage> {
   void _handlePlus() {
     setState(() {
       var num = Random().nextInt(36);
-      _nameList.add({
+      _dataList.add({
         'name': num.toString(),
         'count': num,
         'color': Colors.purple,
