@@ -31,6 +31,15 @@ class _CardListPageState extends State<CardListPage> {
     {'count': 10, 'color': Colors.green},
     {'count': 20, 'color': Colors.yellow},
   ];
+
+  List _colors = [
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+    Colors.purple,
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -129,7 +138,7 @@ class _CardListPageState extends State<CardListPage> {
       _dataList.add({
         'name': num.toString(),
         'count': num,
-        'color': Colors.purple,
+        'color': _colors[Random().nextInt(_colors.length)],
       });
     });
   }
