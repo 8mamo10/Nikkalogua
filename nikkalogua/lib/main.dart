@@ -25,7 +25,7 @@ class CardListPage extends StatefulWidget {
 }
 
 class _CardListPageState extends State<CardListPage> {
-  var _dataList = [
+  List _dataList = [
     {'count': 1, 'color': Colors.red},
     {'count': 5, 'color': Colors.blue},
     {'count': 10, 'color': Colors.green},
