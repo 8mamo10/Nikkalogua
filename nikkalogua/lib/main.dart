@@ -26,10 +26,10 @@ class CardListPage extends StatefulWidget {
 
 class _CardListPageState extends State<CardListPage> {
   var _nameList = [
-    {'name': 'str1', 'count': 1, 'color': Colors.red},
-    {'name': 'str2', 'count': 5, 'color': Colors.blue},
-    {'name': 'str3', 'count': 10, 'color': Colors.green},
-    {'name': 'str4', 'count': 20, 'color': Colors.yellow},
+    {'count': 1, 'color': Colors.red},
+    {'count': 5, 'color': Colors.blue},
+    {'count': 10, 'color': Colors.green},
+    {'count': 20, 'color': Colors.yellow},
   ];
   @override
   Widget build(BuildContext context) {
@@ -61,8 +61,7 @@ class _CardListPageState extends State<CardListPage> {
           if (index == _nameList.length) {
             return _cardPlus();
           } else {
-            return _cardItem(
-                context, _nameList[index]['name'], _nameList[index]);
+            return _cardItem(context, _nameList[index]);
           }
         },
         itemCount: _nameList.length + 1,
@@ -70,14 +69,14 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
-  Widget _cardItem(BuildContext context, String name, Map obj) {
+  Widget _cardItem(BuildContext context, Map obj) {
     return GestureDetector(
         onTap: () {
           Navigator.push(
               context,
               MaterialPageRoute(
                   builder: (context) => NextPage(
-                        paramText: obj['name'],
+                        paramText: 'name' + obj['count'].toString(),
                       )));
         },
         child: Card(
@@ -104,11 +103,11 @@ class _CardListPageState extends State<CardListPage> {
                 ),
                 Text(
                   obj['count'].toString(),
-                  style: TextStyle(fontSize: 15),
+                  style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  obj['name'],
-                  style: TextStyle(fontSize: 20),
+                  'name' + obj['count'].toString(),
+                  style: TextStyle(fontSize: 15),
                 ),
               ],
             ),
@@ -126,7 +125,7 @@ class _CardListPageState extends State<CardListPage> {
 
   void _handlePlus() {
     setState(() {
-      var num = Random().nextInt(35);
+      var num = Random().nextInt(36);
       _nameList.add({
         'name': num.toString(),
         'count': num,
