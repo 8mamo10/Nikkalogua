@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 //import 'package:nikkalogua/ClientsPage.dart';
+import 'package:nikkalogua/CardPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -55,7 +56,7 @@ class _CardListPageState extends State<CardListPage> {
               Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => NextPage(
+                      builder: (context) => CardPage(
                             paramText: 'Setting',
                           )));
             },
@@ -84,7 +85,7 @@ class _CardListPageState extends State<CardListPage> {
           Navigator.push(
               context,
               MaterialPageRoute(
-                  builder: (context) => NextPage(
+                  builder: (context) => CardPage(
                         paramText: 'name' + obj['count'].toString(),
                       )));
         },
@@ -141,30 +142,5 @@ class _CardListPageState extends State<CardListPage> {
         'color': _colors[Random().nextInt(_colors.length)],
       });
     });
-  }
-}
-
-class NextPage extends StatelessWidget {
-  final String paramText;
-
-  NextPage({Key key, @required this.paramText}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          paramText,
-        ),
-      ),
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: Text(
-          this.paramText,
-          style: TextStyle(fontSize: 30),
-        ),
-      ),
-    );
   }
 }
