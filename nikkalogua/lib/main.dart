@@ -102,11 +102,13 @@ class _CardListPageState extends State<CardListPage> {
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       return Container(
-                        color: obj['color'],
+                        color: index < obj['count']
+                            ? obj['color']
+                            : Colors.grey[300],
                         margin: EdgeInsets.all(3),
                       );
                     },
-                    itemCount: obj['count'],
+                    itemCount: 35,
                     shrinkWrap: true,
                     physics: NeverScrollableScrollPhysics(),
                   ),
