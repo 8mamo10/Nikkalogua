@@ -113,10 +113,18 @@ class _CardListPageState extends State<CardListPage> {
                     physics: NeverScrollableScrollPhysics(),
                   ),
                 ),
-                Text(
-                  obj['count'].toString(),
-                  style: TextStyle(fontSize: 20),
-                ),
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.local_fire_department,
+                        color: obj['color'],
+                      ),
+                      Text(
+                        obj['count'].toString(),
+                        style: TextStyle(fontSize: 20),
+                      ),
+                    ]),
                 Text(
                   'name' + obj['count'].toString(),
                   style: TextStyle(fontSize: 15),
