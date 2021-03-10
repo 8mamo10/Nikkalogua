@@ -26,6 +26,8 @@ class CardListPage extends StatefulWidget {
 }
 
 class _CardListPageState extends State<CardListPage> {
+  bool _showDeleteButton = false;
+
   List _dataList = [
     {'count': 1, 'color': Colors.red},
     {'count': 5, 'color': Colors.blue},
@@ -45,7 +47,16 @@ class _CardListPageState extends State<CardListPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.copy),
+        leading: IconButton(
+          icon: Icon(
+            Icons.copy,
+          ),
+          onPressed: () {
+            setState(() {
+              _showDeleteButton = !_showDeleteButton;
+            });
+          },
+        ),
         actions: <Widget>[
           IconButton(
             icon: Icon(
@@ -81,58 +92,80 @@ class _CardListPageState extends State<CardListPage> {
 
   Widget _cardItem(BuildContext context, Map obj) {
     return GestureDetector(
-        onTap: () {
-          Navigator.push(
-              context,
-              MaterialPageRoute(
-                  builder: (context) => CardPage(
-                        paramText: 'name' + obj['count'].toString(),
-                      )));
-        },
-        child: Card(
-          margin: const EdgeInsets.all(10),
-          child: Container(
-            child: Column(
-              children: [
-                Container(
-                  margin: EdgeInsets.all(10),
-                  child: GridView.builder(
-                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 7,
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CardPage(
+                      paramText: 'name' + obj['count'].toString(),
+                    )));
+      },
+      child: Card(
+        margin: const EdgeInsets.all(10),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 7,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          color: index < obj['count']
+                              ? obj['color']
+                              : Colors.grey[300],
+                          margin: EdgeInsets.all(3),
+                        );
+                      },
+                      itemCount: 35,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
                     ),
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        color: index < obj['count']
-                            ? obj['color']
-                            : Colors.grey[300],
-                        margin: EdgeInsets.all(3),
-                      );
-                    },
-                    itemCount: 35,
-                    shrinkWrap: true,
-                    physics: NeverScrollableScrollPhysics(),
                   ),
-                ),
-                Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Icon(
-                        Icons.local_fire_department,
-                        color: obj['color'],
-                      ),
-                      Text(
-                        obj['count'].toString(),
-                        style: TextStyle(fontSize: 20),
-                      ),
-                    ]),
-                Text(
-                  'name' + obj['count'].toString(),
-                  style: TextStyle(fontSize: 15),
-                ),
-              ],
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.local_fire_department,
+                          color: obj['color'],
+                        ),
+                        Text(
+                          obj['count'].toString(),
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ]),
+                  Text(
+                    'name' + obj['count'].toString(),
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ],
+              ),
             ),
-          ),
-        ));
+            Visibility(
+              visible: _showDeleteButton,
+              child: Container(
+                margin: EdgeInsets.all(5),
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  iconSize: 32,
+                  icon: Icon(
+                    Icons.cancel,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    print("to be deleted");
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _cardPlus() {
