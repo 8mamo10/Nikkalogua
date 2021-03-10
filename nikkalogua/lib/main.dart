@@ -48,8 +48,9 @@ class _CardListPageState extends State<CardListPage> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
+          iconSize: 32,
           icon: Icon(
-            Icons.copy,
+            _showDeleteButton ? Icons.delete : Icons.delete_outline,
           ),
           onPressed: () {
             setState(() {
@@ -59,6 +60,7 @@ class _CardListPageState extends State<CardListPage> {
         ),
         actions: <Widget>[
           IconButton(
+            iconSize: 32,
             icon: Icon(
               Icons.settings,
               color: Colors.white,
