@@ -19,7 +19,7 @@ class CardPage extends StatelessWidget {
         width: double.infinity,
         child: Text(
           this.paramText,
-          style: TextStyle(fontSize: 30),
+          style: TextStyle(fontSize: 15),
         ),
       ),
     );
