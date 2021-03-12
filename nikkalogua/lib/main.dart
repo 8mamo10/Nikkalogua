@@ -84,7 +84,7 @@ class _CardListPageState extends State<CardListPage> {
           if (index == _dataList.length) {
             return _cardPlus();
           } else {
-            return _cardItem(context, _dataList[index]);
+            return _cardItem(context, _dataList[index], index);
           }
         },
         itemCount: _dataList.length + 1,
@@ -92,7 +92,7 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
-  Widget _cardItem(BuildContext context, Map obj) {
+  Widget _cardItem(BuildContext context, Map obj, int index) {
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -159,7 +159,9 @@ class _CardListPageState extends State<CardListPage> {
                     color: Colors.black,
                   ),
                   onPressed: () {
-                    print("to be deleted");
+                    setState(() {
+                      _dataList.removeAt(index);
+                    });
                   },
                 ),
               ),
