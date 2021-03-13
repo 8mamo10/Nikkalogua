@@ -17,9 +17,41 @@ class CardPage extends StatelessWidget {
       body: Container(
         height: double.infinity,
         width: double.infinity,
-        child: Text(
-          this.paramText,
-          style: TextStyle(fontSize: 15),
+        margin: EdgeInsets.all(10),
+        alignment: Alignment.topCenter,
+        child: Column(
+          children: [
+            ConstrainedBox(
+              constraints: BoxConstraints.expand(height: 100.0),
+              child: Container(
+                color: Colors.black,
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  this.paramText,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+            ConstrainedBox(
+              constraints: BoxConstraints.expand(height: 100.0),
+              child: Container(
+                color: Colors.black,
+                margin: EdgeInsets.all(10),
+                padding: EdgeInsets.all(10),
+                child: Text(
+                  this.paramText,
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.white,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
