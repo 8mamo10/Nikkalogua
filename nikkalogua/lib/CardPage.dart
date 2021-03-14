@@ -4,7 +4,10 @@ import 'package:flutter/rendering.dart';
 class CardPage extends StatelessWidget {
   final String paramText;
 
-  CardPage({Key key, @required this.paramText}) : super(key: key);
+  CardPage({
+    Key key,
+    @required this.paramText,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

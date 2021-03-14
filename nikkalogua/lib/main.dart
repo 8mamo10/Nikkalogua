@@ -29,10 +29,31 @@ class _CardListPageState extends State<CardListPage> {
   bool _showDeleteButton = false;
 
   List _dataList = [
-    {'count': 1, 'color': Colors.red},
-    {'count': 5, 'color': Colors.blue},
-    {'count': 10, 'color': Colors.green},
-    {'count': 20, 'color': Colors.yellow},
+    {
+      'name': 'work1',
+      'count': 1,
+      'color': Colors.red,
+    },
+    {
+      'name': 'work2',
+      'count': 5,
+      'color': Colors.blue,
+    },
+    {
+      'name': 'work3',
+      'count': 10,
+      'color': Colors.green,
+    },
+    {
+      'name': 'work4',
+      'count': 20,
+      'color': Colors.yellow,
+    },
+    {
+      'name': 'work5',
+      'count': 35,
+      'color': Colors.purple,
+    },
   ];
 
   List _colors = [
@@ -99,7 +120,7 @@ class _CardListPageState extends State<CardListPage> {
             context,
             MaterialPageRoute(
                 builder: (context) => CardPage(
-                      paramText: 'name' + obj['count'].toString(),
+                      paramText: obj['name'],
                     )));
       },
       child: Card(
@@ -141,7 +162,7 @@ class _CardListPageState extends State<CardListPage> {
                         ),
                       ]),
                   Text(
-                    'name' + obj['count'].toString(),
+                    obj['name'],
                     style: TextStyle(fontSize: 15),
                   ),
                 ],
@@ -184,7 +205,7 @@ class _CardListPageState extends State<CardListPage> {
     setState(() {
       var num = Random().nextInt(36);
       _dataList.add({
-        'name': num.toString(),
+        'name': 'work' + _dataList.length.toString(),
         'count': num,
         'color': _colors[Random().nextInt(_colors.length)],
       });
