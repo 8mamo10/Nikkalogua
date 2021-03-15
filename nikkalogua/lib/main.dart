@@ -28,6 +28,7 @@ class CardListPage extends StatefulWidget {
 class _CardListPageState extends State<CardListPage> {
   bool _showDeleteButton = false;
 
+  // To be stored on DB
   List _dataList = [
     {
       'name': 'work1',
