@@ -24,43 +24,30 @@ class CardPage extends StatelessWidget {
         alignment: Alignment.topCenter,
         child: Column(
           children: [
-            ConstrainedBox(
-              constraints: BoxConstraints.expand(height: 100.0),
-              child: Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey,
-                ),
-                child: Text(
-                  this.paramText,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
-            ConstrainedBox(
-              constraints: BoxConstraints.expand(height: 100.0),
-              child: Container(
-                margin: EdgeInsets.all(10),
-                padding: EdgeInsets.all(10),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                  color: Colors.grey,
-                ),
-                child: Text(
-                  this.paramText,
-                  style: TextStyle(
-                    fontSize: 15,
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            ),
+            _dailyLine(),
+            _dailyLine(),
           ],
+        ),
+      ),
+    );
+  }
+
+  Widget _dailyLine() {
+    return ConstrainedBox(
+      constraints: BoxConstraints.expand(height: 100.0),
+      child: Container(
+        margin: EdgeInsets.all(10),
+        padding: EdgeInsets.all(10),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(10),
+          color: Colors.grey,
+        ),
+        child: Text(
+          this.paramText,
+          style: TextStyle(
+            fontSize: 15,
+            color: Colors.white,
+          ),
         ),
       ),
     );
