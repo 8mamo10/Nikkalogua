@@ -92,7 +92,11 @@ class _CardListPageState extends State<CardListPage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => CardPage(
-                            paramText: 'Setting',
+                            params: {
+                              'name': 'Setting',
+                              'count': 1,
+                              'color': Colors.grey,
+                            },
                           )));
             },
           ),
@@ -121,7 +125,7 @@ class _CardListPageState extends State<CardListPage> {
             context,
             MaterialPageRoute(
                 builder: (context) => CardPage(
-                      paramText: obj['name'],
+                      params: obj,
                     )));
       },
       child: Card(

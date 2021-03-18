@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class CardPage extends StatelessWidget {
-  final String paramText;
+  //final String paramText;
+  final Map params;
 
   CardPage({
     Key key,
-    @required this.paramText,
+    @required this.params,
   }) : super(key: key);
 
   @override
@@ -14,7 +15,7 @@ class CardPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          paramText,
+          params['name'],
         ),
       ),
       body: Container(
@@ -23,7 +24,9 @@ class CardPage extends StatelessWidget {
         margin: EdgeInsets.all(10),
         alignment: Alignment.topCenter,
         child: Column(
-          children: <Widget>[for (int i = 0; i < 5; i++) _dailyLine()],
+          children: <Widget>[
+            for (int i = 0; i < this.params['count']; i++) _dailyLine()
+          ],
         ),
       ),
     );
@@ -40,7 +43,7 @@ class CardPage extends StatelessWidget {
           color: Colors.grey,
         ),
         child: Text(
-          this.paramText,
+          this.params['name'],
           style: TextStyle(
             fontSize: 15,
             color: Colors.white,
