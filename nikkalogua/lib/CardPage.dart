@@ -23,10 +23,7 @@ class CardPage extends StatelessWidget {
         margin: EdgeInsets.all(10),
         alignment: Alignment.topCenter,
         child: Column(
-          children: [
-            _dailyLine(),
-            _dailyLine(),
-          ],
+          children: <Widget>[for (int i = 0; i < 5; i++) _dailyLine()],
         ),
       ),
     );
