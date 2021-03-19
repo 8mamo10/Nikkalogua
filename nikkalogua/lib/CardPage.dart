@@ -19,14 +19,14 @@ class CardPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        height: double.infinity,
-        width: double.infinity,
         margin: EdgeInsets.all(10),
         alignment: Alignment.topCenter,
-        child: Column(
-          children: <Widget>[
-            for (int i = 0; i < this.params['count']; i++) _dailyLine()
-          ],
+        child: SingleChildScrollView(
+          child: Column(
+            children: <Widget>[
+              for (int i = 0; i < this.params['count']; i++) _dailyLine()
+            ],
+          ),
         ),
       ),
     );
