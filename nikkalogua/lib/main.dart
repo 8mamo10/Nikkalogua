@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 //import 'package:nikkalogua/ClientsPage.dart';
 import 'package:nikkalogua/CardPage.dart';
+import 'package:nikkalogua/SettingPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -88,16 +89,8 @@ class _CardListPageState extends State<CardListPage> {
               color: Colors.white,
             ),
             onPressed: () {
-              Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => CardPage(
-                            params: {
-                              'name': 'Setting',
-                              'count': 1,
-                              'color': Colors.grey,
-                            },
-                          )));
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => SettingPage()));
             },
           ),
         ],
