@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class CardPage extends StatelessWidget {
-  //final String paramText;
   final Map params;
 
   CardPage({
