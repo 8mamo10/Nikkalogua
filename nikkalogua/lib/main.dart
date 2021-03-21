@@ -125,6 +125,9 @@ class _CardListPageState extends State<CardListPage> {
                     )));
       },
       child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
         margin: const EdgeInsets.all(10),
         child: Stack(
           children: <Widget>[

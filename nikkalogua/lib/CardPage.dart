@@ -18,7 +18,6 @@ class CardPage extends StatelessWidget {
         ),
       ),
       body: Container(
-        margin: EdgeInsets.all(10),
         alignment: Alignment.topCenter,
         color: Colors.grey[200],
         child: SingleChildScrollView(
@@ -39,7 +38,7 @@ class CardPage extends StatelessWidget {
         margin: EdgeInsets.all(10),
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
+          borderRadius: BorderRadius.circular(15),
           color: Colors.white,
         ),
         child: Row(
@@ -50,7 +49,7 @@ class CardPage extends StatelessWidget {
                 margin: EdgeInsets.all(2),
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
+                  borderRadius: BorderRadius.circular(15),
                   color: this.params['color'],
                 ),
                 child: Text(
