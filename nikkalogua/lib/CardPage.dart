@@ -23,7 +23,7 @@ class CardPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              for (int i = 0; i < this.params['count']; i++) _dailyLine()
+              for (int i = this.params['count']; i > 0; i--) _dailyLine(i)
             ],
           ),
         ),
@@ -31,7 +31,7 @@ class CardPage extends StatelessWidget {
     );
   }
 
-  Widget _dailyLine() {
+  Widget _dailyLine(int count) {
     return ConstrainedBox(
       constraints: BoxConstraints.expand(height: 100.0),
       child: Container(
@@ -41,12 +41,37 @@ class CardPage extends StatelessWidget {
           borderRadius: BorderRadius.circular(10),
           color: Colors.grey,
         ),
-        child: Text(
-          this.params['name'],
-          style: TextStyle(
-            fontSize: 15,
-            color: Colors.white,
-          ),
+        child: Row(
+          children: [
+            AspectRatio(
+              aspectRatio: 1.0,
+              child: Container(
+                margin: EdgeInsets.all(2),
+                alignment: Alignment.center,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
+                  color: this.params['color'],
+                ),
+                child: Text(
+                  count.toString(),
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 25,
+                  ),
+                ),
+              ),
+            ),
+            Container(
+              padding: EdgeInsets.all(10),
+              child: Text(
+                this.params['name'],
+                style: TextStyle(
+                  fontSize: 15,
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
         ),
       ),
     );
