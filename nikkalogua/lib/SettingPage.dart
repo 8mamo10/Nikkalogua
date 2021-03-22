@@ -46,6 +46,9 @@ class SettingPage extends StatelessWidget {
           ],
         ),
       ),
+      onTap: () {
+        print(title + ': under construction');
+      },
     );
   }
 }
