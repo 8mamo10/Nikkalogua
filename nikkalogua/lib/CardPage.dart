@@ -1,8 +1,11 @@
+import 'package:intl/intl.dart';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class CardPage extends StatelessWidget {
   final Map params;
+  final now = DateTime.now();
 
   CardPage({
     Key key,
@@ -23,7 +26,8 @@ class CardPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              for (int i = this.params['count']; i > 0; i--) _dailyLine(i)
+              for (int i = 0; i < this.params['count']; i++)
+                _dailyLine(this.params['count'], i)
             ],
           ),
         ),
@@ -31,7 +35,7 @@ class CardPage extends StatelessWidget {
     );
   }
 
-  Widget _dailyLine(int count) {
+  Widget _dailyLine(int total, int count) {
     return ConstrainedBox(
       constraints: BoxConstraints.expand(height: 100.0),
       child: Container(
@@ -53,7 +57,7 @@ class CardPage extends StatelessWidget {
                   color: this.params['color'],
                 ),
                 child: Text(
-                  count.toString(),
+                  (total - count).toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,
@@ -64,7 +68,9 @@ class CardPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               child: Text(
-                this.params['name'],
+                //this.params['name'],
+                DateFormat('yyyy/MM/dd')
+                    .format(now.subtract(new Duration(days: count))),
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
