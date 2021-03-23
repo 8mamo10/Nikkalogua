@@ -17,27 +17,27 @@ class _CardListPageState extends State<CardListPage> {
   // To be stored on DB
   List _dataList = [
     {
-      'name': 'work1',
+      'name': 'work0',
       'count': 1,
       'color': Colors.red,
     },
     {
-      'name': 'work2',
+      'name': 'work1',
       'count': 5,
       'color': Colors.blue,
     },
     {
-      'name': 'work3',
+      'name': 'work2',
       'count': 10,
       'color': Colors.green,
     },
     {
-      'name': 'work4',
+      'name': 'work3',
       'count': 20,
       'color': Colors.yellow,
     },
     {
-      'name': 'work5',
+      'name': 'work4',
       'count': 35,
       'color': Colors.purple,
     },
