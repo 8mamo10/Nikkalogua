@@ -32,6 +32,13 @@ class CardPage extends StatelessWidget {
           ),
         ),
       ),
+      floatingActionButton: Container(
+        alignment: Alignment.bottomCenter,
+        child: FloatingActionButton(
+          onPressed: () {},
+          child: Icon(Icons.plus_one),
+        ),
+      ),
     );
   }
 
