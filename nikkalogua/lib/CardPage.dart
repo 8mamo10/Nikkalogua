@@ -36,6 +36,7 @@ class CardPage extends StatelessWidget {
         alignment: Alignment.bottomCenter,
         child: FloatingActionButton(
           onPressed: () {},
+          backgroundColor: this.params['color'],
           child: Icon(Icons.plus_one),
         ),
       ),
