@@ -35,7 +35,9 @@ class CardPage extends StatelessWidget {
       floatingActionButton: Container(
         alignment: Alignment.bottomCenter,
         child: FloatingActionButton(
-          onPressed: () {},
+          onPressed: () {
+            print("+1 pressed");
+          },
           backgroundColor: this.params['color'],
           child: Icon(Icons.plus_one),
         ),
