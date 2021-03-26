@@ -78,7 +78,6 @@ class CardPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               child: Text(
-                //this.params['name'],
                 DateFormat('yyyy/MM/dd')
                     .format(now.subtract(new Duration(days: count))),
                 style: TextStyle(
