@@ -18,7 +18,6 @@ class _CardListPageState extends State<CardListPage> {
   List _dataList = [
     {
       'name': 'work0',
-      'count': 1,
       'color': Colors.red,
       'days': [
         '2021-03-30',
@@ -26,7 +25,6 @@ class _CardListPageState extends State<CardListPage> {
     },
     {
       'name': 'work1',
-      'count': 5,
       'color': Colors.blue,
       'days': [
         '2021-03-30',
@@ -38,7 +36,6 @@ class _CardListPageState extends State<CardListPage> {
     },
     {
       'name': 'work2',
-      'count': 10,
       'color': Colors.green,
       'days': [
         '2021-03-30',
@@ -55,7 +52,6 @@ class _CardListPageState extends State<CardListPage> {
     },
     {
       'name': 'work3',
-      'count': 20,
       'color': Colors.yellow,
       'days': [
         '2021-03-30',
@@ -82,7 +78,6 @@ class _CardListPageState extends State<CardListPage> {
     },
     {
       'name': 'work4',
-      'count': 35,
       'color': Colors.purple,
       'days': [
         '2021-03-30',
@@ -208,7 +203,7 @@ class _CardListPageState extends State<CardListPage> {
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          color: index < obj['count']
+                          color: index < obj['days'].length
                               ? obj['color']
                               : Colors.grey[300],
                           margin: EdgeInsets.all(3),
@@ -227,7 +222,7 @@ class _CardListPageState extends State<CardListPage> {
                           color: obj['color'],
                         ),
                         Text(
-                          obj['count'].toString(),
+                          obj['days'].length.toString(),
                           style: TextStyle(fontSize: 20),
                         ),
                       ]),
@@ -276,7 +271,6 @@ class _CardListPageState extends State<CardListPage> {
       var num = Random().nextInt(36);
       _dataList.add({
         'name': 'work' + _dataList.length.toString(),
-        'count': num,
         'color': _colors[Random().nextInt(_colors.length)],
         'days': [],
       });

@@ -27,8 +27,8 @@ class CardPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              for (int i = 0; i < this.params['count']; i++)
-                _dailyLine(this.params['count'], i)
+              for (int i = 0; i < this.params['days'].length; i++)
+                _dailyLine(this.params['days'].length, i)
             ],
           ),
         ),
