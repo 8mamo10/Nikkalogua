@@ -15,6 +15,7 @@ class CardPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text(
           params['name'],
@@ -32,15 +33,12 @@ class CardPage extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: Container(
-        alignment: Alignment.bottomCenter,
-        child: FloatingActionButton(
-          onPressed: () {
-            print("+1 pressed");
-          },
-          backgroundColor: this.params['color'],
-          child: Icon(Icons.plus_one),
-        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          print("+1 pressed");
+        },
+        backgroundColor: this.params['color'],
+        child: Icon(Icons.plus_one),
       ),
     );
   }
