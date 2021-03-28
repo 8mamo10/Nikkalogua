@@ -1,6 +1,6 @@
 import 'dart:async';
 import 'package:nikkalogua/ClientModel.dart';
-import 'package:nikkalogua/Database.dart';
+import 'package:nikkalogua/ClientDatabase.dart';
 
 class ClientsBloc {
   ClientsBloc() {
