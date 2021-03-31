@@ -25,12 +25,12 @@ class DBProvider {
       await db.execute("CREATE TABLE nikka ("
           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
           "name TEXT,"
-          "color INTEGER,"
+          "color INTEGER"
           ")");
       await db.execute("CREATE TABLE log ("
           "id INTEGER PRIMARY KEY AUTOINCREMENT,"
           "nikka_id INTEGER,"
-          "date TEXT,"
+          "date TEXT"
           ")");
     });
   }
