@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:nikkalogua/CardPage.dart';
+import 'package:nikkalogua/Database.dart';
+import 'package:nikkalogua/NikkaModel.dart';
 import 'package:nikkalogua/SettingPage.dart';
 
 class CardListPage extends StatefulWidget {
@@ -266,14 +268,21 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
-  void _handlePlus() {
+  void _handlePlus() async {
+    /*
     setState(() {
-      var num = Random().nextInt(36);
       _dataList.add({
         'name': 'work' + _dataList.length.toString(),
         'color': _colors[Random().nextInt(_colors.length)],
         'days': [],
       });
+    });
+    */
+    await DBProvider.db.newNikka(Nikka(name: 'aaaaa', color: 1));
+    var nikkas = await DBProvider.db.getAllNikkas();
+    print(nikkas.toString());
+    nikkas.forEach((Nikka nikka) {
+      print(nikka.toMap());
     });
   }
 }

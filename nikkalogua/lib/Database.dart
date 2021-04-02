@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:sqflite/sqlite_api.dart';
 
 import 'package:nikkalogua/NikkaModel.dart';
 
@@ -48,4 +49,12 @@ class DBProvider {
     var res = await db.query("Nikka", where: "id = ?", whereArgs: [id]);
     return res.isNotEmpty ? Nikka.fromMap(res.first) : null;
   }
+
+  Future<List<Nikka>> getAllNikkas() async {
+    final db = await database;
+    var res = await db.query('Nikka');
+    List<Nikka> list = res.isNotEmpty ? res.map((n)=>Nikka.fromMap(n)).toList() : [];
+    return list;
+  }
+
 }
