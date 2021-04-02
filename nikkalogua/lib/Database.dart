@@ -4,6 +4,8 @@ import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
 
+import 'package:nikkalogua/NikkaModel.dart';
+
 class DBProvider {
   DBProvider._();
   static final DBProvider db = DBProvider._();
@@ -33,5 +35,17 @@ class DBProvider {
           "date TEXT"
           ")");
     });
+  }
+
+  newNikka(Nikka newNikka) async {
+    final db = await database;
+    var res = await db.insert("Nikka", newNikka.toMap());
+    return res;
+  }
+
+  getNikka(int id) async {
+    final db = await database;
+    var res = await db.query("Nikka", where: "id = ?", whereArgs: [id]);
+    return res.isNotEmpty ? Nikka.fromMap(res.first) : null;
   }
 }
