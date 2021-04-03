@@ -278,6 +278,8 @@ class _CardListPageState extends State<CardListPage> {
       });
     });
     */
+
+    // DB access test
     await DBProvider.db.newNikka(Nikka(name: 'aaaaa', color: 1));
     var nikkas = await DBProvider.db.getAllNikkas();
     print(nikkas.toString());

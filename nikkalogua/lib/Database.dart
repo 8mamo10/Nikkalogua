@@ -44,7 +44,7 @@ class DBProvider {
     return res;
   }
 
-  getNikka(int id) async {
+  Future<Nikka> getNikka(int id) async {
     final db = await database;
     var res = await db.query("Nikka", where: "id = ?", whereArgs: [id]);
     return res.isNotEmpty ? Nikka.fromMap(res.first) : null;
@@ -52,9 +52,16 @@ class DBProvider {
 
   Future<List<Nikka>> getAllNikkas() async {
     final db = await database;
-    var res = await db.query('Nikka');
-    List<Nikka> list = res.isNotEmpty ? res.map((n)=>Nikka.fromMap(n)).toList() : [];
+    var res = await db.query("Nikka");
+    List<Nikka> list =
+        res.isNotEmpty ? res.map((n) => Nikka.fromMap(n)).toList() : [];
     return list;
   }
 
+  updateNikka(Nikka newNikka) async {
+    final db = await database;
+    var res = db.update("Nikka", newNikka.toMap(),
+        where: "id = ?", whereArgs: [newNikka.id]);
+    return res;
+  }
 }
