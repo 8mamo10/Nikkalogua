@@ -6,6 +6,7 @@ import 'package:flutter/rendering.dart';
 import 'package:nikkalogua/CardPage.dart';
 import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/NikkaModel.dart';
+import 'package:nikkalogua/LogModel.dart';
 import 'package:nikkalogua/SettingPage.dart';
 
 class CardListPage extends StatefulWidget {
@@ -282,7 +283,10 @@ class _CardListPageState extends State<CardListPage> {
     // DB access test
     //// nikka
     ////// insert
-    await DBProvider.db.newNikka(Nikka(name: 'aaaaa', color: 1));
+    await DBProvider.db.newNikka(Nikka(
+      name: 'aaaaa',
+      color: 1,
+    ));
     ////// select
     var nikkas = await DBProvider.db.getAllNikkas();
     print(nikkas.toString());
@@ -306,5 +310,14 @@ class _CardListPageState extends State<CardListPage> {
     await DBProvider.db.deleteAllNikka();
     nikkas = await DBProvider.db.getAllNikkas();
     print(nikkas.length);
+    //// log
+    ///// insert
+    await DBProvider.db.newLog(Log(
+      nikkaId: 1,
+      date: "2021-04-03",
+    ));
+    ///// select
+    var log = await DBProvider.db.getLog(1);
+    print(log.toMap());
   }
 }

@@ -6,6 +6,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:sqflite/sqlite_api.dart';
 
 import 'package:nikkalogua/NikkaModel.dart';
+import 'package:nikkalogua/LogModel.dart';
 
 class DBProvider {
   DBProvider._();
@@ -73,5 +74,17 @@ class DBProvider {
   deleteAllNikka() async {
     final db = await database;
     db.rawDelete("DELETE FROM nikka");
+  }
+
+  newLog(Log newLog) async {
+    final db = await database;
+    var res = await db.insert("log", newLog.toMap());
+    return res;
+  }
+
+  Future<Log> getLog(int id) async {
+    final db = await database;
+    var res = await db.query("log", where: "id = ?", whereArgs: [id]);
+    return res.isNotEmpty ? Log.fromMap(res.first) : null;
   }
 }
