@@ -291,6 +291,7 @@ class _CardListPageState extends State<CardListPage> {
     //// update
     var changedNikka = nikkas.last;
     changedNikka.name = 'bbbbb';
+    changedNikka.color = 2;
     //// update
     DBProvider.db.updateNikka(changedNikka);
     print(nikkas.last.toMap());
