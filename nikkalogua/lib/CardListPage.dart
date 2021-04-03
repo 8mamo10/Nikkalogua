@@ -283,8 +283,12 @@ class _CardListPageState extends State<CardListPage> {
     await DBProvider.db.newNikka(Nikka(name: 'aaaaa', color: 1));
     var nikkas = await DBProvider.db.getAllNikkas();
     print(nikkas.toString());
-    nikkas.forEach((Nikka nikka) {
-      print(nikka.toMap());
-    });
+    for (int i = 0; i < nikkas.length; i++) {
+      print(nikkas[i].toMap());
+    }
+    var changedNikka = nikkas.last;
+    changedNikka.name = 'bbbbb';
+    DBProvider.db.updateNikka(changedNikka);
+    print(nikkas.last.toMap());
   }
 }
