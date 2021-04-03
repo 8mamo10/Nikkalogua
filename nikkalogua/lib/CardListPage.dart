@@ -280,28 +280,29 @@ class _CardListPageState extends State<CardListPage> {
     */
 
     // DB access test
-    //// insert
+    //// nikka
+    ////// insert
     await DBProvider.db.newNikka(Nikka(name: 'aaaaa', color: 1));
-    //// select
+    ////// select
     var nikkas = await DBProvider.db.getAllNikkas();
     print(nikkas.toString());
     for (int i = 0; i < nikkas.length; i++) {
       print(nikkas[i].toMap());
     }
-    //// update
+    ///// update
     var changedNikka = nikkas.last;
     changedNikka.name = 'bbbbb';
     changedNikka.color = 2;
-    //// update
+    ////// update
     DBProvider.db.updateNikka(changedNikka);
     print(nikkas.last.toMap());
-    //// delete
+    ////// delete
     DBProvider.db.deleteNikka(changedNikka.id);
     nikkas = await DBProvider.db.getAllNikkas();
     nikkas.forEach((nikka) {
       print(nikka.toMap());
     });
-    //// delete all
+    ////// delete all
     await DBProvider.db.deleteAllNikka();
     nikkas = await DBProvider.db.getAllNikkas();
     print(nikkas.length);
