@@ -87,4 +87,13 @@ class DBProvider {
     var res = await db.query("log", where: "id = ?", whereArgs: [id]);
     return res.isNotEmpty ? Log.fromMap(res.first) : null;
   }
+
+  Future<List<Log>> getLogsByNikkaId(int nikkaId) async {
+    final db = await database;
+    var res = await db.query("log",
+        where: "nikka_id = ?", whereArgs: [nikkaId], orderBy: "date DESC");
+    List<Log> list =
+        res.isNotEmpty ? res.map((l) => Log.fromMap(l)).toList() : [];
+    return list;
+  }
 }
