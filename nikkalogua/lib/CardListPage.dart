@@ -328,6 +328,14 @@ class _CardListPageState extends State<CardListPage> {
     var log = await DBProvider.db.getLog(1);
     print(log.toMap());
     var logs = await DBProvider.db.getLogsByNikkaId(1);
+    print("before delete");
+    logs.forEach((log) {
+      print(log.toMap());
+    });
+    ////// delete
+    DBProvider.db.deleteLog(logs.last.id);
+    logs = await DBProvider.db.getLogsByNikkaId(1);
+    print("after delete");
     logs.forEach((log) {
       print(log.toMap());
     });

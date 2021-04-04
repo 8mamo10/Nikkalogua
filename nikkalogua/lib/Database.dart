@@ -96,4 +96,9 @@ class DBProvider {
         res.isNotEmpty ? res.map((l) => Log.fromMap(l)).toList() : [];
     return list;
   }
+
+  deleteLog(int id) async {
+    final db = await database;
+    db.delete("log", where: "id = ?", whereArgs: [id]);
+  }
 }
