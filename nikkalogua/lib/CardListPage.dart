@@ -283,17 +283,21 @@ class _CardListPageState extends State<CardListPage> {
     // DB access test
     //// nikka
     ////// insert
+    print("---begin db test---");
+    print("insert a nikka");
     await DBProvider.db.newNikka(Nikka(
       name: 'aaaaa',
       color: 1,
     ));
     ////// select
+    print("select the nikkas");
     var nikkas = await DBProvider.db.getAllNikkas();
     print(nikkas.toString());
     for (int i = 0; i < nikkas.length; i++) {
       print(nikkas[i].toMap());
     }
     ///// update
+    print("update the nikka");
     var changedNikka = nikkas.last;
     changedNikka.name = 'bbbbb';
     changedNikka.color = 2;
@@ -301,17 +305,20 @@ class _CardListPageState extends State<CardListPage> {
     DBProvider.db.updateNikka(changedNikka);
     print(nikkas.last.toMap());
     ////// delete
+    print("delete the nikka");
     DBProvider.db.deleteNikka(changedNikka.id);
     nikkas = await DBProvider.db.getAllNikkas();
     nikkas.forEach((nikka) {
       print(nikka.toMap());
     });
     ////// delete all
+    print("delete all nikka");
     await DBProvider.db.deleteAllNikka();
     nikkas = await DBProvider.db.getAllNikkas();
-    print(nikkas.length);
+    print("nikkas.length=" + nikkas.length.toString());
     //// log
     ///// insert
+    print("insert logs");
     await DBProvider.db.newLog(Log(
       nikkaId: 1,
       date: "2021-04-03",
@@ -325,19 +332,26 @@ class _CardListPageState extends State<CardListPage> {
       date: "2021-04-04",
     ));
     ///// select
-    var log = await DBProvider.db.getLog(1);
-    print(log.toMap());
+    //var log = await DBProvider.db.getLog(1);
+    //print(log.toMap());
+    print("select the logs");
     var logs = await DBProvider.db.getLogsByNikkaId(1);
-    print("before delete");
     logs.forEach((log) {
       print(log.toMap());
     });
     ////// delete
+    print("delete a log");
     DBProvider.db.deleteLog(logs.last.id);
     logs = await DBProvider.db.getLogsByNikkaId(1);
-    print("after delete");
     logs.forEach((log) {
       print(log.toMap());
     });
+    ////// delete by nikka_id
+    print("delete all log");
+    DBProvider.db.deleteLogByNikkaId(1);
+    logs = await DBProvider.db.getLogsByNikkaId(1);
+    print("logs.length=" + logs.length.toString());
+
+    print("---finish db test---");
   }
 }
