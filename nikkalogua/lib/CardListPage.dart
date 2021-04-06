@@ -175,6 +175,12 @@ class _CardListPageState extends State<CardListPage> {
           itemCount: _dataList.length + 1,
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          this._dbTest();
+        },
+        child: Icon(Icons.plus_one),
+      ),
     );
   }
 
@@ -270,7 +276,6 @@ class _CardListPageState extends State<CardListPage> {
   }
 
   void _handlePlus() async {
-    /*
     setState(() {
       _dataList.add({
         'name': 'work' + _dataList.length.toString(),
@@ -278,8 +283,9 @@ class _CardListPageState extends State<CardListPage> {
         'days': [],
       });
     });
-    */
+  }
 
+  void _dbTest() async {
     // DB access test
     //// nikka
     ////// insert
