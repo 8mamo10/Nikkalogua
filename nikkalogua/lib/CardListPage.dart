@@ -20,6 +20,7 @@ class _CardListPageState extends State<CardListPage> {
   // To be stored on DB
   List _dataList = [
     {
+      'id': 0,
       'name': 'work0',
       'color': Colors.red,
       'days': [
@@ -27,6 +28,7 @@ class _CardListPageState extends State<CardListPage> {
       ],
     },
     {
+      'id': 1,
       'name': 'work1',
       'color': Colors.blue,
       'days': [
@@ -38,6 +40,7 @@ class _CardListPageState extends State<CardListPage> {
       ],
     },
     {
+      'id': 2,
       'name': 'work2',
       'color': Colors.green,
       'days': [
@@ -54,6 +57,7 @@ class _CardListPageState extends State<CardListPage> {
       ],
     },
     {
+      'id': 3,
       'name': 'work3',
       'color': Colors.yellow,
       'days': [
@@ -80,6 +84,7 @@ class _CardListPageState extends State<CardListPage> {
       ]
     },
     {
+      'id': 4,
       'name': 'work4',
       'color': Colors.purple,
       'days': [
