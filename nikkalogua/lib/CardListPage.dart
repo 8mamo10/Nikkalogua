@@ -290,6 +290,8 @@ class _CardListPageState extends State<CardListPage> {
     });
   }
 
+  void _insertTestData() async {}
+
   void _dbTest() async {
     // DB access test
     //// nikka
