@@ -97,6 +97,14 @@ class DBProvider {
     return list;
   }
 
+  Future<List<Log>> getAllLogs() async {
+    final db = await database;
+    var res = await db.query("log");
+    List<Log> list =
+        res.isNotEmpty ? res.map((l) => Log.fromMap(l)).toList() : [];
+    return list;
+  }
+
   deleteLog(int id) async {
     final db = await database;
     db.delete("log", where: "id = ?", whereArgs: [id]);
