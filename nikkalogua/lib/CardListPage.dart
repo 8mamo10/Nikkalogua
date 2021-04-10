@@ -138,55 +138,68 @@ class _CardListPageState extends State<CardListPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          iconSize: 32,
-          icon: Icon(
-            _showDeleteButton ? Icons.delete : Icons.delete_outline,
-          ),
-          onPressed: () {
-            setState(() {
-              _showDeleteButton = !_showDeleteButton;
-            });
-          },
-        ),
-        actions: <Widget>[
-          IconButton(
+        appBar: AppBar(
+          leading: IconButton(
             iconSize: 32,
             icon: Icon(
-              Icons.settings,
-              color: Colors.white,
+              _showDeleteButton ? Icons.delete : Icons.delete_outline,
             ),
             onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => SettingPage()));
+              setState(() {
+                _showDeleteButton = !_showDeleteButton;
+              });
             },
           ),
-        ],
-      ),
-      body: Container(
-        color: Colors.grey[200],
-        child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-          ),
-          itemBuilder: (BuildContext context, int index) {
-            if (index == _dataList.length) {
-              return _cardPlus();
-            } else {
-              return _cardItem(context, _dataList[index], index);
-            }
-          },
-          itemCount: _dataList.length + 1,
+          actions: <Widget>[
+            IconButton(
+              iconSize: 32,
+              icon: Icon(
+                Icons.settings,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => SettingPage()));
+              },
+            ),
+          ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          this._dbTest();
-        },
-        child: Icon(Icons.plus_one),
-      ),
-    );
+        body: Container(
+          color: Colors.grey[200],
+          child: GridView.builder(
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+            ),
+            itemBuilder: (BuildContext context, int index) {
+              if (index == _dataList.length) {
+                return _cardPlus();
+              } else {
+                return _cardItem(context, _dataList[index], index);
+              }
+            },
+            itemCount: _dataList.length + 1,
+          ),
+        ),
+        floatingActionButton: Column(
+          verticalDirection: VerticalDirection.up,
+          children: [
+            FloatingActionButton(
+              onPressed: () {
+                this._deleteTestData();
+              },
+              child: Icon(Icons.exposure_minus_1),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  this._insertTestData();
+                },
+                child: Icon(Icons.exposure_plus_1),
+              ),
+            ),
+          ],
+        ));
   }
 
   Widget _cardItem(BuildContext context, Map obj, int index) {
@@ -290,7 +303,13 @@ class _CardListPageState extends State<CardListPage> {
     });
   }
 
-  void _insertTestData() async {}
+  void _insertTestData() async {
+    print("insert");
+  }
+
+  void _deleteTestData() async {
+    print("delete");
+  }
 
   void _dbTest() async {
     // DB access test
