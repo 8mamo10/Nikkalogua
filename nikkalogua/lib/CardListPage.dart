@@ -342,20 +342,24 @@ class _CardListPageState extends State<CardListPage> {
 
   void _deleteTestData() async {
     print("delete");
-    await DBProvider.db.deleteLogsByNikkaId(1);
+    await DBProvider.db.deleteAllLogs();
     await DBProvider.db.deleteAllNikkas();
   }
 
   void _dumpDatabase() async {
     print("dump");
     var nikkas = await DBProvider.db.getAllNikkas();
-    nikkas.forEach((nikka) {
-      print(nikka.toMap());
-    });
+    nikkas.isEmpty
+        ? print("No nikka")
+        : nikkas.forEach((nikka) {
+            print(nikka.toMap());
+          });
     var logs = await DBProvider.db.getAllLogs();
-    logs.forEach((log) {
-      print(log.toMap());
-    });
+    logs.isEmpty
+        ? print("No log")
+        : logs.forEach((log) {
+            print(log.toMap());
+          });
   }
 
   void _dbTest() async {
