@@ -183,11 +183,23 @@ class _CardListPageState extends State<CardListPage> {
         floatingActionButton: Column(
           verticalDirection: VerticalDirection.up,
           children: [
-            FloatingActionButton(
-              onPressed: () {
-                this._deleteTestData();
-              },
-              child: Icon(Icons.exposure_minus_1),
+            Container(
+              margin: EdgeInsets.only(bottom: 16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  this._dumpDatabase();
+                },
+                child: Icon(Icons.search),
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.only(bottom: 16.0),
+              child: FloatingActionButton(
+                onPressed: () {
+                  this._deleteTestData();
+                },
+                child: Icon(Icons.exposure_minus_1),
+              ),
             ),
             Container(
               margin: EdgeInsets.only(bottom: 16.0),
@@ -332,6 +344,14 @@ class _CardListPageState extends State<CardListPage> {
     print("delete");
     await DBProvider.db.deleteLogByNikkaId(1);
     await DBProvider.db.deleteAllNikka();
+  }
+
+  void _dumpDatabase() async {
+    print("dump");
+    var nikkas = await DBProvider.db.getAllNikkas();
+    nikkas.forEach((nikka) {
+      print(nikka.toMap());
+    });
   }
 
   void _dbTest() async {
