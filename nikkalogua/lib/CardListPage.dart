@@ -341,6 +341,18 @@ class _CardListPageState extends State<CardListPage> {
       nikkaId: nikkaId,
       date: "2021-04-03",
     ));
+    // nikka2
+    await DBProvider.db.newNikka(Nikka(
+      name: 'nikka2',
+      color: 2,
+    ));
+    nikkas = await DBProvider.db.getAllNikkas();
+    if (nikkas.isEmpty) return;
+    nikkaId = nikkas.last.id;
+    await DBProvider.db.newLog(Log(
+      nikkaId: nikkaId,
+      date: "2021-04-03",
+    ));
   }
 
   void _deleteTestData() async {
