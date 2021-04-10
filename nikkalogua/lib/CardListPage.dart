@@ -305,6 +305,27 @@ class _CardListPageState extends State<CardListPage> {
 
   void _insertTestData() async {
     print("insert");
+
+    await DBProvider.db.newNikka(Nikka(
+      name: 'nikka1',
+      color: 1,
+    ));
+    // nikka1
+    var nikkas = await DBProvider.db.getAllNikkas();
+    if (nikkas.isEmpty) return;
+    var nikkaId = nikkas.last.id;
+    await DBProvider.db.newLog(Log(
+      nikkaId: nikkaId,
+      date: "2021-04-01",
+    ));
+    await DBProvider.db.newLog(Log(
+      nikkaId: nikkaId,
+      date: "2021-04-02",
+    ));
+    await DBProvider.db.newLog(Log(
+      nikkaId: nikkaId,
+      date: "2021-04-03",
+    ));
   }
 
   void _deleteTestData() async {
