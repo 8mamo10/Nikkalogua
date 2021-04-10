@@ -110,7 +110,7 @@ class DBProvider {
     db.delete("log", where: "id = ?", whereArgs: [id]);
   }
 
-  deleteLogByNikkaId(int nikkaId) async {
+  deleteLogsByNikkaId(int nikkaId) async {
     final db = await database;
     db.delete("log", where: "nikka_id = ?", whereArgs: [nikkaId]);
   }
