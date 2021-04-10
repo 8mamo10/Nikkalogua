@@ -343,7 +343,7 @@ class _CardListPageState extends State<CardListPage> {
   void _deleteTestData() async {
     print("delete");
     await DBProvider.db.deleteLogsByNikkaId(1);
-    await DBProvider.db.deleteAllNikka();
+    await DBProvider.db.deleteAllNikkas();
   }
 
   void _dumpDatabase() async {
@@ -392,7 +392,7 @@ class _CardListPageState extends State<CardListPage> {
     });
     ////// delete all
     print("delete all nikka");
-    await DBProvider.db.deleteAllNikka();
+    await DBProvider.db.deleteAllNikkas();
     nikkas = await DBProvider.db.getAllNikkas();
     print("nikkas.length=" + nikkas.length.toString());
     //// log

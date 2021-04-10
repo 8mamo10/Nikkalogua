@@ -39,6 +39,7 @@ class DBProvider {
     });
   }
 
+  ///// Nikka
   newNikka(Nikka newNikka) async {
     final db = await database;
     var res = await db.insert("nikka", newNikka.toMap());
@@ -71,11 +72,12 @@ class DBProvider {
     db.delete("nikka", where: "id = ?", whereArgs: [id]);
   }
 
-  deleteAllNikka() async {
+  deleteAllNikkas() async {
     final db = await database;
     db.rawDelete("DELETE FROM nikka");
   }
 
+  ///// Log
   newLog(Log newLog) async {
     final db = await database;
     var res = await db.insert("log", newLog.toMap());
@@ -113,5 +115,10 @@ class DBProvider {
   deleteLogsByNikkaId(int nikkaId) async {
     final db = await database;
     db.delete("log", where: "nikka_id = ?", whereArgs: [nikkaId]);
+  }
+
+  deleteAllLogs() async {
+    final db = await database;
+    db.rawDelete("DELETE FROM log");
   }
 }
