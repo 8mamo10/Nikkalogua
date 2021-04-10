@@ -309,6 +309,8 @@ class _CardListPageState extends State<CardListPage> {
 
   void _deleteTestData() async {
     print("delete");
+    await DBProvider.db.deleteLogByNikkaId(1);
+    await DBProvider.db.deleteAllNikka();
   }
 
   void _dbTest() async {
