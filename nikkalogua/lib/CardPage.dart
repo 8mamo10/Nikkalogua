@@ -34,6 +34,7 @@ class CardPage extends StatelessWidget {
         ),
       ),
       floatingActionButton: FloatingActionButton(
+        heroTag: "AddLog",
         onPressed: () {
           print("+1 pressed");
         },

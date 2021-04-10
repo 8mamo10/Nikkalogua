@@ -186,6 +186,7 @@ class _CardListPageState extends State<CardListPage> {
             Container(
               margin: EdgeInsets.only(bottom: 16.0),
               child: FloatingActionButton(
+                heroTag: "DumpDatabase",
                 onPressed: () {
                   this._dumpDatabase();
                 },
@@ -195,6 +196,7 @@ class _CardListPageState extends State<CardListPage> {
             Container(
               margin: EdgeInsets.only(bottom: 16.0),
               child: FloatingActionButton(
+                heroTag: "DeleteData",
                 onPressed: () {
                   this._deleteTestData();
                 },
@@ -204,6 +206,7 @@ class _CardListPageState extends State<CardListPage> {
             Container(
               margin: EdgeInsets.only(bottom: 16.0),
               child: FloatingActionButton(
+                heroTag: "InsertData",
                 onPressed: () {
                   this._insertTestData();
                 },
