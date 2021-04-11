@@ -300,6 +300,10 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
+  Widget _nikkaCard(BuildContext context, Nikka nikka, int index) {
+    return Container();
+  }
+
   Widget _cardPlus() {
     return IconButton(
       iconSize: 150,
