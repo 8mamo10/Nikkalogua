@@ -128,6 +128,7 @@ class _CardListPageState extends State<CardListPage> {
   ];
 
   List _colors = [
+    Colors.black,
     Colors.red,
     Colors.blue,
     Colors.green,
@@ -164,6 +165,32 @@ class _CardListPageState extends State<CardListPage> {
             ),
           ],
         ),
+        body: FutureBuilder<List<Nikka>>(
+          future: DBProvider.db.getAllNikkas(),
+          builder: (BuildContext context, AsyncSnapshot<List<Nikka>> snapshot) {
+            if (snapshot.hasData) {
+              return Container(
+                color: Colors.grey[200],
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                    crossAxisCount: 2,
+                  ),
+                  itemBuilder: (BuildContext context, int index) {
+                    if (index == snapshot.data.length) {
+                      return _cardPlus();
+                    } else {
+                      return _nikkaCard(context, snapshot.data[index], index);
+                    }
+                  },
+                  itemCount: snapshot.data.length + 1,
+                ),
+              );
+            } else {
+              return Center(child: CircularProgressIndicator());
+            }
+          },
+        ),
+        /*
         body: Container(
           color: Colors.grey[200],
           child: GridView.builder(
@@ -180,6 +207,7 @@ class _CardListPageState extends State<CardListPage> {
             itemCount: _dataList.length + 1,
           ),
         ),
+        */
         floatingActionButton: Column(
           verticalDirection: VerticalDirection.up,
           children: [
@@ -301,7 +329,86 @@ class _CardListPageState extends State<CardListPage> {
   }
 
   Widget _nikkaCard(BuildContext context, Nikka nikka, int index) {
-    return Container();
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => CardPage(
+                      params: {}, // TODO
+                    )));
+      },
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15),
+        ),
+        margin: const EdgeInsets.all(10),
+        child: Stack(
+          children: <Widget>[
+            Container(
+              child: Column(
+                children: [
+                  Container(
+                    margin: EdgeInsets.all(10),
+                    child: GridView.builder(
+                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 7,
+                      ),
+                      itemBuilder: (BuildContext context, int index) {
+                        return Container(
+                          color: index < {}.length
+                              ? this._colors[nikka.color]
+                              : Colors.grey[300],
+                          margin: EdgeInsets.all(3),
+                        );
+                      },
+                      itemCount: 35,
+                      shrinkWrap: true,
+                      physics: NeverScrollableScrollPhysics(),
+                    ),
+                  ),
+                  Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Icon(
+                          Icons.local_fire_department,
+                          color: this._colors[nikka.color],
+                        ),
+                        Text(
+                          {}.length.toString(), // TODO
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ]),
+                  Text(
+                    nikka.name,
+                    style: TextStyle(fontSize: 15),
+                  ),
+                ],
+              ),
+            ),
+            Visibility(
+              visible: _showDeleteButton,
+              child: Container(
+                margin: EdgeInsets.all(5),
+                alignment: Alignment.topRight,
+                child: IconButton(
+                  iconSize: 32,
+                  icon: Icon(
+                    Icons.cancel,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      _dataList.removeAt(index);
+                    });
+                  },
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+    );
   }
 
   Widget _cardPlus() {
