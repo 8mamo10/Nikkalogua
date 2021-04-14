@@ -356,6 +356,7 @@ class _CardListPageState extends State<CardListPage> {
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
+                          // TODO
                           color: index < {}.length
                               ? this._colors[nikka.color]
                               : Colors.grey[300],
