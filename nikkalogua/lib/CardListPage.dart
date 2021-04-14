@@ -487,6 +487,16 @@ class _CardListPageState extends State<CardListPage> {
         : logs.forEach((log) {
             print(log.toMap());
           });
+    print("dump2");
+    var nikkasAndLogs = await DBProvider.db.getAllNikkasAndLogs();
+    nikkasAndLogs.forEach((nikkaAndLogs) {
+      nikkaAndLogs.forEach((nikka, logs) {
+        print(nikka.toMap());
+        logs.forEach((log) {
+          print(log.toMap());
+        });
+      });
+    });
   }
 
   void _dbTest() async {

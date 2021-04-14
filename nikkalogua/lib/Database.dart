@@ -41,17 +41,13 @@ class DBProvider {
 
   ///// Nikka and Log
   Future<List<Map<Nikka, List<Log>>>> getAllNikkasAndLogs() async {
-    List ret = [];
-    final db = await database;
-    var res = await db.query("nikka");
-    List<Nikka> nikkas =
-        res.isNotEmpty ? res.map((n) => Nikka.fromMap(n)).toList() : [];
+    List<Map<Nikka, List<Log>>> ret = [];
+    List<Nikka> nikkas = await this.getAllNikkas();
     for (int i = 0; i < nikkas.length; i++) {
-      var nikka = nikkas[i];
-      var logs = this.getLogsByNikkaId(nikka.id);
-      ret.add({nikka, logs});
+      Nikka nikka = nikkas[i];
+      List<Log> logs = await this.getLogsByNikkaId(nikka.id);
+      ret.add({nikka: logs});
     }
-    print(ret.toString());
     return ret;
   }
 
