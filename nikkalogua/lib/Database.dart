@@ -40,13 +40,13 @@ class DBProvider {
   }
 
   ///// Nikka and Log
-  Future<List> getAllNikkasAndLogs() async {
-    List ret = [];
+  Future<List<Map<String, dynamic>>> getAllNikkasAndLogs() async {
+    List<Map<String, dynamic>> ret = [];
     List<Nikka> nikkas = await this.getAllNikkas();
     for (int i = 0; i < nikkas.length; i++) {
       Nikka nikka = nikkas[i];
       List<Log> logs = await this.getLogsByNikkaId(nikka.id);
-      var data = {
+      Map<String, dynamic> data = {
         'nikka': nikka,
         'logs': logs,
       };

@@ -165,9 +165,10 @@ class _CardListPageState extends State<CardListPage> {
             ),
           ],
         ),
-        body: FutureBuilder<List<Nikka>>(
-          future: DBProvider.db.getAllNikkas(),
-          builder: (BuildContext context, AsyncSnapshot<List<Nikka>> snapshot) {
+        body: FutureBuilder<List<Map<String, dynamic>>>(
+          future: DBProvider.db.getAllNikkasAndLogs(),
+          builder: (BuildContext context,
+              AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
             if (snapshot.hasData) {
               return Container(
                 color: Colors.grey[200],
@@ -328,7 +329,11 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
-  Widget _nikkaCard(BuildContext context, Nikka nikka, int index) {
+  Widget _nikkaCard(
+      BuildContext context, Map<String, dynamic> nikkaAndLogs, int index) {
+    Nikka nikka = nikkaAndLogs["nikka"];
+    List<Log> logs = nikkaAndLogs["logs"];
+
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -357,7 +362,7 @@ class _CardListPageState extends State<CardListPage> {
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
                           // TODO
-                          color: index < {}.length
+                          color: index < logs.length
                               ? this._colors[nikka.color]
                               : Colors.grey[300],
                           margin: EdgeInsets.all(3),
@@ -376,7 +381,7 @@ class _CardListPageState extends State<CardListPage> {
                           color: this._colors[nikka.color],
                         ),
                         Text(
-                          {}.length.toString(), // TODO
+                          logs.length.toString(), // TODO
                           style: TextStyle(fontSize: 20),
                         ),
                       ]),
@@ -488,7 +493,8 @@ class _CardListPageState extends State<CardListPage> {
             print(log.toMap());
           });
     print("dump2");
-    var nikkasAndLogs = await DBProvider.db.getAllNikkasAndLogs();
+    List<Map<String, dynamic>> nikkasAndLogs =
+        await DBProvider.db.getAllNikkasAndLogs();
     nikkasAndLogs.forEach((nikkaAndLogs) {
       Nikka nikka = nikkaAndLogs["nikka"];
       List<Log> logs = nikkaAndLogs["logs"];
