@@ -191,24 +191,6 @@ class _CardListPageState extends State<CardListPage> {
             }
           },
         ),
-        /*
-        body: Container(
-          color: Colors.grey[200],
-          child: GridView.builder(
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: 2,
-            ),
-            itemBuilder: (BuildContext context, int index) {
-              if (index == _dataList.length) {
-                return _cardPlus();
-              } else {
-                return _cardItem(context, _dataList[index], index);
-              }
-            },
-            itemCount: _dataList.length + 1,
-          ),
-        ),
-        */
         floatingActionButton: Column(
           verticalDirection: VerticalDirection.up,
           children: [
