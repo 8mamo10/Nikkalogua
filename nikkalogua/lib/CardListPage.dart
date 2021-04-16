@@ -326,11 +326,11 @@ class _CardListPageState extends State<CardListPage> {
 
   void _handlePlus() async {
     setState(() {
-      _dataList.add({
-        'name': 'work' + _dataList.length.toString(),
-        'color': _colors[Random().nextInt(_colors.length)],
-        'days': [],
-      });
+      Nikka nikka = Nikka(
+        name: 'nikka3',
+        color: 3,
+      );
+      DBProvider.db.newNikka(nikka);
     });
   }
 
