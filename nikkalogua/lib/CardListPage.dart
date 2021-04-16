@@ -490,11 +490,11 @@ class _CardListPageState extends State<CardListPage> {
     print("dump2");
     var nikkasAndLogs = await DBProvider.db.getAllNikkasAndLogs();
     nikkasAndLogs.forEach((nikkaAndLogs) {
-      nikkaAndLogs.forEach((nikka, logs) {
-        print(nikka.toMap());
-        logs.forEach((log) {
-          print(log.toMap());
-        });
+      Nikka nikka = nikkaAndLogs["nikka"];
+      List<Log> logs = nikkaAndLogs["logs"];
+      print(nikka.toMap());
+      logs.forEach((log) {
+        print(log.toMap());
       });
     });
   }
