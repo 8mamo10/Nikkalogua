@@ -304,7 +304,7 @@ class _CardListPageState extends State<CardListPage> {
                   ),
                   onPressed: () {
                     setState(() {
-                      _dataList.removeAt(index);
+                      DBProvider.db.deleteNikka(nikka.id);
                     });
                   },
                 ),
