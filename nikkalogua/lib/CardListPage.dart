@@ -68,7 +68,7 @@ class _CardListPageState extends State<CardListPage> {
                   ),
                   itemBuilder: (BuildContext context, int index) {
                     if (index == snapshot.data.length) {
-                      return _cardPlus();
+                      return _plusCard();
                     } else {
                       return _nikkaCard(context, snapshot.data[index], index);
                     }
@@ -206,7 +206,7 @@ class _CardListPageState extends State<CardListPage> {
     );
   }
 
-  Widget _cardPlus() {
+  Widget _plusCard() {
     return IconButton(
       iconSize: 150,
       icon: Icon(Icons.add),
