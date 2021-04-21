@@ -150,7 +150,6 @@ class _CardListPageState extends State<CardListPage> {
                       ),
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
-                          // TODO
                           color: index < logs.length
                               ? this._colors[nikka.color]
                               : Colors.grey[300],
@@ -170,7 +169,7 @@ class _CardListPageState extends State<CardListPage> {
                           color: this._colors[nikka.color],
                         ),
                         Text(
-                          logs.length.toString(), // TODO
+                          logs.length.toString(),
                           style: TextStyle(fontSize: 20),
                         ),
                       ]),
