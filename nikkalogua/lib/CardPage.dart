@@ -4,12 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class CardPage extends StatelessWidget {
-  final Map params;
+  final Map nikkaAndLogs;
   final now = DateTime.now();
+
+  List _colors = [
+    Colors.black,
+    Colors.red,
+    Colors.blue,
+    Colors.green,
+    Colors.yellow,
+    Colors.purple,
+  ];
 
   CardPage({
     Key key,
-    @required this.params,
+    @required this.nikkaAndLogs,
   }) : super(key: key);
 
   @override
@@ -18,7 +27,7 @@ class CardPage extends StatelessWidget {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text(
-          params['name'],
+          nikkaAndLogs['nikka'].name,
         ),
       ),
       body: Container(
@@ -27,8 +36,8 @@ class CardPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              for (int i = 0; i < this.params['days'].length; i++)
-                _dailyLine(this.params['days'].length, i)
+              for (int i = 0; i < this.nikkaAndLogs['logs'].length; i++)
+                _dailyLine(this.nikkaAndLogs['logs'].length, i)
             ],
           ),
         ),
@@ -38,7 +47,7 @@ class CardPage extends StatelessWidget {
         onPressed: () {
           print("+1 pressed");
         },
-        backgroundColor: this.params['color'],
+        backgroundColor: this._colors[nikkaAndLogs['nikka'].color],
         child: Icon(Icons.plus_one),
       ),
     );
@@ -63,7 +72,7 @@ class CardPage extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: this.params['color'],
+                  color: this._colors[this.nikkaAndLogs['nikka'].color],
                 ),
                 child: Text(
                   (total - count).toString(),
@@ -77,8 +86,8 @@ class CardPage extends StatelessWidget {
             Container(
               padding: EdgeInsets.all(10),
               child: Text(
-                DateFormat('yyyy/MM/dd')
-                    .format(DateTime.parse(this.params['days'][count])),
+                DateFormat('yyyy/MM/dd').format(
+                    DateTime.parse(this.nikkaAndLogs['logs'][count].date)),
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
