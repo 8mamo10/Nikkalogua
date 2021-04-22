@@ -17,7 +17,7 @@ class CardListPage extends StatefulWidget {
 class _CardListPageState extends State<CardListPage> {
   bool _showDeleteButton = false;
 
-  List _colors = [
+  final List _colors = [
     Colors.black,
     Colors.red,
     Colors.blue,

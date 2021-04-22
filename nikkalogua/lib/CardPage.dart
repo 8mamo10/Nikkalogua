@@ -7,7 +7,7 @@ class CardPage extends StatelessWidget {
   final Map nikkaAndLogs;
   final now = DateTime.now();
 
-  List _colors = [
+  final List _colors = [
     Colors.black,
     Colors.red,
     Colors.blue,
