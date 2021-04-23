@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nikkalogua/CardListPage.dart';
-//import 'package:nikkalogua/ClientsPage.dart';
 
 void main() => runApp(MyApp());
 
