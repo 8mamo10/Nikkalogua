@@ -129,7 +129,7 @@ class _CardListPageState extends State<CardListPage> {
             context,
             MaterialPageRoute(
                 builder: (context) => CardPage(
-                      nikkaAndLogs: nikkaAndLogs,
+                      nikkaAndLogs,
                     )));
       },
       child: Card(

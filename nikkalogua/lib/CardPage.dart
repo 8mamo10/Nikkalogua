@@ -3,11 +3,16 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
-class CardPage extends StatelessWidget {
-  final Map nikkaAndLogs;
-  final now = DateTime.now();
+class CardPage extends StatefulWidget {
+  Map nikkaAndLogs;
+  CardPage(this.nikkaAndLogs);
 
-  final List _colors = [
+  @override
+  _CardPageState createState() => _CardPageState();
+}
+
+class _CardPageState extends State<CardPage> {
+  List _colors = [
     Colors.black,
     Colors.red,
     Colors.blue,
@@ -16,18 +21,13 @@ class CardPage extends StatelessWidget {
     Colors.purple,
   ];
 
-  CardPage({
-    Key key,
-    @required this.nikkaAndLogs,
-  }) : super(key: key);
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text(
-          nikkaAndLogs['nikka'].name,
+          widget.nikkaAndLogs['nikka'].name,
         ),
       ),
       body: Container(
@@ -36,8 +36,8 @@ class CardPage extends StatelessWidget {
         child: SingleChildScrollView(
           child: Column(
             children: <Widget>[
-              for (int i = 0; i < this.nikkaAndLogs['logs'].length; i++)
-                _dailyLine(this.nikkaAndLogs['logs'].length, i)
+              for (int i = 0; i < widget.nikkaAndLogs['logs'].length; i++)
+                _dailyLine(widget.nikkaAndLogs['logs'].length, i)
             ],
           ),
         ),
@@ -47,7 +47,7 @@ class CardPage extends StatelessWidget {
         onPressed: () {
           print("+1 pressed");
         },
-        backgroundColor: this._colors[nikkaAndLogs['nikka'].color],
+        backgroundColor: this._colors[widget.nikkaAndLogs['nikka'].color],
         child: Icon(Icons.plus_one),
       ),
     );
@@ -72,7 +72,7 @@ class CardPage extends StatelessWidget {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: this._colors[this.nikkaAndLogs['nikka'].color],
+                  color: this._colors[widget.nikkaAndLogs['nikka'].color],
                 ),
                 child: Text(
                   (total - count).toString(),
@@ -87,7 +87,7 @@ class CardPage extends StatelessWidget {
               padding: EdgeInsets.all(10),
               child: Text(
                 DateFormat('yyyy/MM/dd').format(
-                    DateTime.parse(this.nikkaAndLogs['logs'][count].date)),
+                    DateTime.parse(widget.nikkaAndLogs['logs'][count].date)),
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
