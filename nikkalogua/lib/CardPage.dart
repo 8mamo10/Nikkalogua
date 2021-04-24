@@ -3,6 +3,8 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'package:nikkalogua/Common.dart';
+
 class CardPage extends StatefulWidget {
   Map nikkaAndLogs;
   CardPage(this.nikkaAndLogs);
@@ -12,15 +14,6 @@ class CardPage extends StatefulWidget {
 }
 
 class _CardPageState extends State<CardPage> {
-  List _colors = [
-    Colors.black,
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.purple,
-  ];
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,7 +40,7 @@ class _CardPageState extends State<CardPage> {
         onPressed: () {
           print("+1 pressed");
         },
-        backgroundColor: this._colors[widget.nikkaAndLogs['nikka'].color],
+        backgroundColor: colorTable[widget.nikkaAndLogs['nikka'].color],
         child: Icon(Icons.plus_one),
       ),
     );
@@ -72,7 +65,7 @@ class _CardPageState extends State<CardPage> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: this._colors[widget.nikkaAndLogs['nikka'].color],
+                  color: colorTable[widget.nikkaAndLogs['nikka'].color],
                 ),
                 child: Text(
                   (total - count).toString(),

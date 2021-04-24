@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:nikkalogua/CardPage.dart';
+import 'package:nikkalogua/Common.dart';
 import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/NikkaModel.dart';
 import 'package:nikkalogua/LogModel.dart';
@@ -14,15 +15,6 @@ class CardListPage extends StatefulWidget {
 
 class _CardListPageState extends State<CardListPage> {
   bool _showDeleteButton = false;
-
-  final List _colors = [
-    Colors.black,
-    Colors.red,
-    Colors.blue,
-    Colors.green,
-    Colors.yellow,
-    Colors.purple,
-  ];
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +141,7 @@ class _CardListPageState extends State<CardListPage> {
                       itemBuilder: (BuildContext context, int index) {
                         return Container(
                           color: index < logs.length
-                              ? this._colors[nikka.color]
+                              ? colorTable[nikka.color]
                               : Colors.grey[300],
                           margin: EdgeInsets.all(3),
                         );
@@ -164,7 +156,7 @@ class _CardListPageState extends State<CardListPage> {
                       children: <Widget>[
                         Icon(
                           Icons.local_fire_department,
-                          color: this._colors[nikka.color],
+                          color: colorTable[nikka.color],
                         ),
                         Text(
                           logs.length.toString(),
