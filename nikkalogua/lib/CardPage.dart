@@ -6,7 +6,8 @@ import 'package:flutter/rendering.dart';
 import 'package:nikkalogua/Common.dart';
 
 class CardPage extends StatefulWidget {
-  Map nikkaAndLogs;
+  final Map nikkaAndLogs;
+  final now = new DateFormat("yyyy-MM-dd").format(DateTime.now());
   CardPage(this.nikkaAndLogs);
 
   @override
@@ -35,13 +36,17 @@ class _CardPageState extends State<CardPage> {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        heroTag: "AddLog",
-        onPressed: () {
-          print("+1 pressed");
-        },
-        backgroundColor: colorTable[widget.nikkaAndLogs['nikka'].color],
-        child: Icon(Icons.plus_one),
+      floatingActionButton: Visibility(
+        visible: widget.nikkaAndLogs["logs"].first != widget.now,
+        child: FloatingActionButton(
+          heroTag: "AddLog",
+          onPressed: () {
+            print("+1 pressed");
+            print(widget.now);
+          },
+          backgroundColor: colorTable[widget.nikkaAndLogs['nikka'].color],
+          child: Icon(Icons.plus_one),
+        ),
       ),
     );
   }
