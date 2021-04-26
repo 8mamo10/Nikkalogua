@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 import 'package:nikkalogua/Common.dart';
+import 'package:nikkalogua/Database.dart';
+import 'package:nikkalogua/LogModel.dart';
 
 class CardPage extends StatefulWidget {
   final Map nikkaAndLogs;
@@ -37,12 +39,16 @@ class _CardPageState extends State<CardPage> {
         ),
       ),
       floatingActionButton: Visibility(
-        visible: widget.nikkaAndLogs["logs"].first != widget.now,
+        visible: widget.nikkaAndLogs["logs"].first.date != widget.now,
         child: FloatingActionButton(
           heroTag: "AddLog",
           onPressed: () {
-            print("+1 pressed");
-            print(widget.now);
+            setState(() {
+              DBProvider.db.newLog(Log(
+                nikkaId: widget.nikkaAndLogs["nikka"].id,
+                date: widget.now,
+              ));
+            });
           },
           backgroundColor: colorTable[widget.nikkaAndLogs['nikka'].color],
           child: Icon(Icons.plus_one),
