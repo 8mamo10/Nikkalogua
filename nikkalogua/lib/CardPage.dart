@@ -39,7 +39,9 @@ class _CardPageState extends State<CardPage> {
         ),
       ),
       floatingActionButton: Visibility(
-        visible: widget.nikkaAndLogs["logs"].first.date != widget.now,
+        visible: widget.nikkaAndLogs["logs"].length == 0
+            ? true
+            : widget.nikkaAndLogs["logs"].first?.date != widget.now,
         child: FloatingActionButton(
           heroTag: "AddLog",
           onPressed: () {
