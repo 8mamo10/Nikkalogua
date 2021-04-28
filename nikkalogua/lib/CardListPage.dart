@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
+import 'dart:math' as math;
+
 import 'package:nikkalogua/CardPage.dart';
 import 'package:nikkalogua/Common.dart';
 import 'package:nikkalogua/Database.dart';
@@ -205,9 +207,11 @@ class _CardListPageState extends State<CardListPage> {
 
   void _handlePlus() async {
     setState(() {
+      var random = math.Random();
+      var i = random.nextInt(5);
       Nikka nikka = Nikka(
-        name: 'nikka3',
-        color: 3,
+        name: 'nikka' + i.toString(),
+        color: i,
       );
       DBProvider.db.newNikka(nikka);
     });
