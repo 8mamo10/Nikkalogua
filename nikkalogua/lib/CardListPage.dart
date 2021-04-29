@@ -208,7 +208,7 @@ class _CardListPageState extends State<CardListPage> {
   void _handlePlus() async {
     setState(() {
       var random = math.Random();
-      var i = random.nextInt(5);
+      var i = random.nextInt(colorTable.length);
       Nikka nikka = Nikka(
         name: 'nikka' + i.toString(),
         color: i,
