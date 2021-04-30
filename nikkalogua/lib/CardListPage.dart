@@ -340,8 +340,6 @@ class _CardListPageState extends State<CardListPage> {
       date: "2021-04-04",
     ));
     ///// select
-    //var log = await DBProvider.db.getLog(1);
-    //print(log.toMap());
     print("select the logs");
     var logs = await DBProvider.db.getLogsByNikkaId(1);
     logs.forEach((log) {
