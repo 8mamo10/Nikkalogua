@@ -6,11 +6,12 @@ import 'package:flutter/rendering.dart';
 import 'package:nikkalogua/Common.dart';
 import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/LogModel.dart';
+import 'package:nikkalogua/NikkaModel.dart';
 
 class CardPage extends StatefulWidget {
-  final Map nikkaAndLogs;
+  final Nikka nikka;
   final now = new DateFormat("yyyy-MM-dd").format(DateTime.now());
-  CardPage(this.nikkaAndLogs);
+  CardPage(this.nikka);
 
   @override
   _CardPageState createState() => _CardPageState();
@@ -23,43 +24,61 @@ class _CardPageState extends State<CardPage> {
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       appBar: AppBar(
         title: Text(
-          widget.nikkaAndLogs['nikka'].name,
+          widget.nikka.name,
         ),
       ),
-      body: Container(
-        alignment: Alignment.topCenter,
-        color: Colors.grey[200],
-        child: SingleChildScrollView(
-          child: Column(
-            children: <Widget>[
-              for (int i = 0; i < widget.nikkaAndLogs['logs'].length; i++)
-                _dailyLine(widget.nikkaAndLogs['logs'].length, i)
-            ],
-          ),
-        ),
+      body: FutureBuilder<List<Log>>(
+        future: DBProvider.db.getLogsByNikkaId(widget.nikka.id),
+        builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
+          if (snapshot.hasData) {
+            return Container(
+              alignment: Alignment.topCenter,
+              color: Colors.grey[200],
+              child: SingleChildScrollView(
+                child: Column(
+                  children: <Widget>[
+                    for (int i = 0; i < snapshot.data.length; i++)
+                      _dailyLine(snapshot.data, i)
+                  ],
+                ),
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
-      floatingActionButton: Visibility(
-        visible: widget.nikkaAndLogs["logs"].length == 0
-            ? true
-            : widget.nikkaAndLogs["logs"].first?.date != widget.now,
-        child: FloatingActionButton(
-          heroTag: "AddLog",
-          onPressed: () {
-            setState(() {
-              DBProvider.db.newLog(Log(
-                nikkaId: widget.nikkaAndLogs["nikka"].id,
-                date: widget.now,
-              ));
-            });
-          },
-          backgroundColor: colorTable[widget.nikkaAndLogs['nikka'].color],
-          child: Icon(Icons.plus_one),
-        ),
+      floatingActionButton: FutureBuilder<List<Log>>(
+        future: DBProvider.db.getLogsByNikkaId(widget.nikka.id),
+        builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
+          if (snapshot.hasData) {
+            return Visibility(
+              visible: snapshot.data.length == 0
+                  ? true
+                  : snapshot.data.first?.date != widget.now,
+              child: FloatingActionButton(
+                heroTag: "AddLog",
+                onPressed: () {
+                  setState(() {
+                    DBProvider.db.newLog(Log(
+                      nikkaId: widget.nikka.id,
+                      date: widget.now,
+                    ));
+                  });
+                },
+                backgroundColor: colorTable[widget.nikka.color],
+                child: Icon(Icons.plus_one),
+              ),
+            );
+          } else {
+            return Center(child: CircularProgressIndicator());
+          }
+        },
       ),
     );
   }
 
-  Widget _dailyLine(int total, int count) {
+  Widget _dailyLine(List<Log> logs, int count) {
     return ConstrainedBox(
       constraints: BoxConstraints.expand(height: 100.0),
       child: Container(
@@ -78,10 +97,10 @@ class _CardPageState extends State<CardPage> {
                 alignment: Alignment.center,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: colorTable[widget.nikkaAndLogs['nikka'].color],
+                  color: colorTable[widget.nikka.color],
                 ),
                 child: Text(
-                  (total - count).toString(),
+                  (logs.length - count).toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 25,
@@ -92,8 +111,8 @@ class _CardPageState extends State<CardPage> {
             Container(
               padding: EdgeInsets.all(10),
               child: Text(
-                DateFormat('yyyy/MM/dd').format(
-                    DateTime.parse(widget.nikkaAndLogs['logs'][count].date)),
+                DateFormat('yyyy/MM/dd')
+                    .format(DateTime.parse(logs[count].date)),
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.black,
