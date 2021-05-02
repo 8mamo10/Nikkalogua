@@ -201,11 +201,11 @@ class _CardListPageState extends State<CardListPage> {
     return IconButton(
       iconSize: 150,
       icon: Icon(Icons.add),
-      onPressed: _handlePlus,
+      onPressed: _addNewNikka,
     );
   }
 
-  void _handlePlus() async {
+  void _addNewNikka() async {
     setState(() {
       var random = math.Random();
       var i = random.nextInt(colorTable.length);
