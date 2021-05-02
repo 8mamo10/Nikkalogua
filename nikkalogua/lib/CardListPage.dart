@@ -116,13 +116,14 @@ class _CardListPageState extends State<CardListPage> {
     List<Log> logs = nikkaAndLogs["logs"];
 
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
+      onTap: () async {
+        await Navigator.push(
             context,
             MaterialPageRoute(
                 builder: (context) => CardPage(
                       nikka,
                     )));
+        setState(() {});
       },
       child: Card(
         shape: RoundedRectangleBorder(
