@@ -185,9 +185,31 @@ class _CardListPageState extends State<CardListPage> {
                     color: Colors.black,
                   ),
                   onPressed: () {
-                    setState(() {
-                      DBProvider.db.deleteNikka(nikka.id);
-                    });
+                    showDialog(
+                        context: context,
+                        builder: (_) {
+                          return AlertDialog(
+                            title: Text("確認"),
+                            content: Text("日課を削除しますか？"),
+                            actions: <Widget>[
+                              FlatButton(
+                                child: Text("Cancel"),
+                                onPressed: () => {
+                                  Navigator.pop(context),
+                                },
+                              ),
+                              FlatButton(
+                                child: Text("OK"),
+                                onPressed: () => {
+                                  setState(() {
+                                    DBProvider.db.deleteNikka(nikka.id);
+                                  }),
+                                  Navigator.pop(context)
+                                },
+                              ),
+                            ],
+                          );
+                        });
                   },
                 ),
               ),
