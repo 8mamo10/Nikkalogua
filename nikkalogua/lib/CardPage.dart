@@ -57,8 +57,11 @@ class _CardPageState extends State<CardPage> {
               children: [
                 if ((snapshot.data.length == 0) ||
                     (snapshot.data.first?.date != widget.now))
-                  FloatingActionButton(
+                  FloatingActionButton.extended(
                     heroTag: "AddLog",
+                    tooltip: "AddLog",
+                    icon: Icon(Icons.add),
+                    label: Text("Add"),
                     onPressed: () {
                       setState(() {
                         DBProvider.db.newLog(Log(
@@ -68,11 +71,13 @@ class _CardPageState extends State<CardPage> {
                       });
                     },
                     backgroundColor: colorTable[widget.nikka.color],
-                    child: Icon(Icons.exposure_plus_1),
                   )
                 else
-                  FloatingActionButton(
+                  FloatingActionButton.extended(
                     heroTag: "DeleteLog",
+                    tooltip: "DeleteLog",
+                    icon: Icon(Icons.remove),
+                    label: Text("Delete"),
                     onPressed: () {
                       setState(() {
                         DBProvider.db.deleteLogByNikaIdAndDate(
@@ -82,7 +87,6 @@ class _CardPageState extends State<CardPage> {
                       });
                     },
                     backgroundColor: colorTable[widget.nikka.color],
-                    child: Icon(Icons.exposure_minus_1),
                   )
               ],
             );
