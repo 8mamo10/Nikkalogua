@@ -137,4 +137,10 @@ class DBProvider {
     final db = await database;
     db.rawDelete("DELETE FROM log");
   }
+
+  deleteLogByNikaIdAndDate(int nikkaId, String date) async {
+    final db = await database;
+    db.delete("log",
+        where: "nikka_id = ? and date = ?", whereArgs: [nikkaId, date]);
+  }
 }

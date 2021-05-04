@@ -52,23 +52,39 @@ class _CardPageState extends State<CardPage> {
         future: DBProvider.db.getLogsByNikkaId(widget.nikka.id),
         builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
           if (snapshot.hasData) {
-            return Visibility(
-              visible: snapshot.data.length == 0
-                  ? true
-                  : snapshot.data.first?.date != widget.now,
-              child: FloatingActionButton(
-                heroTag: "AddLog",
-                onPressed: () {
-                  setState(() {
-                    DBProvider.db.newLog(Log(
-                      nikkaId: widget.nikka.id,
-                      date: widget.now,
-                    ));
-                  });
-                },
-                backgroundColor: colorTable[widget.nikka.color],
-                child: Icon(Icons.plus_one),
-              ),
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                if ((snapshot.data.length == 0) ||
+                    (snapshot.data.first?.date != widget.now))
+                  FloatingActionButton(
+                    heroTag: "AddLog",
+                    onPressed: () {
+                      setState(() {
+                        DBProvider.db.newLog(Log(
+                          nikkaId: widget.nikka.id,
+                          date: widget.now,
+                        ));
+                      });
+                    },
+                    backgroundColor: colorTable[widget.nikka.color],
+                    child: Icon(Icons.exposure_plus_1),
+                  )
+                else
+                  FloatingActionButton(
+                    heroTag: "DeleteLog",
+                    onPressed: () {
+                      setState(() {
+                        DBProvider.db.deleteLogByNikaIdAndDate(
+                          widget.nikka.id,
+                          widget.now,
+                        );
+                      });
+                    },
+                    backgroundColor: colorTable[widget.nikka.color],
+                    child: Icon(Icons.exposure_minus_1),
+                  )
+              ],
             );
           } else {
             return Center(child: CircularProgressIndicator());
