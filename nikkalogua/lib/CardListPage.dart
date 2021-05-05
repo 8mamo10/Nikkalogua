@@ -203,6 +203,7 @@ class _CardListPageState extends State<CardListPage> {
                                 onPressed: () => {
                                   setState(() {
                                     DBProvider.db.deleteNikka(nikka.id);
+                                    DBProvider.db.deleteLogsByNikkaId(nikka.id);
                                   }),
                                   Navigator.pop(context)
                                 },
@@ -285,12 +286,14 @@ class _CardListPageState extends State<CardListPage> {
 
   void _dumpDatabase() async {
     print("dump");
+    print("---nikka---");
     var nikkas = await DBProvider.db.getAllNikkas();
     nikkas.isEmpty
         ? print("No nikka")
         : nikkas.forEach((nikka) {
             print(nikka.toMap());
           });
+    print("---log---");
     var logs = await DBProvider.db.getAllLogs();
     logs.isEmpty
         ? print("No log")
