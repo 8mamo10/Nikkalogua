@@ -20,94 +20,107 @@ class _CardListPageState extends State<CardListPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          leading: IconButton(
-            iconSize: 32,
-            icon: Icon(
-              _showDeleteButton ? Icons.delete : Icons.delete_outline,
-            ),
-            onPressed: () {
-              setState(() {
-                _showDeleteButton = !_showDeleteButton;
-              });
-            },
-          ),
-          actions: <Widget>[
-            IconButton(
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: Colors.grey,
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            leading: IconButton(
               iconSize: 32,
               icon: Icon(
-                Icons.settings,
-                color: Colors.white,
+                _showDeleteButton ? Icons.delete : Icons.delete_outline,
               ),
               onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => SettingPage()));
+                setState(() {
+                  _showDeleteButton = !_showDeleteButton;
+                });
               },
             ),
-          ],
-        ),
-        body: FutureBuilder<List<Map<String, dynamic>>>(
-          future: DBProvider.db.getAllNikkasAndLogs(),
-          builder: (BuildContext context,
-              AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
-            if (snapshot.hasData) {
-              return Container(
-                color: Colors.grey[200],
-                child: GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 2,
-                  ),
-                  itemBuilder: (BuildContext context, int index) {
-                    if (index == snapshot.data.length) {
-                      return _plusCard();
-                    } else {
-                      return _nikkaCard(context, snapshot.data[index], index);
-                    }
-                  },
-                  itemCount: snapshot.data.length + 1,
+            actions: <Widget>[
+              IconButton(
+                iconSize: 32,
+                icon: Icon(
+                  Icons.settings,
+                  color: Colors.white,
                 ),
-              );
-            } else {
-              return Center(child: CircularProgressIndicator());
-            }
-          },
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => SettingPage()));
+                },
+              ),
+            ],
+          ),
+          body: FutureBuilder<List<Map<String, dynamic>>>(
+            future: DBProvider.db.getAllNikkasAndLogs(),
+            builder: (BuildContext context,
+                AsyncSnapshot<List<Map<String, dynamic>>> snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  color: Colors.transparent,
+                  child: GridView.builder(
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 2,
+                    ),
+                    itemBuilder: (BuildContext context, int index) {
+                      if (index == snapshot.data.length) {
+                        return _plusCard();
+                      } else {
+                        return _nikkaCard(context, snapshot.data[index], index);
+                      }
+                    },
+                    itemCount: snapshot.data.length + 1,
+                  ),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+          floatingActionButton: Column(
+            verticalDirection: VerticalDirection.up,
+            children: [
+              Container(
+                margin: EdgeInsets.only(bottom: 16.0),
+                child: FloatingActionButton(
+                  heroTag: "DumpDatabase",
+                  onPressed: () {
+                    this._dumpDatabase();
+                  },
+                  child: Icon(Icons.search),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 16.0),
+                child: FloatingActionButton(
+                  heroTag: "DeleteData",
+                  onPressed: () {
+                    this._deleteTestData();
+                  },
+                  child: Icon(Icons.exposure_minus_1),
+                ),
+              ),
+              Container(
+                margin: EdgeInsets.only(bottom: 16.0),
+                child: FloatingActionButton(
+                  heroTag: "InsertData",
+                  onPressed: () {
+                    this._insertTestData();
+                  },
+                  child: Icon(Icons.exposure_plus_1),
+                ),
+              ),
+            ],
+          ),
         ),
-        floatingActionButton: Column(
-          verticalDirection: VerticalDirection.up,
-          children: [
-            Container(
-              margin: EdgeInsets.only(bottom: 16.0),
-              child: FloatingActionButton(
-                heroTag: "DumpDatabase",
-                onPressed: () {
-                  this._dumpDatabase();
-                },
-                child: Icon(Icons.search),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 16.0),
-              child: FloatingActionButton(
-                heroTag: "DeleteData",
-                onPressed: () {
-                  this._deleteTestData();
-                },
-                child: Icon(Icons.exposure_minus_1),
-              ),
-            ),
-            Container(
-              margin: EdgeInsets.only(bottom: 16.0),
-              child: FloatingActionButton(
-                heroTag: "InsertData",
-                onPressed: () {
-                  this._insertTestData();
-                },
-                child: Icon(Icons.exposure_plus_1),
-              ),
-            ),
-          ],
-        ));
+      ],
+    );
   }
 
   Widget _nikkaCard(

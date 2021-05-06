@@ -20,81 +20,94 @@ class CardPage extends StatefulWidget {
 class _CardPageState extends State<CardPage> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      appBar: AppBar(
-        title: Text(
-          widget.nikka.name,
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: Colors.grey,
         ),
-      ),
-      body: FutureBuilder<List<Log>>(
-        future: DBProvider.db.getLogsByNikkaId(widget.nikka.id),
-        builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
-          if (snapshot.hasData) {
-            return Container(
-              alignment: Alignment.topCenter,
-              color: Colors.grey[200],
-              child: SingleChildScrollView(
-                child: Column(
-                  children: <Widget>[
-                    for (int i = 0; i < snapshot.data.length; i++)
-                      _dailyLine(snapshot.data, i)
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            title: Text(
+              widget.nikka.name,
+            ),
+          ),
+          floatingActionButtonLocation:
+              FloatingActionButtonLocation.centerFloat,
+          body: FutureBuilder<List<Log>>(
+            future: DBProvider.db.getLogsByNikkaId(widget.nikka.id),
+            builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
+              if (snapshot.hasData) {
+                return Container(
+                  alignment: Alignment.topCenter,
+                  color: Colors.transparent,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: <Widget>[
+                        for (int i = 0; i < snapshot.data.length; i++)
+                          _dailyLine(snapshot.data, i)
+                      ],
+                    ),
+                  ),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+          floatingActionButton: FutureBuilder<List<Log>>(
+            future: DBProvider.db.getLogsByNikkaId(widget.nikka.id),
+            builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
+              if (snapshot.hasData) {
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    if ((snapshot.data.length == 0) ||
+                        (snapshot.data.first?.date != widget.now))
+                      FloatingActionButton.extended(
+                        heroTag: "AddLog",
+                        tooltip: "AddLog",
+                        icon: Icon(Icons.add),
+                        label: Text("Add"),
+                        onPressed: () {
+                          setState(() {
+                            DBProvider.db.newLog(Log(
+                              nikkaId: widget.nikka.id,
+                              date: widget.now,
+                            ));
+                          });
+                        },
+                        backgroundColor: colorTable[widget.nikka.color],
+                      )
+                    else
+                      FloatingActionButton.extended(
+                        heroTag: "DeleteLog",
+                        tooltip: "DeleteLog",
+                        icon: Icon(Icons.remove),
+                        label: Text("Delete"),
+                        onPressed: () {
+                          setState(() {
+                            DBProvider.db.deleteLogByNikaIdAndDate(
+                              widget.nikka.id,
+                              widget.now,
+                            );
+                          });
+                        },
+                        backgroundColor: colorTable[widget.nikka.color],
+                      )
                   ],
-                ),
-              ),
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-      floatingActionButton: FutureBuilder<List<Log>>(
-        future: DBProvider.db.getLogsByNikkaId(widget.nikka.id),
-        builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
-          if (snapshot.hasData) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-                if ((snapshot.data.length == 0) ||
-                    (snapshot.data.first?.date != widget.now))
-                  FloatingActionButton.extended(
-                    heroTag: "AddLog",
-                    tooltip: "AddLog",
-                    icon: Icon(Icons.add),
-                    label: Text("Add"),
-                    onPressed: () {
-                      setState(() {
-                        DBProvider.db.newLog(Log(
-                          nikkaId: widget.nikka.id,
-                          date: widget.now,
-                        ));
-                      });
-                    },
-                    backgroundColor: colorTable[widget.nikka.color],
-                  )
-                else
-                  FloatingActionButton.extended(
-                    heroTag: "DeleteLog",
-                    tooltip: "DeleteLog",
-                    icon: Icon(Icons.remove),
-                    label: Text("Delete"),
-                    onPressed: () {
-                      setState(() {
-                        DBProvider.db.deleteLogByNikaIdAndDate(
-                          widget.nikka.id,
-                          widget.now,
-                        );
-                      });
-                    },
-                    backgroundColor: colorTable[widget.nikka.color],
-                  )
-              ],
-            );
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
+                );
+              } else {
+                return Center(child: CircularProgressIndicator());
+              }
+            },
+          ),
+        ),
+      ],
     );
   }
 
