@@ -4,20 +4,31 @@ import 'package:flutter/rendering.dart';
 class SettingPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(
-        'Setting',
-      )),
-      body: ListView(
-        children: [
-          _menuItem('menu1', Icon(Icons.settings)),
-          _menuItem('menu2', Icon(Icons.map)),
-          _menuItem('menu3', Icon(Icons.room)),
-          _menuItem('menu4', Icon(Icons.local_shipping)),
-          _menuItem('menu5', Icon(Icons.airplanemode_active)),
-        ],
-      ),
+    return Stack(
+      children: <Widget>[
+        Container(
+          height: double.infinity,
+          width: double.infinity,
+          color: Colors.grey,
+        ),
+        Scaffold(
+          backgroundColor: Colors.transparent,
+          appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              title: Text(
+                'Setting',
+              )),
+          body: ListView(
+            children: [
+              _menuItem('menu1', Icon(Icons.settings)),
+              _menuItem('menu2', Icon(Icons.map)),
+              _menuItem('menu3', Icon(Icons.room)),
+              _menuItem('menu4', Icon(Icons.local_shipping)),
+              _menuItem('menu5', Icon(Icons.airplanemode_active)),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -26,14 +37,18 @@ class SettingPage extends StatelessWidget {
       child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-            border: Border(
-                bottom: BorderSide(
-          width: 1.0,
-          color: Colors.grey,
-        ))),
+          color: Colors.white,
+          border: Border(
+            bottom: BorderSide(
+              width: 1.0,
+              color: Colors.grey,
+            ),
+          ),
+        ),
         child: Row(
           children: <Widget>[
             Container(
+              color: Colors.white,
               margin: EdgeInsets.all(
                 10.0,
               ),
@@ -41,7 +56,10 @@ class SettingPage extends StatelessWidget {
             ),
             Text(
               title,
-              style: TextStyle(color: Colors.black, fontSize: 18.0),
+              style: TextStyle(
+                color: Colors.black,
+                fontSize: 18.0,
+              ),
             ),
           ],
         ),
