@@ -15,6 +15,7 @@ class SettingPage extends StatelessWidget {
           backgroundColor: Colors.transparent,
           appBar: AppBar(
               backgroundColor: Colors.transparent,
+              elevation: 0.0,
               title: Text(
                 'Setting',
               )),
