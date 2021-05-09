@@ -14,11 +14,24 @@ class SettingPage extends StatelessWidget {
         Scaffold(
           backgroundColor: Colors.transparent,
           appBar: AppBar(
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              title: Text(
-                'Setting',
-              )),
+            backgroundColor: Colors.transparent,
+            elevation: 0.0,
+            title: Text(
+              'Setting',
+            ),
+            actions: <Widget>[
+              IconButton(
+                iconSize: 32,
+                icon: Icon(
+                  Icons.color_lens,
+                  color: Colors.white,
+                ),
+                onPressed: () {
+                  print("pressed");
+                },
+              ),
+            ],
+          ),
           body: ListView(
             children: [
               _menuItem('menu1', Icon(Icons.settings)),
