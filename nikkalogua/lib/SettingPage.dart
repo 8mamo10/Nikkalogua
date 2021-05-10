@@ -23,7 +23,7 @@ class SettingPage extends StatelessWidget {
               IconButton(
                 iconSize: 32,
                 icon: Icon(
-                  Icons.color_lens,
+                  Icons.bedtime,
                   color: Colors.white,
                 ),
                 onPressed: () {
