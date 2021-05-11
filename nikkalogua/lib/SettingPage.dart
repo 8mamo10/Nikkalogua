@@ -9,7 +9,7 @@ class SettingPage extends StatelessWidget {
         Container(
           height: double.infinity,
           width: double.infinity,
-          color: Colors.grey,
+          color: ThemeData.light().backgroundColor,
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
