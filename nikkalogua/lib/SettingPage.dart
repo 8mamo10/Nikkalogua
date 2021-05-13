@@ -9,7 +9,7 @@ class SettingPage extends StatelessWidget {
         Container(
           height: double.infinity,
           width: double.infinity,
-          color: ThemeData.light().backgroundColor,
+          color: Theme.of(context).backgroundColor,
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -24,7 +24,7 @@ class SettingPage extends StatelessWidget {
                 iconSize: 32,
                 icon: Icon(
                   Icons.bedtime,
-                  color: Colors.white,
+                  color: Theme.of(context).primaryColor,
                 ),
                 onPressed: () {
                   print("pressed");
@@ -34,11 +34,11 @@ class SettingPage extends StatelessWidget {
           ),
           body: ListView(
             children: [
-              _menuItem('menu1', Icon(Icons.settings)),
-              _menuItem('menu2', Icon(Icons.map)),
-              _menuItem('menu3', Icon(Icons.room)),
-              _menuItem('menu4', Icon(Icons.local_shipping)),
-              _menuItem('menu5', Icon(Icons.airplanemode_active)),
+              _menuItem('menu1', Icon(Icons.settings), context),
+              _menuItem('menu2', Icon(Icons.map), context),
+              _menuItem('menu3', Icon(Icons.room), context),
+              _menuItem('menu4', Icon(Icons.local_shipping), context),
+              _menuItem('menu5', Icon(Icons.airplanemode_active), context),
             ],
           ),
         ),
@@ -46,12 +46,12 @@ class SettingPage extends StatelessWidget {
     );
   }
 
-  Widget _menuItem(String title, Icon icon) {
+  Widget _menuItem(String title, Icon icon, BuildContext context) {
     return GestureDetector(
       child: Container(
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
           border: Border(
             bottom: BorderSide(
               width: 1.0,
@@ -62,7 +62,6 @@ class SettingPage extends StatelessWidget {
         child: Row(
           children: <Widget>[
             Container(
-              color: Colors.white,
               margin: EdgeInsets.all(
                 10.0,
               ),
@@ -71,7 +70,6 @@ class SettingPage extends StatelessWidget {
             Text(
               title,
               style: TextStyle(
-                color: Colors.black,
                 fontSize: 18.0,
               ),
             ),

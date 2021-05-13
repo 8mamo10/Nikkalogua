@@ -25,7 +25,7 @@ class _CardListPageState extends State<CardListPage> {
         Container(
           height: double.infinity,
           width: double.infinity,
-          color: ThemeData.light().backgroundColor,
+          color: Theme.of(context).backgroundColor,
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -36,6 +36,7 @@ class _CardListPageState extends State<CardListPage> {
               iconSize: 32,
               icon: Icon(
                 _showDeleteButton ? Icons.delete : Icons.delete_outline,
+                color: Theme.of(context).primaryIconTheme.color,
               ),
               onPressed: () {
                 setState(() {
@@ -48,7 +49,7 @@ class _CardListPageState extends State<CardListPage> {
                 iconSize: 32,
                 icon: Icon(
                   Icons.settings,
-                  color: Colors.white,
+                  color: Theme.of(context).primaryIconTheme.color,
                 ),
                 onPressed: () {
                   Navigator.push(context,
@@ -158,7 +159,7 @@ class _CardListPageState extends State<CardListPage> {
                         return Container(
                           color: index < logs.length
                               ? colorTable[nikka.color]
-                              : Colors.grey[300],
+                              : Theme.of(context).highlightColor,
                           margin: EdgeInsets.all(3),
                         );
                       },
@@ -195,7 +196,7 @@ class _CardListPageState extends State<CardListPage> {
                   iconSize: 32,
                   icon: Icon(
                     Icons.cancel,
-                    color: Colors.black,
+                    color: Theme.of(context).indicatorColor,
                   ),
                   onPressed: () {
                     showDialog(
@@ -237,7 +238,10 @@ class _CardListPageState extends State<CardListPage> {
   Widget _plusCard() {
     return IconButton(
       iconSize: 150,
-      icon: Icon(Icons.add),
+      icon: Icon(
+        Icons.add,
+        color: Theme.of(context).primaryIconTheme.color,
+      ),
       onPressed: _addNewNikka,
     );
   }

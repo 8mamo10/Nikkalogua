@@ -25,7 +25,7 @@ class _CardPageState extends State<CardPage> {
         Container(
           height: double.infinity,
           width: double.infinity,
-          color: ThemeData.light().backgroundColor,
+          color: Theme.of(context).backgroundColor,
         ),
         Scaffold(
           backgroundColor: Colors.transparent,
@@ -119,7 +119,7 @@ class _CardPageState extends State<CardPage> {
         padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(15),
-          color: Colors.white,
+          color: Theme.of(context).cardColor,
         ),
         child: Row(
           children: [
@@ -135,7 +135,7 @@ class _CardPageState extends State<CardPage> {
                 child: Text(
                   (logs.length - count).toString(),
                   style: TextStyle(
-                    color: Colors.white,
+                    color: Theme.of(context).cardColor,
                     fontSize: 25,
                   ),
                 ),
@@ -148,7 +148,6 @@ class _CardPageState extends State<CardPage> {
                     .format(DateTime.parse(logs[count].date)),
                 style: TextStyle(
                   fontSize: 15,
-                  color: Colors.black,
                 ),
               ),
             ),
