@@ -24,7 +24,7 @@ class SettingPage extends StatelessWidget {
                 iconSize: 32,
                 icon: Icon(
                   Icons.bedtime,
-                  color: Theme.of(context).primaryColor,
+                  color: Theme.of(context).primaryIconTheme.color,
                 ),
                 onPressed: () {
                   print("pressed");
