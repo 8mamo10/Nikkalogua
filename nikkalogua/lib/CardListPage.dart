@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:intl/intl.dart';
 
 import 'dart:math' as math;
 
@@ -17,6 +18,7 @@ class CardListPage extends StatefulWidget {
 
 class _CardListPageState extends State<CardListPage> {
   bool _showDeleteButton = false;
+  DateTime now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
@@ -156,8 +158,18 @@ class _CardListPageState extends State<CardListPage> {
                         crossAxisCount: 7,
                       ),
                       itemBuilder: (BuildContext context, int index) {
+                        String targetDate = new DateFormat("yyyy-MM-dd")
+                            .format(this.now.add(new Duration(days: -index)));
+                        bool isAchieved = false;
+                        for (int i = 0; i < logs.length; i++) {
+                          var log = logs[i];
+                          if (log.date == targetDate) {
+                            isAchieved = true;
+                            break;
+                          }
+                        }
                         return Container(
-                          color: index < logs.length
+                          color: isAchieved
                               ? colorTable[nikka.color]
                               : Theme.of(context).highlightColor,
                           margin: EdgeInsets.all(3),
