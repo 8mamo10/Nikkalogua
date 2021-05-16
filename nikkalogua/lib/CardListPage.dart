@@ -158,22 +158,7 @@ class _CardListPageState extends State<CardListPage> {
                         crossAxisCount: 7,
                       ),
                       itemBuilder: (BuildContext context, int index) {
-                        String targetDate = new DateFormat("yyyy-MM-dd")
-                            .format(this.now.add(new Duration(days: -index)));
-                        bool isAchieved = false;
-                        for (int i = 0; i < logs.length; i++) {
-                          var log = logs[i];
-                          if (log.date == targetDate) {
-                            isAchieved = true;
-                            break;
-                          }
-                        }
-                        return Container(
-                          color: isAchieved
-                              ? colorTable[nikka.color]
-                              : Theme.of(context).highlightColor,
-                          margin: EdgeInsets.all(3),
-                        );
+                        return _dailyLogRectangle(nikka, logs, index);
                       },
                       itemCount: 35,
                       shrinkWrap: true,
@@ -255,6 +240,25 @@ class _CardListPageState extends State<CardListPage> {
         color: Theme.of(context).primaryIconTheme.color,
       ),
       onPressed: _addNewNikka,
+    );
+  }
+
+  Widget _dailyLogRectangle(Nikka nikka, List<Log> logs, int index) {
+    String targetDate = new DateFormat("yyyy-MM-dd")
+        .format(this.now.add(new Duration(days: -index)));
+    bool isColored = false;
+    for (int i = 0; i < logs.length; i++) {
+      var log = logs[i];
+      if (log.date == targetDate) {
+        isColored = true;
+        break;
+      }
+    }
+    return Container(
+      color: isColored
+          ? colorTable[nikka.color]
+          : Theme.of(context).highlightColor,
+      margin: EdgeInsets.all(3),
     );
   }
 
