@@ -19,6 +19,7 @@ class SettingPage extends StatelessWidget {
             title: Text(
               'Setting',
             ),
+            /*
             actions: <Widget>[
               IconButton(
                 iconSize: 32,
@@ -31,6 +32,7 @@ class SettingPage extends StatelessWidget {
                 },
               ),
             ],
+            */
           ),
           body: ListView(
             children: [
