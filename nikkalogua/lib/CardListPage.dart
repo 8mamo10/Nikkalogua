@@ -7,6 +7,7 @@ import 'dart:math' as math;
 import 'package:nikkalogua/CardPage.dart';
 import 'package:nikkalogua/Common.dart';
 import 'package:nikkalogua/Database.dart';
+import 'package:nikkalogua/EditPage.dart';
 import 'package:nikkalogua/NikkaModel.dart';
 import 'package:nikkalogua/LogModel.dart';
 import 'package:nikkalogua/SettingPage.dart';
@@ -239,7 +240,11 @@ class _CardListPageState extends State<CardListPage> {
         Icons.add,
         color: Theme.of(context).primaryIconTheme.color,
       ),
-      onPressed: _addNewNikka,
+      //onPressed: _addNewNikka,
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => EditPage()));
+      },
     );
   }
 
