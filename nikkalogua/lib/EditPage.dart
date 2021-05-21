@@ -18,7 +18,15 @@ class EditPage extends StatelessWidget {
             elevation: 0.0,
           ),
           body: Container(
-            child: Text("日課名を入力してください"),
+            child: Column(
+              children: <Widget>[
+                TextFormField(
+                  decoration: const InputDecoration(
+                    hintText: '日課の名称を入力してください',
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ],
