@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 
-class EditPage extends StatelessWidget {
+class EditPage extends StatefulWidget {
+  @override
+  _EditPageState createState() => _EditPageState();
+}
+
+class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -17,12 +21,14 @@ class EditPage extends StatelessWidget {
             backgroundColor: Colors.transparent,
             elevation: 0.0,
           ),
-          body: Container(
+          body: Form(
             child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
+                Text("習慣にしたいことは何ですか？"),
                 TextFormField(
                   decoration: const InputDecoration(
-                    hintText: '日課の名称を入力してください',
+                    hintText: '習慣を入力',
                   ),
                 ),
               ],
