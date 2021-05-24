@@ -34,17 +34,29 @@ class _EditPageState extends State<EditPage> {
                   decoration: InputDecoration(
                     hintText: '習慣を入力',
                   ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return "習慣を入力してください。";
+                    }
+                    return null;
+                  },
                   onSaved: (value) {
                     _nikkaName = value;
                   },
                 ),
-                FlatButton(
-                  child: Text("完了"),
-                  color: Theme.of(context).buttonColor,
-                  onPressed: () {
-                    _form.currentState.save();
-                    print(_nikkaName);
-                  },
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                    vertical: 16.0,
+                  ),
+                  child: ElevatedButton(
+                    child: Text("完了"),
+                    onPressed: () {
+                      if (_form.currentState.validate()) {
+                        _form.currentState.save();
+                        print(_nikkaName);
+                      }
+                    },
+                  ),
                 ),
               ],
             ),
