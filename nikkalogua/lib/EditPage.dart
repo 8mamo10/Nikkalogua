@@ -28,8 +28,14 @@ class _EditPageState extends State<EditPage> {
             key: _form,
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                Text("習慣にしたいことは何ですか？"),
+                Text(
+                  "習慣にしたいことは何ですか？",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
                 TextFormField(
                   decoration: InputDecoration(
                     hintText: '習慣を入力',
