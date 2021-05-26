@@ -19,20 +19,6 @@ class SettingPage extends StatelessWidget {
             title: Text(
               'Setting',
             ),
-            /*
-            actions: <Widget>[
-              IconButton(
-                iconSize: 32,
-                icon: Icon(
-                  Icons.bedtime,
-                  color: Theme.of(context).primaryIconTheme.color,
-                ),
-                onPressed: () {
-                  print("pressed");
-                },
-              ),
-            ],
-            */
           ),
           body: ListView(
             children: [
