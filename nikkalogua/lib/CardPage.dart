@@ -74,12 +74,16 @@ class _CardPageState extends State<CardPage> {
                         icon: Icon(Icons.add),
                         label: Text("Add"),
                         onPressed: () {
-                          setState(() {
-                            DBProvider.db.newLog(Log(
-                              nikkaId: widget.nikka.id,
-                              date: widget.now,
-                            ));
-                          });
+                          setState(
+                            () {
+                              DBProvider.db.newLog(
+                                Log(
+                                  nikkaId: widget.nikka.id,
+                                  date: widget.now,
+                                ),
+                              );
+                            },
+                          );
                         },
                         backgroundColor: colorTable[widget.nikka.color],
                       )

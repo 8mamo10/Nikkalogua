@@ -135,11 +135,13 @@ class _CardListPageState extends State<CardListPage> {
     return GestureDetector(
       onTap: () async {
         await Navigator.push(
-            context,
-            MaterialPageRoute(
-                builder: (context) => CardPage(
-                      nikka,
-                    )));
+          context,
+          MaterialPageRoute(
+            builder: (context) => CardPage(
+              nikka,
+            ),
+          ),
+        );
         setState(() {});
       },
       child: Card(
@@ -240,10 +242,17 @@ class _CardListPageState extends State<CardListPage> {
         Icons.add,
         color: Theme.of(context).primaryIconTheme.color,
       ),
-      //onPressed: _addNewNikka,
       onPressed: () {
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => EditPage()));
+        setState(
+          () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => EditPage(),
+              ),
+            );
+          },
+        );
       },
     );
   }

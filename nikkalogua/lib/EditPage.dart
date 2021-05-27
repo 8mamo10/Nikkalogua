@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:nikkalogua/Database.dart';
+import 'package:nikkalogua/NikkaModel.dart';
 
 class EditPage extends StatefulWidget {
   @override
@@ -47,7 +49,16 @@ class _EditPageState extends State<EditPage> {
                     return null;
                   },
                   onSaved: (value) {
-                    _nikkaName = value;
+                    setState(
+                      () {
+                        _nikkaName = value;
+                        Nikka nikka = Nikka(
+                          name: value,
+                          color: 1,
+                        );
+                        DBProvider.db.newNikka(nikka);
+                      },
+                    );
                   },
                 ),
                 Padding(
@@ -57,10 +68,13 @@ class _EditPageState extends State<EditPage> {
                   child: ElevatedButton(
                     child: Text("完了"),
                     onPressed: () {
-                      if (_form.currentState.validate()) {
-                        _form.currentState.save();
-                        print(_nikkaName);
-                      }
+                      setState(
+                        () {
+                          if (_form.currentState.validate()) {
+                            _form.currentState.save();
+                          }
+                        },
+                      );
                     },
                   ),
                 ),
