@@ -242,16 +242,15 @@ class _CardListPageState extends State<CardListPage> {
         Icons.add,
         color: Theme.of(context).primaryIconTheme.color,
       ),
-      onPressed: () {
+      onPressed: () async {
+        await Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EditPage(),
+          ),
+        );
         setState(
-          () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => EditPage(),
-              ),
-            );
-          },
+          () {},
         );
       },
     );
