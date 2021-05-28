@@ -11,7 +11,6 @@ class _EditPageState extends State<EditPage> {
   @override
   Widget build(BuildContext context) {
     final _form = GlobalKey<FormState>();
-    String _nikkaName;
 
     return Stack(
       children: <Widget>[
@@ -51,7 +50,6 @@ class _EditPageState extends State<EditPage> {
                   onSaved: (value) {
                     setState(
                       () {
-                        _nikkaName = value;
                         Nikka nikka = Nikka(
                           name: value,
                           color: 1,
