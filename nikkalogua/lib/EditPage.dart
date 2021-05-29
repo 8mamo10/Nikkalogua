@@ -57,6 +57,7 @@ class _EditPageState extends State<EditPage> {
                         DBProvider.db.newNikka(nikka);
                       },
                     );
+                    Navigator.pop(context);
                   },
                 ),
                 Padding(
