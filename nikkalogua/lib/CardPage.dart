@@ -5,6 +5,7 @@ import 'package:flutter/rendering.dart';
 
 import 'package:nikkalogua/Common.dart';
 import 'package:nikkalogua/Database.dart';
+import 'package:nikkalogua/EditPage.dart';
 import 'package:nikkalogua/LogModel.dart';
 import 'package:nikkalogua/NikkaModel.dart';
 
@@ -35,6 +36,19 @@ class _CardPageState extends State<CardPage> {
             title: Text(
               widget.nikka.name,
             ),
+            actions: <Widget>[
+              IconButton(
+                iconSize: 32,
+                icon: Icon(
+                  Icons.more_horiz,
+                  color: Theme.of(context).primaryIconTheme.color,
+                ),
+                onPressed: () {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => EditPage()));
+                },
+              ),
+            ],
           ),
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
