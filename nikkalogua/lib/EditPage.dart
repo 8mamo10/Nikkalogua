@@ -8,6 +8,8 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
+  String _name = "";
+
   @override
   Widget build(BuildContext context) {
     final _form = GlobalKey<FormState>();
@@ -50,14 +52,9 @@ class _EditPageState extends State<EditPage> {
                   onSaved: (value) {
                     setState(
                       () {
-                        Nikka nikka = Nikka(
-                          name: value,
-                          color: 1,
-                        );
-                        DBProvider.db.newNikka(nikka);
+                        this._nikkaName = value;
                       },
                     );
-                    Navigator.pop(context);
                   },
                 ),
                 Padding(
@@ -72,8 +69,14 @@ class _EditPageState extends State<EditPage> {
                           if (_form.currentState.validate()) {
                             _form.currentState.save();
                           }
+                          Nikka nikka = Nikka(
+                            name: this._name,
+                            color: 1,
+                          );
+                          DBProvider.db.newNikka(nikka);
                         },
                       );
+                      Navigator.pop(context);
                     },
                   ),
                 ),
