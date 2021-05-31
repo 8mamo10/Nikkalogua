@@ -52,7 +52,7 @@ class _EditPageState extends State<EditPage> {
                   onSaved: (value) {
                     setState(
                       () {
-                        this._nikkaName = value;
+                        this._name = value;
                       },
                     );
                   },
