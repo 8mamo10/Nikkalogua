@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nikkalogua/Common.dart';
 import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/NikkaModel.dart';
 
@@ -62,7 +63,7 @@ class _EditPageState extends State<EditPage> {
                   value: this._color,
                   icon: const Icon(Icons.arrow_downward),
                   iconSize: 24,
-                  items: <int>[0, 1, 2, 3, 4].map<DropdownMenuItem<int>>(
+                  items: <int>[0, 1, 2, 3, 4, 5].map<DropdownMenuItem<int>>(
                     (int value) {
                       return DropdownMenuItem<int>(
                         value: value,
@@ -70,9 +71,9 @@ class _EditPageState extends State<EditPage> {
                       );
                     },
                   ).toList(),
-                  onChanged: (int newValue) {
+                  onChanged: (int color) {
                     setState(() {
-                      this._color = newValue;
+                      this._color = color;
                     });
                   },
                 ),
@@ -90,7 +91,7 @@ class _EditPageState extends State<EditPage> {
                           }
                           Nikka nikka = Nikka(
                             name: this._name,
-                            color: 1,
+                            color: this._color,
                           );
                           DBProvider.db.newNikka(nikka);
                         },
