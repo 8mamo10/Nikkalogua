@@ -9,6 +9,7 @@ class EditPage extends StatefulWidget {
 
 class _EditPageState extends State<EditPage> {
   String _name = "";
+  int _color = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -55,6 +56,24 @@ class _EditPageState extends State<EditPage> {
                         this._name = value;
                       },
                     );
+                  },
+                ),
+                DropdownButton<int>(
+                  value: this._color,
+                  icon: const Icon(Icons.arrow_downward),
+                  iconSize: 24,
+                  items: <int>[0, 1, 2, 3, 4].map<DropdownMenuItem<int>>(
+                    (int value) {
+                      return DropdownMenuItem<int>(
+                        value: value,
+                        child: Text(value.toString()),
+                      );
+                    },
+                  ).toList(),
+                  onChanged: (int newValue) {
+                    setState(() {
+                      this._color = newValue;
+                    });
                   },
                 ),
                 Padding(
