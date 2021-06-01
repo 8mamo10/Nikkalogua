@@ -63,11 +63,11 @@ class _EditPageState extends State<EditPage> {
                   value: this._color,
                   icon: const Icon(Icons.arrow_downward),
                   iconSize: 24,
-                  items: <int>[0, 1, 2, 3, 4, 5].map<DropdownMenuItem<int>>(
-                    (int value) {
+                  items: colorTable.asMap().keys.map(
+                    (int index) {
                       return DropdownMenuItem<int>(
-                        value: value,
-                        child: Text(value.toString()),
+                        value: index,
+                        child: Text(index.toString()),
                       );
                     },
                   ).toList(),

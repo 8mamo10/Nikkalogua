@@ -6,5 +6,6 @@ const List colorTable = [
   Colors.green,
   Colors.yellow,
   Colors.purple,
-  Colors.orange
+  Colors.orange,
+  Colors.lime,
 ];
