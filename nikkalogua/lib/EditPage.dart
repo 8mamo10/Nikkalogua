@@ -67,12 +67,17 @@ class _EditPageState extends State<EditPage> {
                     (int index) {
                       return DropdownMenuItem<int>(
                         value: index,
-                        child: Text(
+                        child: Container(
+                          color: colorTable[index],
+                        ),
+                        /*
+                        Text(
                           index.toString(),
                           style: TextStyle(
                             color: colorTable[index],
                           ),
                         ),
+                        */
                       );
                     },
                   ).toList(),
