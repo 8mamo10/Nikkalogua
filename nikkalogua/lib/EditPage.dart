@@ -41,46 +41,56 @@ class _EditPageState extends State<EditPage> {
                     fontSize: 20,
                   ),
                 ),
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: '習慣を入力',
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return "習慣を入力してください。";
-                    }
-                    return null;
-                  },
-                  onSaved: (value) {
-                    setState(
-                      () {
-                        this._name = value;
-                      },
-                    );
-                  },
-                ),
-                DropdownButton<int>(
-                  value: this._color,
-                  icon: const Icon(Icons.arrow_downward),
-                  iconSize: 24,
-                  items: colorTable.asMap().keys.map(
-                    (int index) {
-                      return DropdownMenuItem<int>(
-                        value: index,
-                        child: Container(
-                          width: 20,
-                          height: 20,
-                          color: colorTable[index],
-                          margin: EdgeInsets.all(3),
-                        ),
+                Container(
+                  padding: const EdgeInsets.all(24.0),
+                  child: TextFormField(
+                    decoration: InputDecoration(
+                      hintText: '習慣を入力',
+                    ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return "習慣を入力してください。";
+                      }
+                      return null;
+                    },
+                    onSaved: (value) {
+                      setState(
+                        () {
+                          this._name = value;
+                        },
                       );
                     },
-                  ).toList(),
-                  onChanged: (int color) {
-                    setState(() {
-                      this._color = color;
-                    });
-                  },
+                  ),
+                ),
+                Text(
+                  "何色で表示しますか？",
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.all(24.0),
+                  child: DropdownButton<int>(
+                    value: this._color,
+                    items: colorTable.asMap().keys.map(
+                      (int index) {
+                        return DropdownMenuItem<int>(
+                          value: index,
+                          child: Container(
+                            width: 24,
+                            height: 24,
+                            color: colorTable[index],
+                            margin: EdgeInsets.all(3),
+                          ),
+                        );
+                      },
+                    ).toList(),
+                    onChanged: (int color) {
+                      setState(() {
+                        this._color = color;
+                      });
+                    },
+                  ),
                 ),
                 Padding(
                   padding: const EdgeInsets.symmetric(
