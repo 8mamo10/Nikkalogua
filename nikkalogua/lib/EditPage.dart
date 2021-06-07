@@ -108,15 +108,15 @@ class _EditPageState extends State<EditPage> {
                         () {
                           if (_form.currentState.validate()) {
                             _form.currentState.save();
+                            Nikka nikka = Nikka(
+                              name: this._name,
+                              color: this._color,
+                            );
+                            DBProvider.db.newNikka(nikka);
+                            Navigator.pop(context);
                           }
-                          Nikka nikka = Nikka(
-                            name: this._name,
-                            color: this._color,
-                          );
-                          DBProvider.db.newNikka(nikka);
                         },
                       );
-                      Navigator.pop(context);
                     },
                   ),
                 ),
