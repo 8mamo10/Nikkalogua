@@ -9,13 +9,13 @@ class EditPage extends StatefulWidget {
 }
 
 class _EditPageState extends State<EditPage> {
+  final _form = GlobalKey<FormState>();
+
   String _name = "";
   int _color = 0;
 
   @override
   Widget build(BuildContext context) {
-    final _form = GlobalKey<FormState>();
-
     return Stack(
       children: <Widget>[
         Container(
