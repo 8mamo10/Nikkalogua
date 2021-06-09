@@ -4,6 +4,9 @@ import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/NikkaModel.dart';
 
 class EditPage extends StatefulWidget {
+  final Nikka nikka;
+  EditPage(this.nikka);
+
   @override
   _EditPageState createState() => _EditPageState();
 }

@@ -246,7 +246,7 @@ class _CardListPageState extends State<CardListPage> {
         await Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (context) => EditPage(),
+            builder: (context) => EditPage(null),
           ),
         );
         setState(

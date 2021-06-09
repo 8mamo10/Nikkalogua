@@ -45,7 +45,7 @@ class _CardPageState extends State<CardPage> {
                 ),
                 onPressed: () {
                   Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EditPage()));
+                      MaterialPageRoute(builder: (context) => EditPage(null)));
                 },
               ),
             ],
