@@ -47,6 +47,8 @@ class _EditPageState extends State<EditPage> {
                 Container(
                   padding: const EdgeInsets.all(24.0),
                   child: TextFormField(
+                    initialValue:
+                        widget.nikka == null ? null : widget.nikka.name,
                     decoration: InputDecoration(
                       hintText: '習慣を入力',
                     ),

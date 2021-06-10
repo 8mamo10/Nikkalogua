@@ -44,8 +44,12 @@ class _CardPageState extends State<CardPage> {
                   color: Theme.of(context).primaryIconTheme.color,
                 ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => EditPage(null)));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => EditPage(widget.nikka),
+                    ),
+                  );
                 },
               ),
             ],
