@@ -4,8 +4,8 @@ import 'package:nikkalogua/Database.dart';
 import 'package:nikkalogua/NikkaModel.dart';
 
 class EditPage extends StatefulWidget {
-  final Nikka nikka;
-  EditPage(this.nikka);
+  final Nikka _nikka;
+  EditPage(this._nikka);
 
   @override
   _EditPageState createState() => _EditPageState();
@@ -48,7 +48,7 @@ class _EditPageState extends State<EditPage> {
                   padding: const EdgeInsets.all(24.0),
                   child: TextFormField(
                     initialValue:
-                        widget.nikka == null ? null : widget.nikka.name,
+                        widget._nikka == null ? null : widget._nikka.name,
                     decoration: InputDecoration(
                       hintText: '習慣を入力',
                     ),
@@ -117,7 +117,12 @@ class _EditPageState extends State<EditPage> {
                               name: this._name,
                               color: this._color,
                             );
-                            DBProvider.db.newNikka(nikka);
+                            if (widget._nikka == null) {
+                              DBProvider.db.newNikka(nikka);
+                            } else {
+                              nikka.id = widget._nikka.id;
+                              DBProvider.db.updateNikka(nikka);
+                            }
                             Navigator.pop(context);
                           }
                         },
