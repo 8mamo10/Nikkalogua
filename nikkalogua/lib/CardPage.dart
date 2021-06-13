@@ -33,8 +33,17 @@ class _CardPageState extends State<CardPage> {
           appBar: AppBar(
             backgroundColor: Colors.transparent,
             elevation: 0.0,
-            title: Text(
-              widget.nikka.name,
+            title: FutureBuilder<Nikka>(
+              future: DBProvider.db.getNikka(widget.nikka.id),
+              builder: (BuildContext context, AsyncSnapshot<Nikka> snapshot) {
+                if (snapshot.hasData) {
+                  return Text(
+                    snapshot.data.name,
+                  );
+                } else {
+                  return Center(child: CircularProgressIndicator());
+                }
+              },
             ),
             actions: <Widget>[
               IconButton(
