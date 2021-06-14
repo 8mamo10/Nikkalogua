@@ -19,6 +19,7 @@ class _EditPageState extends State<EditPage> {
 
   @override
   Widget build(BuildContext context) {
+    this._color = widget._nikka.color;
     return Stack(
       children: <Widget>[
         Container(
