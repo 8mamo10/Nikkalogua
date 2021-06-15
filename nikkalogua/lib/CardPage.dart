@@ -45,6 +45,7 @@ class _CardPageState extends State<CardPage> {
               future: DBProvider.db.getNikka(this._nikka.id),
               builder: (BuildContext context, AsyncSnapshot<Nikka> snapshot) {
                 if (snapshot.hasData) {
+                  this._nikka = snapshot.data;
                   return Text(
                     snapshot.data.name,
                   );
@@ -67,9 +68,7 @@ class _CardPageState extends State<CardPage> {
                       builder: (context) => EditPage(this._nikka),
                     ),
                   );
-                  setState(
-                    () {},
-                  );
+                  setState(() {});
                 },
               ),
             ],
@@ -167,20 +166,30 @@ class _CardPageState extends State<CardPage> {
           children: [
             AspectRatio(
               aspectRatio: 1.0,
-              child: Container(
-                margin: EdgeInsets.all(2),
-                alignment: Alignment.center,
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(15),
-                  color: colorTable[this._nikka.color],
-                ),
-                child: Text(
-                  (logs.length - count).toString(),
-                  style: TextStyle(
-                    color: Theme.of(context).cardColor,
-                    fontSize: 25,
-                  ),
-                ),
+              child: FutureBuilder<Nikka>(
+                future: DBProvider.db.getNikka(this._nikka.id),
+                builder: (BuildContext context, AsyncSnapshot<Nikka> snapshot) {
+                  if (snapshot.hasData) {
+                    this._nikka = snapshot.data;
+                    return Container(
+                      margin: EdgeInsets.all(2),
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(15),
+                        color: colorTable[this._nikka.color],
+                      ),
+                      child: Text(
+                        (logs.length - count).toString(),
+                        style: TextStyle(
+                          color: Theme.of(context).cardColor,
+                          fontSize: 25,
+                        ),
+                      ),
+                    );
+                  } else {
+                    return Center(child: CircularProgressIndicator());
+                  }
+                },
               ),
             ),
             Container(
