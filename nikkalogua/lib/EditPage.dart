@@ -19,7 +19,7 @@ class _EditPageState extends State<EditPage> {
 
   @override
   void initState() {
-    this._color = widget._nikka.color;
+    this._color = widget._nikka == null ? 0 : widget._nikka.color;
     super.initState();
   }
 

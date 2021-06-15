@@ -122,7 +122,9 @@ class _CardPageState extends State<CardPage> {
                             },
                           );
                         },
-                        backgroundColor: colorTable[this._nikka.color],
+                        backgroundColor: this._nikka == null
+                            ? colorTable[0]
+                            : colorTable[this._nikka.color],
                       )
                     else
                       FloatingActionButton.extended(
@@ -138,7 +140,9 @@ class _CardPageState extends State<CardPage> {
                             );
                           });
                         },
-                        backgroundColor: colorTable[this._nikka.color],
+                        backgroundColor: this._nikka == null
+                            ? colorTable[0]
+                            : colorTable[this._nikka.color],
                       )
                   ],
                 );
@@ -176,7 +180,9 @@ class _CardPageState extends State<CardPage> {
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(15),
-                        color: colorTable[this._nikka.color],
+                        color: this._nikka == null
+                            ? colorTable[0]
+                            : colorTable[this._nikka.color],
                       ),
                       child: Text(
                         (logs.length - count).toString(),
