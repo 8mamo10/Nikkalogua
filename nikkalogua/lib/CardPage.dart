@@ -96,15 +96,16 @@ class _CardPageState extends State<CardPage> {
               }
             },
           ),
-          floatingActionButton: FutureBuilder<List<Log>>(
-            future: DBProvider.db.getLogsByNikkaId(this._nikka.id),
-            builder: (BuildContext context, AsyncSnapshot<List<Log>> snapshot) {
+          floatingActionButton: FutureBuilder<Map<String, dynamic>>(
+            future: DBProvider.db.getNikkaAndLogsByNikkaId(this._nikka.id),
+            builder: (BuildContext context,
+                AsyncSnapshot<Map<String, dynamic>> snapshot) {
               if (snapshot.hasData) {
                 return Column(
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
-                    if ((snapshot.data.length == 0) ||
-                        (snapshot.data.first?.date != widget.now))
+                    if ((snapshot.data['logs'].length == 0) ||
+                        (snapshot.data['logs'].first?.date != widget.now))
                       FloatingActionButton.extended(
                         heroTag: "AddLog",
                         tooltip: "AddLog",
@@ -122,9 +123,8 @@ class _CardPageState extends State<CardPage> {
                             },
                           );
                         },
-                        backgroundColor: this._nikka == null
-                            ? colorTable[0]
-                            : colorTable[this._nikka.color],
+                        backgroundColor:
+                            colorTable[snapshot.data['nikka'].color],
                       )
                     else
                       FloatingActionButton.extended(
@@ -140,9 +140,8 @@ class _CardPageState extends State<CardPage> {
                             );
                           });
                         },
-                        backgroundColor: this._nikka == null
-                            ? colorTable[0]
-                            : colorTable[this._nikka.color],
+                        backgroundColor:
+                            colorTable[snapshot.data['nikka'].color],
                       )
                   ],
                 );
