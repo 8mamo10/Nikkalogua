@@ -55,6 +55,19 @@ class DBProvider {
     return ret;
   }
 
+  Future<Map<String, dynamic>> getNikkaAndLogsByNikkaId(int nikkaId) async {
+    Nikka nikka = await this.getNikka(nikkaId);
+    if (nikka == null) {
+      return null;
+    }
+    List<Log> logs = await this.getLogsByNikkaId(nikka.id);
+    Map<String, dynamic> ret = {
+      'nikka': nikka,
+      'logs': logs,
+    };
+    return ret;
+  }
+
   ///// Nikka
   newNikka(Nikka newNikka) async {
     final db = await database;
