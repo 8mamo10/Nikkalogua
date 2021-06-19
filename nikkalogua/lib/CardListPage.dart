@@ -55,8 +55,15 @@ class _CardListPageState extends State<CardListPage> {
                   color: Theme.of(context).primaryIconTheme.color,
                 ),
                 onPressed: () {
-                  Navigator.push(context,
-                      MaterialPageRoute(builder: (context) => SettingPage()));
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SettingPage(),
+                    ),
+                  );
+                  setState(() {
+                    this._showDeleteButton = false;
+                  });
                 },
               ),
             ],
@@ -142,7 +149,9 @@ class _CardListPageState extends State<CardListPage> {
             ),
           ),
         );
-        setState(() {});
+        setState(() {
+          this._showDeleteButton = false;
+        });
       },
       child: Card(
         shape: RoundedRectangleBorder(
@@ -249,9 +258,9 @@ class _CardListPageState extends State<CardListPage> {
             builder: (context) => EditPage(null),
           ),
         );
-        setState(
-          () {},
-        );
+        setState(() {
+          this._showDeleteButton = false;
+        });
       },
     );
   }
