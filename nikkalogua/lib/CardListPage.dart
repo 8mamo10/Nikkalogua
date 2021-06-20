@@ -78,6 +78,7 @@ class _CardListPageState extends State<CardListPage> {
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
+                      childAspectRatio: 0.9,
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       if (index == snapshot.data.length) {
