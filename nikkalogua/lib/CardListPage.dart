@@ -78,7 +78,7 @@ class _CardListPageState extends State<CardListPage> {
                   child: GridView.builder(
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
-                      childAspectRatio: 0.9,
+                      childAspectRatio: 0.85,
                     ),
                     itemBuilder: (BuildContext context, int index) {
                       if (index == snapshot.data.length) {
@@ -179,20 +179,29 @@ class _CardListPageState extends State<CardListPage> {
                     ),
                   ),
                   Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Icon(
-                          Icons.local_fire_department,
-                          color: colorTable[nikka.color],
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(
+                        Icons.local_fire_department,
+                        color: colorTable[nikka.color],
+                      ),
+                      Text(
+                        logs.length.toString(),
+                        style: TextStyle(
+                          fontSize: 20,
                         ),
-                        Text(
-                          logs.length.toString(),
-                          style: TextStyle(fontSize: 20),
-                        ),
-                      ]),
-                  Text(
-                    nikka.name,
-                    style: TextStyle(fontSize: 15),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    alignment: Alignment.bottomCenter,
+                    padding: const EdgeInsets.all(10.0),
+                    child: Text(
+                      nikka.name,
+                      style: TextStyle(
+                        fontSize: 16,
+                      ),
+                    ),
                   ),
                 ],
               ),
