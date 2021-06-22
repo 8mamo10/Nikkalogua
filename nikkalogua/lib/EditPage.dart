@@ -51,7 +51,7 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: TextFormField(
                     initialValue:
                         widget._nikka == null ? null : widget._nikka.name,
@@ -80,7 +80,7 @@ class _EditPageState extends State<EditPage> {
                   ),
                 ),
                 Container(
-                  padding: const EdgeInsets.all(24.0),
+                  padding: const EdgeInsets.all(12.0),
                   child: DropdownButton<int>(
                     value: this._color,
                     items: colorTable.asMap().keys.map(
