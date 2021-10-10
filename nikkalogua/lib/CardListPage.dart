@@ -47,6 +47,7 @@ class _CardListPageState extends State<CardListPage> {
                 });
               },
             ),
+            /*
             actions: <Widget>[
               IconButton(
                 iconSize: 32,
@@ -67,6 +68,7 @@ class _CardListPageState extends State<CardListPage> {
                 },
               ),
             ],
+            */
           ),
           body: FutureBuilder<List<Map<String, dynamic>>>(
             future: DBProvider.db.getAllNikkasAndLogs(),
@@ -95,6 +97,7 @@ class _CardListPageState extends State<CardListPage> {
               }
             },
           ),
+          /*
           floatingActionButton: Column(
             verticalDirection: VerticalDirection.up,
             children: [
@@ -130,6 +133,7 @@ class _CardListPageState extends State<CardListPage> {
               ),
             ],
           ),
+          */
         ),
       ],
     );
